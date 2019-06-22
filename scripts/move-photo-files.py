@@ -99,8 +99,9 @@ def get_exif_shooting_date(img: Image):
             if tg == 'DateTimeOriginal':
                 dt = datetime.strptime(val, '%Y:%m:%d %H:%M:%S')
                 return dt
-    except AttributeError:
-        return None
+
+    except (AttributeError, ValueError) as e:
+        logger.warn(repr(e))
 
     return None
 
@@ -129,12 +130,11 @@ def main():
 
     args = parser.parse_args()
 
+    source_path = args.src_path
+    dest_path_root = Path(args.dest_path or args.src_path)
+
     try:
         logger.info('start.')
-
-        source_path = args.src_path
-        dest_path_root = Path(args.dest_path or args.src_path)
-
         logger.info('src_path:  {}'.format(source_path))
         logger.info('dest_path: {}'.format(dest_path_root))
 
