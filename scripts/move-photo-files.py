@@ -63,7 +63,7 @@ def find_photo_files(dir: str):
     Yields:
         Path: Path instance of photo file .
     """
-    ext_matcher = re.compile('.*\\.jpe?g\Z', re.IGNORECASE)
+    ext_matcher = re.compile('.*\\.jpe?g\\Z', re.IGNORECASE)
     for f in (d for d in Path(dir).glob('*') if ext_matcher.match(d.name)):
         yield f
 
