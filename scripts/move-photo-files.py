@@ -101,7 +101,7 @@ def get_exif_shooting_date(img: Image):
                 return dt
 
     except (AttributeError, ValueError) as e:
-        logger.warn(repr(e))
+        logger.warning(repr(e))
 
     return None
 
@@ -141,7 +141,7 @@ def main():
         for path in find_photo_files(source_path):
             date_of_shooting = do_operation_image(path, get_exif_shooting_date)
             if not isinstance(date_of_shooting, datetime):
-                logger.warn(
+                logger.warning(
                     'can not get the shooting date of EXIF: {}'.format(path))
                 continue
 
