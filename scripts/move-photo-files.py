@@ -24,30 +24,30 @@ from PIL.ExifTags import TAGS
 LOGGING_CONFIG = {
     'version': 1,
     'disable_exisiting_loggers': True,
-    'formatters' : {
+    'formatters': {
         'default': {
-            'format' : '%(asctime)s [%(levelname)-8s]: %(message)s'
+            'format': '%(asctime)s [%(levelname)-8s]: %(message)s'
         }
     },
-    'handlers' : {
+    'handlers': {
         'console': {
-            'class' : 'logging.StreamHandler',
-            'level' : 'DEBUG',
-            'formatter' : 'default'
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+            'formatter': 'default'
         },
         'rotatingFile': {
-            'class' : 'logging.handlers.RotatingFileHandler',
-            'level' : 'DEBUG',
-            'formatter' : 'default',
-            'filename' : 'move-to-photos.log',
-            'maxBytes' : 100 * 1024 * 1024 ,
-            'backupCount' : '2'
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'default',
+            'filename': 'move-photo-files.log',
+            'maxBytes': 100 * 1024 * 1024,
+            'backupCount': '2'
         }
     },
-    'loggers' : {
+    'loggers': {
         '': {
             'level': 'DEBUG',
-            'handlers': [ 'console', 'rotatingFile' ]
+            'handlers': ['console', 'rotatingFile']
         }
     }
 }
@@ -55,7 +55,7 @@ logging.config.dictConfig(LOGGING_CONFIG)
 logger = getLogger(__name__)
 
 
-def find_photo_files(dir:str):
+def find_photo_files(dir: str):
     """Finds photo files (.jpg|.jpeg) from specified directory.
 
     Args:
@@ -68,7 +68,7 @@ def find_photo_files(dir:str):
         yield f
 
 
-def do_operation_image(path:str, func):
+def do_operation_image(path: str, func):
     """Do operation wrapper for image instance.
 
     Args:
@@ -83,7 +83,7 @@ def do_operation_image(path:str, func):
     return result
 
 
-def get_exif_shooting_date(img:Image):
+def get_exif_shooting_date(img: Image):
     """Gets EXIF shooting date from image.
 
     Args:
@@ -95,9 +95,9 @@ def get_exif_shooting_date(img:Image):
     exif = img._getexif()
     try:
         for id, val in exif.items():
-            tg = TAGS.get(id,id)
+            tg = TAGS.get(id, id)
             if tg == 'DateTimeOriginal':
-                dt = datetime.strptime(val,'%Y:%m:%d %H:%M:%S')
+                dt = datetime.strptime(val, '%Y:%m:%d %H:%M:%S')
                 return dt
     except AttributeError:
         return None
@@ -105,49 +105,54 @@ def get_exif_shooting_date(img:Image):
     return None
 
 
-def move_photo_file(source:Path, dest:Path):
+def move_photo_file(source: Path, dest: Path):
     """Moves source photo file to destination path.
 
     Args
         source: Source image file path
         dest: Destination directory path
     """
-    try:
-        dest.mkdir(parents=True, exist_ok=True)
+    dest.mkdir(parents=True, exist_ok=True)
 
-        #shutil.copy2(str(source), str(dest))
-        shutil.move(str(source), str(dest))
-        logger.debug('copy: {} -> {}'.format(source, dest))
-    except Exception as ex:
-        logger.warn('copy failuer: {} : {}'.format(source, ex))
+    #shutil.copy2(str(source), str(dest))
+    #shutil.move(str(source), str(dest))
+    logger.debug('copy: {} -> {}'.format(source, dest))
 
 
-def main(args):
-    logger.debug('start.')
-
-    source_path = args.src_path
-    dest_path_root = Path(args.dest_path or args.src_path)
-
-    logger.debug('src_path:  {}'.format(source_path))
-    logger.debug('dest_path: {}'.format(dest_path_root))
-
-    for path in find_photo_files(source_path):
-        date_of_shooting = do_operation_image(path, get_exif_shooting_date)
-        if not isinstance(date_of_shooting, datetime):
-            logger.warn('can not getthe shooting date of EXIF: {}'.format(path))
-            continue
-
-        dest_path = dest_path_root / date_of_shooting.strftime('%Y/%Y-%m')
-        move_photo_file(path, dest_path)
- 
-    logger.debug('end.')
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Organize and move photo files into folders.')
-    parser.add_argument('-o','--out', default=None, help='destination folder path.(default src_path)', dest='dest_path')
-    parser.add_argument('src_path',help='source folder path.')
+def main():
+    parser = argparse.ArgumentParser(
+        description='Organize and move photo files into folders.')
+    parser.add_argument('-o', '--out', default=None,
+                        help='destination folder path.(default src_path)', dest='dest_path')
+    parser.add_argument('src_path',
+                        help='source folder path.')
 
     args = parser.parse_args()
 
-    main(args)
+    try:
+        logger.info('start.')
+
+        source_path = args.src_path
+        dest_path_root = Path(args.dest_path or args.src_path)
+
+        logger.info('src_path:  {}'.format(source_path))
+        logger.info('dest_path: {}'.format(dest_path_root))
+
+        for path in find_photo_files(source_path):
+            date_of_shooting = do_operation_image(path, get_exif_shooting_date)
+            if not isinstance(date_of_shooting, datetime):
+                logger.warn(
+                    'can not get the shooting date of EXIF: {}'.format(path))
+                continue
+
+            dest_path = dest_path_root / date_of_shooting.strftime('%Y/%Y-%m')
+            move_photo_file(path, dest_path)
+
+        logger.info('end.')
+
+    except Exception:
+        logger.exception('Unhandled.')
+
+
+if __name__ == '__main__':
+    main()
