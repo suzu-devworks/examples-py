@@ -34,20 +34,18 @@ LOGGING_CONFIG = {
             'class': 'logging.StreamHandler',
             'level': 'DEBUG',
             'formatter': 'default'
-        },
-        'rotatingFile': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'level': 'DEBUG',
-            'formatter': 'default',
-            'filename': 'move-photo-files.log',
-            'maxBytes': 100 * 1024 * 1024,
-            'backupCount': '2'
         }
     },
     'loggers': {
         '': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False
+        },
+        '__main__': {
             'level': 'DEBUG',
-            'handlers': ['console', 'rotatingFile']
+            'handlers': ['console'],
+            'propagate': False
         }
     }
 }
@@ -64,7 +62,7 @@ def find_photo_files(dir: str):
         Path: Path instance of photo file .
     """
     ext_matcher = re.compile('.*\\.jpe?g\\Z', re.IGNORECASE)
-    for f in (d for d in Path(dir).glob('*') if ext_matcher.match(d.name)):
+    for f in (d for d in Path(dir).glob('**/*') if (d.match('[!\\.]*/*') and ext_matcher.match(d.name))):
         yield f
 
 
@@ -106,7 +104,7 @@ def get_exif_shooting_date(img: Image):
     return None
 
 
-def move_photo_file(source: Path, dest: Path):
+def move_file(source: Path, dest: Path):
     """Moves source photo file to destination path.
 
     Args
@@ -140,13 +138,16 @@ def main():
 
         for path in find_photo_files(source_path):
             date_of_shooting = do_operation_image(path, get_exif_shooting_date)
-            if not isinstance(date_of_shooting, datetime):
+            if isinstance(date_of_shooting, datetime):
+                dest_path = dest_path_root / date_of_shooting.strftime('%Y/%Y-%m')
+            else:
                 logger.warning(
                     'can not get the shooting date of EXIF: {}'.format(path))
-                continue
+                update_time = datetime.fromtimestamp(path.stat().st_mtime)
+                dest_path = dest_path_root / update_time.strftime('%Y/%Y-%m-nodate')
 
-            dest_path = dest_path_root / date_of_shooting.strftime('%Y/%Y-%m')
-            move_photo_file(path, dest_path)
+            if isinstance(dest_path, Path):
+                move_file(path, dest_path)
 
         logger.info('end.')
 
