@@ -1,2 +1,3 @@
-# py-examples
-Python programming examples.
+# examples-py
+
+Workspace for studying Python programming.
