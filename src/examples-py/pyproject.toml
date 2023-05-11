@@ -31,4 +31,4 @@ dev = [
 clean = {composite = ["pyclean ."]}
 format = {composite = ["isort src/ tests/", "black src/ tests/"]}
 lint = {composite = ["flake8", "mypy src/ tests/"]}
-test = "pytest --cov=. --cov-branch --cov-report xml"
+test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src tests/"
