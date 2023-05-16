@@ -9,8 +9,9 @@
     "pyclean",
     "pyproject",
     "pytest",
-    "venv",
-    "virtualenv"
+    "pytz",
+    "virtualenv",
+    "venv"
   ],
   "ignoreWords": [],
   "import": []
