@@ -8,7 +8,7 @@ to unambiguously locate itself relative to other date/time objects.
 from datetime import date, datetime, time, timedelta
 
 
-def test_native_datetime_generators():
+def test_datetime_generators():
     # datetime (naive)
     now = datetime.now()
     assert isinstance(now, datetime)
@@ -22,19 +22,20 @@ def test_native_datetime_generators():
     assert isinstance(today, datetime)
     assert utc.tzinfo is None
 
-    # date (naive)
+    # date
     today_date = date.today()
     assert isinstance(today_date, date)
 
     now_date = datetime.now().date()
     assert isinstance(now_date, date)
 
-    # time
+    # datetime.time (naive)
     now_time = datetime.now().time()
     assert isinstance(now_time, time)
+    now_time.tzinfo is None
 
 
-def test_native_datetime_properties():
+def test_datetime_properties():
     # fixed datetime
     fixed = datetime(2021, 7, 31, 12, 34, 56, 789012)
     assert fixed.year == 2021
@@ -66,7 +67,7 @@ def test_native_datetime_properties():
     assert fixed_time.microsecond == 789012
 
 
-def test_native_datetime_calculation():
+def test_datetime_calculation():
     datetime1 = datetime(2000, 2, 29, 12, 34, 56, 789012)
 
     # datetime2 = datetime1 + timedelta
@@ -86,7 +87,7 @@ def test_native_datetime_calculation():
     assert actual is True
 
 
-def test_native_datetime_convert():
+def test_datetime_convert_tostring():
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901)
 
     # convert datetime to string(ISO8601)
@@ -98,4 +99,5 @@ def test_native_datetime_convert():
     assert datetime2 == datetime1
 
     # convert datetime to string
-    assert datetime1.strftime("%Y/%m/%d %H:%M:%S") == "2000/02/29 01:23:45"
+    text = datetime1.strftime("%Y/%m/%d %H:%M:%S")
+    assert text == "2000/02/29 01:23:45"

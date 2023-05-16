@@ -3,7 +3,9 @@
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "pytz>=2023.3",
+]
 description = ""
 license = {text = "MIT"}
 name = "examples-py"
