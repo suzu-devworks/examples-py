@@ -2,7 +2,9 @@
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+  "pytz>=2024.1",
+]
 description = "Default template for PDM package"
 license = {text = "MIT"}
 name = "examples-py"
