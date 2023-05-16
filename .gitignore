@@ -165,6 +165,7 @@ cython_debug/
 
 ##> Add
 [Tt]emp/
+[Ll]ogs/
 .DS_Store
 .pdm-python
 .venv.*/
