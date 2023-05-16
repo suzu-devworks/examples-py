@@ -4,6 +4,7 @@ authors = [
 ]
 dependencies = [
   "pytz>=2024.1",
+  "pyyaml>=6.0.1",
 ]
 description = "Default template for PDM package"
 license = {text = "MIT"}
@@ -11,6 +12,9 @@ name = "examples-py"
 readme = "README.md"
 requires-python = ">=3.12"
 version = "0.1.0"
+
+[project.scripts]
+examples-cli = "examples.console.command:main"
 
 [build-system]
 build-backend = "pdm.backend"

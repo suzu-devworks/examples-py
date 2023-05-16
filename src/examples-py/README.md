@@ -21,8 +21,9 @@ This is a project to learn the basic functions and usage of Python.
 ## Standard Library study
 
 - [`datetime`](./tests/standards/datetimes/)<br>
-Learn how to work with dates with datetime and timezone.
-
+  Learn how to work with dates with datetime and timezone.
+- [`logging`](./src/examples/standards/logging/)<br>
+  Learn log output and settings with console app.
 
 ## How the project was initialized
 
