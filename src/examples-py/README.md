@@ -25,6 +25,7 @@ This is a project to learn the basic functions and usage of Python.
 - [`logging`](./src/examples/standards/logging/)<br>
   Learn log output and settings with console app.
 
+
 ## How the project was initialized
 
 This project was initialized with the following command:

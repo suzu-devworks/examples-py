@@ -16,3 +16,7 @@ def do_logging_example():
         logger.exception("What is doing when exception happens.")
 
     logger.critical("critical message")
+
+    logger.info("----- password : qwerty, filtered?")
+    # spell-checker:disable-next-line
+    logger.info("----- p@ssword : xxxxxx, not filtering.")

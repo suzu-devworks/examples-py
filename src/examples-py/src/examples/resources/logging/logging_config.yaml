@@ -9,6 +9,13 @@ formatters:
       %(message)s"
   simple:
     format: "%(asctime)s [%(levelname)-5s] %(message)s"
+filters:
+  not_output_password:
+    (): examples.standards.logging.NoPasswordFilter
+    name: "param"
+  warnings_and_below:
+    (): examples.standards.logging.level_filter_factory
+    level: "WARNING"
 handlers:
   console:
     class: logging.StreamHandler
@@ -31,6 +38,7 @@ handlers:
     interval: 1
     backupCount: 5
     encoding: utf-8
+    filters: [not_output_password, warnings_and_below]
 loggers:
   examples:
     level: DEBUG
