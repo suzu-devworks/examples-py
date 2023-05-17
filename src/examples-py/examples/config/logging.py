@@ -2,12 +2,34 @@ import json
 import re
 from importlib.resources import as_file
 from importlib.resources import files as resource_files
-from logging import DEBUG, basicConfig
+from logging import DEBUG, Filter, basicConfig
 from logging.config import dictConfig
 from pathlib import Path
 from typing import Any
 
 import yaml
+
+
+class NoPasswordFilter(Filter):
+    """Unable to configure filter ???"""
+
+    def __init__(self, name: str = "") -> None:
+        super().__init__(name)
+
+    def filter(self, record):
+        log_message = record.getMessage()
+        return "password" not in log_message
+
+
+def level_filter_factory(level: str):
+    import logging as original
+
+    level = getattr(original, level)
+
+    def filter(record):
+        return record.levelno <= level
+
+    return filter
 
 
 def __find_logging_config() -> Path:
@@ -30,6 +52,7 @@ def __make_directories(config: dict[str, Any]):
             dir = Path(logfile).parent
             if not dir.exists():
                 dir.mkdir()
+    return
 
 
 def configure_logging():
@@ -53,5 +76,4 @@ def configure_logging():
                 level=DEBUG,
                 format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
             )
-
-    pass
+    return
