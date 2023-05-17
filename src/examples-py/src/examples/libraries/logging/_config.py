@@ -30,6 +30,7 @@ def __make_directories(config: dict[str, Any]) -> None:
             dir = Path(logfile).parent
             if not dir.exists():
                 dir.mkdir()
+    return
 
 
 def configure_logging() -> None:
@@ -54,5 +55,4 @@ def configure_logging() -> None:
                 level=DEBUG,
                 format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
             )
-
-    pass
+    return
