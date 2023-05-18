@@ -3,13 +3,19 @@
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "pytz>=2023.3",
+    "pyyaml>=6.0",
+]
 description = ""
 license = {text = "MIT"}
 name = "examples-py"
 readme = "README.md"
 requires-python = ">=3.11"
 version = "0.1.0"
+
+[project.scripts]
+examples-cli = "examples.console.command:main"
 
 [build-system]
 build-backend = "pdm.backend"
