@@ -9,7 +9,9 @@
       "type": "python",
       "request": "launch",
       "program": "src/examples-py/examples/console/command.py",
-      "args": [],
+      "args": [
+        "args",
+      ],
       "console": "integratedTerminal",
       "justMyCode": true
     }

@@ -27,9 +27,7 @@ timezonedata = [
 
 
 @pytest.mark.parametrize("zone,basedate,tzname,offset,dst", timezonedata)
-def test_timezone(
-    zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta
-):
+def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta):
     tz = ZoneInfo(zone)
     assert tz.key == zone
     assert tz.tzname(basedate) == tzname
@@ -102,9 +100,7 @@ def test_datetime_calculation():
     assert timedelta1 == timedelta(days=-33)
 
     # timedelta = datetime1(aware) - datetime2(utc)
-    timedelta1 = datetime1 - datetime(
-        2000, 4, 2, 12, 34, 56, 789012, tzinfo=timezone.utc
-    )
+    timedelta1 = datetime1 - datetime(2000, 4, 2, 12, 34, 56, 789012, tzinfo=timezone.utc)
     assert timedelta1 == timedelta(days=-34, hours=15)
 
     # timedelta = datetime1(aware) - datetime2(native)

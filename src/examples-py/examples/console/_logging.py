@@ -1,9 +1,9 @@
 from logging import getLogger
 
+logger = getLogger(__name__)
 
-def do_logging_sample():
-    logger = getLogger(__name__)
 
+def do_logging_sample(args: any):
     # use loggers
     logger.debug("debug message")
     logger.info("info message")

@@ -31,9 +31,7 @@ timezonedata = [
 
 
 @pytest.mark.parametrize("zone,basedate,tzname,offset,dst", timezonedata)
-def test_timezone(
-    zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta
-):
+def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta):
     tz = pytz.timezone(zone)
     assert tz.zone == zone
     assert tz.tzname(basedate) == tzname
