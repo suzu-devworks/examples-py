@@ -10,11 +10,11 @@ formatters:
   simple:
     format: "%(asctime)s [%(levelname)-5s] %(message)s"
 filters:
-  # not_output_password:
-  #   (): django.utils.log.RequireDebugFalse,
-  #   name: "parameter"
+  not_output_password:
+    (): examples.config.logging.NoPasswordFilter
+    name: "param"
   warnings_and_below:
-    (): examples.config.logging.level_filter_factory
+    (): examples.config.logging.level_and_below_filter_factory
     level: "WARNING"
 handlers:
   console:
@@ -38,7 +38,7 @@ handlers:
     interval: 1
     backupCount: 5
     encoding: utf-8
-    filters: [warnings_and_below]
+    filters: [not_output_password, warnings_and_below]
 loggers:
   examples:
     level: DEBUG

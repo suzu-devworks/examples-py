@@ -16,3 +16,6 @@ def do_logging_sample():
         logger.exception("What is doing when exception happens.")
 
     logger.critical("critical message")
+
+    logger.info("----- password : qwerty, filtered?")
+    logger.info("----- p@asswod : xxxxxx, not filtering.")

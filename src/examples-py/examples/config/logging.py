@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 from importlib.resources import as_file
 from importlib.resources import files as resource_files
@@ -11,8 +12,6 @@ import yaml
 
 
 class NoPasswordFilter(Filter):
-    """Unable to configure filter ???"""
-
     def __init__(self, name: str = "") -> None:
         super().__init__(name)
 
@@ -21,10 +20,8 @@ class NoPasswordFilter(Filter):
         return "password" not in log_message
 
 
-def level_filter_factory(level: str):
-    import logging as original
-
-    level = getattr(original, level)
+def level_and_below_filter_factory(level: str):
+    level = getattr(logging, level)
 
     def filter(record):
         return record.levelno <= level
