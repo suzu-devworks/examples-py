@@ -15,13 +15,35 @@
 
 ### Using pip on venv
 
+Installation methods:
+
 ```shell
 pip install pdm
 ```
 
+### Update
+
+Update the PDM version:
+
+```shell
+pdm self update
+```
+
 ## Setup
+
+PDM supports generating completion scripts for Bash, Zsh, Fish or Powershell.
+
+for bash:
 
 ```shell
 pdm completion bash > pdm.bash-completion
 sudo mv pdm.bash-completion /etc/bash_completion.d/
 ```
+
+- https://pdm.fming.dev/latest/#shell-completion
+
+## Usage
+
+## Use virtualenv
+
+## Tips
