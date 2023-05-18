@@ -6,6 +6,9 @@ packages = [{include = "examples_packaging_poetry"}]
 readme = "README.md"
 version = "0.1.0"
 
+[tool.poetry.scripts]
+examples-poetry-cli = 'examples_packaging_poetry.console.command:main'
+
 [tool.poetry.dependencies]
 python = "^3.11"
 
@@ -21,3 +24,29 @@ taskipy = "^1.10.4"
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+include_trailing_comma = true
+known_local_folder = ['config']
+line_length = 119
+multi_line_output = 3
+
+[tool.flake8]
+ignore = "E203,E266,W503,"
+max-complexity = 18
+max-line-length = 119
+
+[tool.mypy]
+check_untyped_defs = true
+ignore_missing_imports = true
+no_strict_optional = true
+python_version = "3.11"
+
+[tool.taskipy.tasks]
+black = "black ."
+clean = "pyclean ."
+lint = "flake8 "
+test = "pytest"
