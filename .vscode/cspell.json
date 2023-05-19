@@ -4,6 +4,15 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
+    "distutils",
+    "isort",
+    "mypy",
+    "pipenv",
+    "Pipfile",
+    "pyclean",
+    "pyproject",
+    "pytest",
+    "setuptools",
     "venv"
   ],
   "ignoreWords": [],
