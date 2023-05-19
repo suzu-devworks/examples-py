@@ -2,22 +2,31 @@
 
 ## Setup
 
-## Initialize project
-
-Run the following command:
+create a virtualenv in advance:
 
 ```shell
-# virtualenv
 python -m venv .venv.setup
 . .venv.setup/bin/activate
-cd src
 
 python -m pip install --upgrade pip
 pip install --upgrade setuptools wheel
+```
 
-mkdir examples-packaging-setup
-cd examples-packaging-setup
+Here's how this project is setup:
 
+```shell
+cd src/examples-packaging-setup
+
+pip install -e .[dev,doc]
+```
+
+## Initialize project
+
+This project is initially generated with the following command:
+
+```shell
+mkdir -p src/examples-packaging-setup
+cd src/examples-packaging-setup
 ```
 
 Create each of these files:

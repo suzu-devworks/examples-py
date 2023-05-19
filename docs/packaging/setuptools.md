@@ -18,19 +18,25 @@ python -m pip install --upgrade pip
 pip install --upgrade setuptools wheel build
 ```
 
-## Configuration `pyproject.toml` project
+## Configurations
+
+After a little research, the current setuptools configuration seems to fall into three categories.
+
+1. legacy pattern of setup.cfg + setup.py ([pillow](https://github.com/python-pillow/Pillow)?)
+2. pyproject.toml + setup.cfg(main) compatibility pattern ([django](https://github.com/django/django)?)
+3. Future-oriented patterns in pyproject.toml ([flask](https://github.com/pallets/flask)?)
+
+### `pyproject.toml` project
 
 It seems that 61.0.0 supports management with pyproject.toml.
 
 ```toml
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 ```
 
-## Configuration `setup.cfg` project
-
-### Initial files
+### `setup.cfg` project
 
 **`setup.py`**:
 
@@ -50,13 +56,15 @@ Ini file containing option defaults for the setup.py command.
 
 All projects should contain a readme file.
 
-**`MANIFEST.in`**
+**`MANIFEST.in`**:
 
 needed when you need to package additional files that are not automatically included in a source distribution.
 
 **`LICENSE.txt`**:
 
 Every package should include a license file detailing the terms of distribution.
+
+## Usage
 
 ### Dependency management
 
@@ -90,15 +98,13 @@ Specify the key when installing:
 pip install -e .[dev,doc]
 ```
 
-## Usage
-
 ### Development mode.
 
 ```shell
 pip install -e .
 ```
 
-### Build package
+### Build wheel package
 
 ```shell
 python -m build
