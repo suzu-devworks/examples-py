@@ -7,13 +7,18 @@
 - [setuptools](#setuptools)
   - [References](#references)
   - [Installation](#installation)
-  - [Configuration `pyproject.toml` project](#configuration-pyprojecttoml-project)
-  - [Configuration `setup.cfg` project](#configuration-setupcfg-project)
-    - [Initial files](#initial-files)
+  - [Setuptools configurations](#setuptools-configurations)
+    - [Configure `pyproject.toml` project](#configure-pyprojecttoml-project)
+    - [Configure `setup.cfg` project](#configure-setupcfg-project)
+  - [Managements](#managements)
     - [Dependency management](#dependency-management)
-  - [Usage](#usage)
     - [Development mode.](#development-mode)
-    - [Build package](#build-package)
+    - [Build wheel package](#build-wheel-package)
+  - [`setup.py` command](#setuppy-command)
+    - [Usage](#usage)
+    - [Clean](#clean)
+  - [Tips](#tips)
+    - [Settings package version](#settings-package-version)
 
 
 ## References
@@ -33,19 +38,25 @@ python -m pip install --upgrade pip
 pip install --upgrade setuptools wheel build
 ```
 
-## Configuration `pyproject.toml` project
+## Setuptools configurations
+
+After a little research, the current setuptools configuration seems to fall into three categories.
+
+1. legacy pattern of setup.cfg + setup.py ([pillow](https://github.com/python-pillow/Pillow)?)
+2. pyproject.toml + setup.cfg(main) compatibility pattern ([django](https://github.com/django/django)?)
+3. Future-oriented patterns in pyproject.toml ([flask](https://github.com/pallets/flask)?)
+
+### Configure `pyproject.toml` project
 
 It seems that 61.0.0 supports management with pyproject.toml.
 
 ```toml
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 ```
 
-## Configuration `setup.cfg` project
-
-### Initial files
+### Configure `setup.cfg` project
 
 **`setup.py`**:
 
@@ -72,6 +83,8 @@ needed when you need to package additional files that are not automatically incl
 **`LICENSE.txt`**:
 
 Every package should include a license file detailing the terms of distribution.
+
+## Managements
 
 ### Dependency management
 
@@ -105,15 +118,13 @@ Specify the key when installing:
 pip install -e .[dev,doc]
 ```
 
-## Usage
-
 ### Development mode.
 
 ```shell
 pip install -e .
 ```
 
-### Build package
+### Build wheel package
 
 ```shell
 python -m build
@@ -124,4 +135,44 @@ If you get the error `No module named` build:
 pip install build
 ```
 
-<!-- ## Tips -->
+
+## `setup.py` command
+
+### Usage
+
+```shell
+python setup.py --help-commands
+python setup.py --help clean
+```
+
+### Clean
+
+```shell
+python setup.py clean --all
+```
+
+
+
+## Tips
+
+### Settings package version
+
+If you want to define the version somewhere readable from python
+
+- [Manage package versions in one place](https://packaging.python.org/ja/latest/guides/single-sourcing-package-version/)
+
+Define versions globally in top level `__init__.py` :
+
+```py
+__version__ = "0.1.0"
+```
+
+And `setup.cfg` is like this:
+
+```ini
+[metadata]
+...
+version = attr: examples_packaging_setup.__version__
+...
+```
+
