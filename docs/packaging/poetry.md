@@ -43,25 +43,80 @@ poetry init
 `init` is generates `pyproject.toml`.  
 `new` also creates an initial directories and files.
 
-### Build package
+### Create virtualenv
+
+Create a virtual environment when installing dependencies
+
+```shell
+poetry install
+```
+
+By default, Poetry creates a virtual environment in `{cache-dir}/virtualenvs`.
+
+If you want a virtual environment in your project folder, enable the following settings in `poetry.toml`:
+
+```shell
+poetry config virtualenvs.in-project true --local
+```
+
+however, Poetry will detect and respect an existing virtual environment that has been externally activated.
+
+### Remove the virtualenv
+
+```shell
+poetry env remove {virtualenv}
+```
+
+### Spawns a shell within the virtualenv
+
+```shell
+poerty shell
+```
+
+### Spawns a command installed into the virtualenv
+
+```shell
+poerty run {command}
+```
+
+### Restore packages
+
+Wherever you have `pyproject.toml` do the following
+
+```shell
+poetry install
+```
+
+Current projects are installed in editable mode by default.
+
+### Install packages
+
+How to add dependencies:
+
+```shell
+poetry add {packages...}
+```
+
+### Update packages
+
+```shell
+poetry update {packages...}
+```
+
+Same as deleting `poetry.lock` and running install.
+
+### Uninstall packages
+
+```shell
+poetry remove {packages...}
+```
+
+### Build wheel package
 
 `poetry-core` is python wheels are supported.
 
 ```shell
 poetry build
-```
-
-## virtualenv
-
-By default, Poetry creates a virtual environment in `{cache-dir}/virtualenvs`.  
-however, Poetry will detect and respect an existing virtual environment that has been externally activated.
-
-### Switch virtualenv
-
-Here's how to activate your virtual environment:
-
-```shell
-poerty shell
 ```
 
 ## Tips
@@ -80,7 +135,7 @@ poetry add --group dev taskipy
 
 In your pyproject.toml file, add a new section called `[tool.taskipy.tasks]`:
 
-**pyproject.toml**
+**`pyproject.toml`**:
 
 ```toml
 [tool.taskipy.tasks]
@@ -96,17 +151,4 @@ poetry run task cleanshellshell
 or
 
 task clean
-```
-
-### Create the virtualenv inside the project’s root directory.
-
-```shell
-poetry config virtualenvs.in-project true
-```
-
-set configuration to `~/.config/pypoetry/config.toml`:
-
-```toml
-[virtualenvs]
-in-project = true
 ```
