@@ -2,7 +2,8 @@
 
 > Pipenv is a Python virtualenv management tool that supports a multitude of systems and nicely bridges the gaps between pip, pyenv and virtualenv.
 
-It's a combination of pip and venv. conda?
+It's a combination of pip and venv. conda?  
+Can't you make a wheel package?
 
 ## References
 
@@ -19,10 +20,18 @@ pip install pipenv
 
 ## Usage
 
-### Create new virtualenv
+### Project setup and create virtualenv
+
+Generate a Pipfile with the following command:
 
 ```shell
 pipenv --python {py-version}
+```
+
+Enable environment variables if you want a virtual environment in your project folder.
+
+```shell
+export PIPENV_VENV_IN_PROJECT=true
 ```
 
 ```console
@@ -37,7 +46,7 @@ Virtualenv location: /home/xxxxxx/.local/share/virtualenvs/test-pipenv-f7l9kGAQ
 Creating a Pipfile for this project…
 ```
 
-If you specify a version that is not installed, it will work with pyenv.
+If you specify a version that is not installed, it will work with `pyenv`.
 
 ```console
 $ pipenv --python 3.6
@@ -63,7 +72,16 @@ Creating a Pipfile for this project…
 
 ```
 
-### Delete virtualenv
+When the pipenv environment is built with the virtual environment enabled:
+
+```
+$ pipenv --python 3.11
+
+Courtesy Notice: Pipenv found itself running within a virtual environment, so it will automatically use that environment, instead of creating its own for any project. You can set PIPENV_IGNORE_VIRTUALENVS=1 to force pipenv to ignore that environment and create its own instead. You can set PIPENV_VERBOSITY=-1 to suppress this warning.
+Creating a Pipfile for this project...
+```
+
+### Remove the virtualenv
 
 ```shell
 pipenv --rm
@@ -74,7 +92,7 @@ $ pipenv --rm
 Removing virtualenv (/home/xxxxxx/.local/share/virtualenvs/test-pipenv-f7l9kGAQ)…
 ```
 
-### Switch virtualenv
+### Spawns a shell within the virtualenv
 
 ```shell
 pipenv shell
@@ -91,11 +109,16 @@ Launching subshell in virtual environment…
 Python 3.6.12
 
 (test-pipenv) $ exit
-$
 
 ```
 
-### Add Packages
+### Spawns a command installed into the virtualenv
+
+```shell
+pipenv run {command}
+```
+
+### Install Packages
 
 Adding a package makes an entry in the `Pipfile`.
 
@@ -123,9 +146,27 @@ Installing dependencies from Pipfile.lock (2cfc5e)…
 
 ### Update Packages
 
+Runs lock, then sync.
+
 ```shell
-$ pipenv update {package}
-$ pipenv update --outdated
+pipenv update {package}
+pipenv update --outdated
+```
+
+### Uninstall Package
+
+Un-installs a provided package and removes it from `Pipfile`.
+
+```shell
+pipenv uninstall {package}
+```
+
+### Uninstalls Packages
+
+Uninstalls all packages not specified in `Pipfile.lock`.
+
+```shell
+pipenv clean
 ```
 
 ### Restore Packages
@@ -148,12 +189,6 @@ from `requirements.txt`
 
 ```shell
 pipenv install -r ./requirements.txt
-```
-
-### Clean Packages
-
-```shell
-pipenv clean
 ```
 
 ### List Packages
@@ -183,16 +218,16 @@ $ pipenv run python
 '1'
 ```
 
-### Task runner
+### Custom Script Shortcuts
 
-`Pipfile`:
+**`Pipfile`**:
 
 ```ini
 [scripts]
-start = "python main.py runserver"
-test = "python -m unittest discover -v"
-format = "autopep8 -ivr ."
+format = "black -l 119 ."
 lint = "flake8 --show-source ."
+start = "python main.py runserver"
+test = "pytest"
 ```
 
 ```console
