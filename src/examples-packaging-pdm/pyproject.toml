@@ -19,7 +19,7 @@ build-backend = "pdm.backend"
 requires = ["pdm-backend"]
 
 [tool.pdm]
-version = {source = "file", path = "src/examples_packaging_pdm/__version.py"}
+version = {source = "file", path = "src/examples_packaging_pdm/__version__.py"}
 # version = {source = "scm", write_to = "examples_packaging_pdm/models/VERSION"}
 
 [tool.pdm.dev-dependencies]
