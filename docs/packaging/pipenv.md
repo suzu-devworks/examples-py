@@ -118,58 +118,7 @@ Python 3.6.12
 pipenv run {command}
 ```
 
-### Install Packages
-
-Adding a package makes an entry in the `Pipfile`.
-
-```shell
-pipenv install {package}
-pipenv install --dev {package}
-```
-
-```console
-(test-pipenv) $ pipenv install numpy
-
-Installing numpy…
-Adding numpy to Pipfile's [packages]…
-✔ Installation Succeeded
-Pipfile.lock not found, creating…
-Locking [dev-packages] dependencies…
-Locking [packages] dependencies…
-Building requirements...
-Resolving dependencies...
-✔ Success!
-Updated Pipfile.lock (2cfc5e)!
-Installing dependencies from Pipfile.lock (2cfc5e)…
-  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 0/0 — 00:00:00
-```
-
-### Update Packages
-
-Runs lock, then sync.
-
-```shell
-pipenv update {package}
-pipenv update --outdated
-```
-
-### Uninstall Package
-
-Un-installs a provided package and removes it from `Pipfile`.
-
-```shell
-pipenv uninstall {package}
-```
-
-### Uninstalls Packages
-
-Uninstalls all packages not specified in `Pipfile.lock`.
-
-```shell
-pipenv clean
-```
-
-### Restore Packages
+### Restore packages
 
 from `Pipfile`
 
@@ -191,13 +140,68 @@ from `requirements.txt`
 pipenv install -r ./requirements.txt
 ```
 
-### List Packages
+### Install packages
+
+Adding a package makes an entry in the `Pipfile`.
+
+```shell
+pipenv install {packages...}
+pipenv install --dev {packages...}
+```
+
+```console
+(test-pipenv) $ pipenv install numpy
+
+Installing numpy…
+Adding numpy to Pipfile's [packages]…
+✔ Installation Succeeded
+Pipfile.lock not found, creating…
+Locking [dev-packages] dependencies…
+Locking [packages] dependencies…
+Building requirements...
+Resolving dependencies...
+✔ Success!
+Updated Pipfile.lock (2cfc5e)!
+Installing dependencies from Pipfile.lock (2cfc5e)…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 0/0 — 00:00:00
+```
+
+### Update packages
+
+Runs lock, then sync.
+
+```shell
+pipenv update {packages...}
+pipenv update --outdated
+```
+
+### Uninstall packages
+
+Un-installs a provided package and removes it from `Pipfile`.
+
+```shell
+pipenv uninstall {packages...}
+```
+
+### Uninstall all packages
+
+Uninstalls all packages not specified in `Pipfile.lock`.
+
+```shell
+pipenv clean
+```
+
+### List packages
 
 Tree display of dependencies:
 
 ```shell
 pipenv graph
 ```
+
+### Build wheel package
+
+**`pipenv` does not provide package creation. You need to use another tool such as `setuptools`.**
 
 ## Tips
 
