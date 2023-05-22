@@ -2,7 +2,7 @@
 authors = ["A.suzuki <suzu.devworks@gmail.com>"]
 description = ""
 name = "examples-packaging-poetry"
-packages = [{include = "examples_packaging_poetry"}]
+packages = [{include = "examples_packaging_poetry", from = "src"}]
 readme = "README.md"
 version = "0.1.0"
 
