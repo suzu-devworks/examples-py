@@ -1,13 +1,14 @@
-import importlib.metadata
+# import importlib.metadata
 from argparse import ArgumentParser, RawTextHelpFormatter
 from logging import getLogger
 
+from examples import __version__
 from examples.config.logging import configure_logging
 
 configure_logging()
 logger = getLogger("examples.console.command")
 
-__version__ = importlib.metadata.version("examples-py")
+# __version__ = importlib.metadata.version("examples-py")
 
 
 def __parse_arguments():

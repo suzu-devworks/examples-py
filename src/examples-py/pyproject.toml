@@ -4,22 +4,29 @@ authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
 dependencies = [
-    "pytz>=2023.3",
-    "pyyaml>=6.0",
+  "pytz>=2023.3",
+  "pyyaml>=6.0",
 ]
 description = ""
+dynamic = ["version"]
 license = {text = "MIT"}
 name = "examples-py"
 readme = "README.md"
 requires-python = ">=3.11"
-version = "0.1.0"
+# version = "0.1.0"
 
 [project.scripts]
 examples-cli = "examples.console.command:main"
 
 [build-system]
-build-backend = "pdm.backend"
-requires = ["pdm-backend"]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=61", "wheel"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "examples.__version__"}
 
 [tool.pdm.dev-dependencies]
 dev = [
@@ -43,6 +50,6 @@ profile = "black"
 
 [tool.pdm.scripts]
 clean = "pyclean ."
-cleanx = {shell = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$)\" | xargs rm -rf"}
+cleanx = {shell = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.egg-info$)\" | xargs rm -rf"}
 lint = "flake8"
 test = "pytest"
