@@ -3,10 +3,7 @@
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = [
-  "pytz>=2023.3",
-  "pyyaml>=6.0",
-]
+dependencies = []
 description = ""
 dynamic = ["version"]
 license = {text = "MIT"}
@@ -36,6 +33,11 @@ dev = [
   "isort>=5.12.0",
   "pytest-cov>=4.0.0",
   "pyclean>=2.7.0",
+]
+test = [
+  "pytz>=2023.3",
+  "pyyaml>=6.0",
+  "natsort>=8.3.1",
 ]
 
 [tool.pytest.ini_options]

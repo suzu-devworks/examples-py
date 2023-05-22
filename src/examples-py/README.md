@@ -33,5 +33,6 @@ cd src/examples-py
 # create new pyproject.toml (in setuptools)
 pdm init
 pdm add -d flake8 mypy black isort pytest-cov pyclean
+pdm add -dG test pytz pyyaml natsort
 
 ```
