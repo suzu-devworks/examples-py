@@ -20,4 +20,7 @@
   "python.linting.mypyEnabled": false,
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "black",
+  "black-formatter.args": [
+    "--line-length=119"
+  ],
 }
