@@ -30,8 +30,9 @@ pip install pdm
 mkdir -p src/examples-py
 cd src/examples-py
 
-# create new pyproject.toml
+# create new pyproject.toml (in setuptools)
 pdm init
 pdm add -d flake8 mypy black isort pytest-cov pyclean
+pdm add -dG test pytz pyyaml natsort
 
 ```
