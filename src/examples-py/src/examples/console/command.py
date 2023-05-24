@@ -13,6 +13,7 @@ logger = getLogger("examples.console.command")
 
 def __parse_arguments():
     from examples.console._argparse import configure_parser
+    from examples.console._exif import configure_parser as configure_exif
     from examples.console._logging import do_logging_sample
 
     parser = ArgumentParser(
@@ -57,6 +58,10 @@ def __parse_arguments():
     # logging
     logging_parser = subparsers.add_parser("logging", help="logging example", description="Lib/logging example")
     logging_parser.set_defaults(exec=lambda args: do_logging_sample(args))
+
+    # exif
+    exif_parser = subparsers.add_parser("exif", help="exif example", description="Lib/pillow example")
+    configure_exif(exif_parser)
 
     args = parser.parse_args()
 

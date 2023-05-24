@@ -3,7 +3,9 @@
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+  "pillow>=9.5.0",
+]
 description = ""
 dynamic = ["version"]
 license = {text = "MIT"}
