@@ -11,27 +11,27 @@ Rederences:
 
 
 import asyncio
-from typing import Self
+from typing import Any, AsyncIterator, Iterator
 
 import pytest
 
 
 class TestIterator(object):
-    def test_basic_special_method_iterator(self):
+    def test_basic_special_method_iterator(self) -> None:
         """
         Implement two methods object.__iter__() and object.__next__().
         """
 
-        class Iterator(object):
-            def __init__(self, num: int, *args, **kwargs) -> None:
+        class MyIterator(object):
+            def __init__(self, num: int, *args: Any, **kwargs: Any) -> None:
                 self.__num = num
                 self.__count: int = 0
 
-            def __iter__(self) -> Self:
+            def __iter__(self) -> Iterator[str]:
                 # return return an object with __next__ method.
                 return self
 
-            def __next__(self) -> tuple[str, ...]:
+            def __next__(self) -> str:
                 if self.__count < self.__num:
                     value = str(self.__count)
                     self.__count += 1
@@ -44,18 +44,18 @@ class TestIterator(object):
                 return self.__count
 
         count = 0
-        for _ in Iterator(3):
+        for _ in MyIterator(3):
             count += 1
         assert count == 3
 
-        values = list(Iterator(5))
+        values = list(MyIterator(5))
         assert values == ["0", "1", "2", "3", "4"]
 
-        values = [x for x in Iterator(5)]
+        values = [x for x in MyIterator(5)]
         assert values == ["0", "1", "2", "3", "4"]
 
     @pytest.mark.asyncio
-    async def test_async_special_method_iterator(self):
+    async def test_async_special_method_iterator(self) -> None:
         """
         Implement two methods object.__aiter__() and object.__anext__().
         """
@@ -69,16 +69,16 @@ class TestIterator(object):
         #         raise StopAsyncIteration
         #     return val
 
-        class AsyncIterator(object):
-            def __init__(self, num: int, *args, **kwargs) -> None:
+        class MyAsyncIterator(object):
+            def __init__(self, num: int, *args: Any, **kwargs: Any) -> None:
                 self.__num = num
                 self.__count: int = 0
 
-            def __aiter__(self):
+            def __aiter__(self) -> AsyncIterator[str]:
                 # return return an object with __next__ method.
                 return self
 
-            async def __anext__(self):
+            async def __anext__(self) -> str:
                 await asyncio.sleep(0)
                 if self.__count < self.__num:
                     value = str(self.__count)
@@ -92,7 +92,7 @@ class TestIterator(object):
                 return self.__count
 
         count = 0
-        async for _ in AsyncIterator(3):
+        async for _ in MyAsyncIterator(3):
             await asyncio.sleep(0)
             count += 1
         assert count == 3
@@ -100,5 +100,5 @@ class TestIterator(object):
         # not work.
         # values = list(AsyncIterator(5))
 
-        values = [item async for item in AsyncIterator(5)]
+        values = [item async for item in MyAsyncIterator(5)]
         assert values == ["0", "1", "2", "3", "4"]

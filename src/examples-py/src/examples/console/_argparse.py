@@ -1,5 +1,5 @@
 import sys
-from argparse import ArgumentParser, FileType
+from argparse import ArgumentParser, FileType, Namespace
 from enum import Enum
 from io import TextIOWrapper
 from logging import getLogger
@@ -12,18 +12,18 @@ class Game(Enum):
     paper = 2
     scissors = 3
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     @staticmethod
-    def from_string(s):
+    def from_string(s: str) -> "Game":
         try:
             return Game[s]
         except KeyError:
             raise ValueError()
 
 
-def configure_parser(parser: ArgumentParser):
+def configure_parser(parser: ArgumentParser) -> None:
     parser.add_argument(
         "infiles",
         help="input file[s]",
@@ -68,7 +68,7 @@ def configure_parser(parser: ArgumentParser):
         "-c",
         "--choices",
         # choices=["rock", "paper", "scissors"],
-        type=Game.from_string,
+        type=lambda s: Game.from_string(s),
         choices=list(Game),
         dest="param_choices",
         help="choices",
@@ -76,10 +76,10 @@ def configure_parser(parser: ArgumentParser):
     parser.set_defaults(exec=lambda args: do_argument_sample(args))
 
 
-def do_argument_sample(args: any):
+def do_argument_sample(args: Namespace) -> None:
     logger.info(args)
 
-    inputs: list[TextIOWrapper] = args.infiles
+    inputs: list[TextIOWrapper] = args.infile
     output: TextIOWrapper = args.outfile
 
     try:

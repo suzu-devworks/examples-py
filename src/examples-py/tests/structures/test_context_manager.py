@@ -12,30 +12,30 @@ References:
 
 
 import asyncio
-from typing import Self
+from typing import Any, Awaitable, Self
 
 import pytest
 
 
 class TestContextManager(object):
     class Resource(object):
-        def __init__(self, *args, **kwargs) -> None:
+        def __init__(self, *args: Any, **kwargs: Any) -> None:
             self.status = "INIT"
 
-    def test_basic_special_method_context(self):
+    def test_basic_special_method_context(self) -> None:
         """
         Implement two methods object.__enter__() and object.__exit__().
         """
 
         class Context(object):
-            def __init__(self, *args, **kwargs) -> None:
+            def __init__(self, *args: Any, **kwargs: Any) -> None:
                 self.__status = "INIT"
 
             def __enter__(self) -> Self:
                 self.__status = "ENTER"
                 return self
 
-            def __exit__(self, exc_type, exc_value, traceback) -> None:
+            def __exit__(self, exc_type: Any, exc_value: Any, traceback: Any) -> None:
                 self.__status = "EXIT"
 
             @property
@@ -50,7 +50,7 @@ class TestContextManager(object):
 
         assert context.status == "EXIT"
 
-    def test_inherited_manager_context(self):
+    def test_inherited_manager_context(self) -> None:
         """
         contextlib.AbstractContextManager provides a default implementation of object.__enter__().
 
@@ -62,15 +62,15 @@ class TestContextManager(object):
         """
         from contextlib import AbstractContextManager
 
-        class Context(AbstractContextManager):
-            def __init__(self, *args, **kwargs) -> None:
+        class Context(AbstractContextManager["Context"]):
+            def __init__(self, *args: Any, **kwargs: Any) -> None:
                 self.__status = "INIT"
 
             # def __enter__(self) -> Self:
             #     self.__status = "ENTER"
             #     return super().__enter__()
 
-            def __exit__(self, exc_type, exc_value, traceback) -> None:
+            def __exit__(self, exc_type: Any, exc_value: Any, traceback: Any) -> None:
                 self.__status = "EXIT"
 
             @property
@@ -83,7 +83,7 @@ class TestContextManager(object):
 
         assert context.status == "EXIT"
 
-    def test_contextmanager_decorator_context(self):
+    def test_contextmanager_decorator_context(self) -> None:
         """
         @contextmanager is function is a decorator that can be used to define a factory function
         for with statement context managers, without needing to create a class or
@@ -91,11 +91,11 @@ class TestContextManager(object):
         """
         from contextlib import contextmanager
 
-        def acquire_resource(*args, **kwds):
+        def acquire_resource(*args: Any, **kwds: Any) -> TestContextManager.Resource:
             return self.Resource()
 
         @contextmanager
-        def managed_resource(*args, **kwds):
+        def managed_resource(*args: Any, **kwds: Any) -> Any:
             # Code to acquire resource, e.g.:
             resource = acquire_resource(*args, **kwds)
             try:
@@ -112,37 +112,37 @@ class TestContextManager(object):
         assert context.status == "EXIT"
 
     @pytest.mark.asyncio
-    async def test_async_special_method_context(self):
+    async def test_async_special_method_context(self) -> None:
         """
         Implement two methods object.__aenter__() and object.__aexit__().
         """
 
         class AsyncContext(object):
-            def __init__(self, *args, **kwargs) -> None:
+            def __init__(self, *args: Any, **kwargs: Any) -> None:
                 self.__status = "INIT"
 
-            def __await__(self):
-                return self._awaitable.__await__()
+            def __await__(self) -> Any:
+                return self._awaitable().__await__()
 
-            async def _awaitable():
-                await asyncio.sleep(0)
+            async def _awaitable(self) -> Awaitable[None]:
+                return asyncio.sleep(0)
 
-            async def __aenter__(self):
+            async def __aenter__(self) -> Self:
                 await asyncio.sleep(0)
                 self.__status = "async ENTER"
                 return self
 
-            async def __aexit__(self, exc_type, exc_value, traceback):
+            async def __aexit__(self, exc_type: Any, exc_value: Any, traceback: Any) -> None:
                 await asyncio.sleep(0)
                 self.__status = "async EXIT"
 
             @property
-            def status(self):
+            def status(self) -> str:
                 return self.__status
 
         # sync context is not work.
         with pytest.raises(TypeError):
-            with AsyncContext() as context:
+            with AsyncContext() as context:  # type: ignore[attr-defined]
                 pass
 
         # async context is work.
@@ -152,15 +152,15 @@ class TestContextManager(object):
         assert context.status == "async EXIT"
 
     @pytest.mark.asyncio
-    async def test_asynccontextmanager_decorator_context(self):
+    async def test_asynccontextmanager_decorator_context(self) -> None:
         from contextlib import asynccontextmanager
 
-        async def acquire_resource_aync():
+        async def acquire_resource_aync() -> Any:
             await asyncio.sleep(0)
             return self.Resource()
 
         @asynccontextmanager
-        async def managed_resource_async():
+        async def managed_resource_async() -> Any:
             # conn = await acquire_db_connection()
             resource = await acquire_resource_aync()
             try:

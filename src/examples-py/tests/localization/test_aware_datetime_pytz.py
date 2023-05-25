@@ -31,7 +31,7 @@ timezonedata = [
 
 
 @pytest.mark.parametrize("zone,basedate,tzname,offset,dst", timezonedata)
-def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta):
+def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta) -> None:
     tz = pytz.timezone(zone)
     assert tz.zone == zone
     assert tz.tzname(basedate) == tzname
@@ -39,7 +39,7 @@ def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta,
     assert tz.dst(basedate) == dst
 
 
-def test_timezone_utc():
+def test_timezone_utc() -> None:
     basedate = datetime(2000, 2, 29)
 
     tz = pytz.UTC
@@ -49,7 +49,7 @@ def test_timezone_utc():
     assert tz.dst(basedate) == timedelta(0)
 
 
-def test_datetime_generators():
+def test_datetime_generators() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     nativedate = datetime(2000, 2, 29)
 
@@ -92,7 +92,7 @@ def test_datetime_generators():
     assert now_tz_timetz.tzinfo.tzname(nativedate) == tz_ja.tzname(nativedate)
 
 
-def test_datetime_calculation():
+def test_datetime_calculation() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 12, 34, 56, 789012))
 
@@ -118,7 +118,7 @@ def test_datetime_calculation():
     assert actual is True
 
 
-def test_datetime_convert_tostring():
+def test_datetime_convert_tostring() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 1, 23, 45, 678901))
 
@@ -142,7 +142,7 @@ def test_datetime_convert_tostring():
     assert text != "2000/02/29 01:23:45 +09:00 JST"
 
 
-def test_datetime_convert_timezone():
+def test_datetime_convert_timezone() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 1, 23, 45, 678901))
 
@@ -157,7 +157,7 @@ def test_datetime_convert_timezone():
     assert str(datetime2) == "2000-02-29 01:23:45.678901+09:00"
 
 
-def test_datetime_convert_timezone_dst():
+def test_datetime_convert_timezone_dst() -> None:
     # EST/EDT 2019-03-10T03:00 - 2019-11-03T01:00
     est = pytz.timezone("US/Eastern")
     edt_start = datetime(2019, 3, 10, hour=2, minute=0, second=0)
@@ -186,7 +186,7 @@ def test_datetime_convert_timezone_dst():
     assert normal_after.tzinfo.tzname(normal_after) == "EST"
 
 
-def test_datetime_convert_native():
+def test_datetime_convert_native() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901)
 

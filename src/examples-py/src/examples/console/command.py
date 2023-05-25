@@ -1,5 +1,5 @@
 # import importlib.metadata
-from argparse import ArgumentParser, RawTextHelpFormatter
+from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from logging import getLogger
 
 from examples import __version__
@@ -11,7 +11,7 @@ logger = getLogger("examples.console.command")
 # __version__ = importlib.metadata.version("examples-py")
 
 
-def __parse_arguments():
+def __parse_arguments() -> Namespace:
     from examples.console._argparse import configure_parser
     from examples.console._exif import configure_parser as configure_exif
     from examples.console._logging import do_logging_sample
@@ -68,7 +68,7 @@ def __parse_arguments():
     return args
 
 
-def main():
+def main() -> None:
     args = __parse_arguments()
 
     logger.info("===== start... ")

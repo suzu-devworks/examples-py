@@ -11,7 +11,7 @@ from functools import reduce
 
 
 class TestFunctionals:
-    def test_map(self):
+    def test_map(self) -> None:
         """
         map(function, iterable, *iterables)
         """
@@ -23,7 +23,7 @@ class TestFunctionals:
         cubed = list(map(lambda x: x * x * x, range(1, 11)))
         assert cubed == [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
 
-    def test_filter(self):
+    def test_filter(self) -> None:
         """
         filter(function, iterable)
         """
@@ -31,7 +31,7 @@ class TestFunctionals:
         filterd = list(filter(lambda x: x % 3 == 0 or x % 5 == 0, list1))
         assert filterd == [3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24]
 
-    def test_reduce(self):
+    def test_reduce(self) -> None:
         """
         reduce(function, iterable[, initializer])
         """

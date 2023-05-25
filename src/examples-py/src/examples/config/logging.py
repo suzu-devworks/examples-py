@@ -3,10 +3,10 @@ import logging
 import re
 from importlib.resources import as_file
 from importlib.resources import files as resource_files
-from logging import DEBUG, Filter, basicConfig
+from logging import DEBUG, Filter, LogRecord, basicConfig
 from logging.config import dictConfig
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import yaml
 
@@ -15,21 +15,21 @@ class NoPasswordFilter(Filter):
     def __init__(self, name: str = "") -> None:
         super().__init__(name)
 
-    def filter(self, record):
+    def filter(self, record: LogRecord) -> bool:
         log_message = record.getMessage()
         return "password" not in log_message
 
 
-def level_and_below_filter_factory(level: str):
-    level = getattr(logging, level)
+def level_and_below_filter_factory(level: str) -> Callable[[LogRecord], bool]:
+    boundary: int = getattr(logging, level)
 
-    def filter(record):
-        return record.levelno <= level
+    def filter(record: LogRecord) -> bool:
+        return record.levelno <= boundary
 
     return filter
 
 
-def __find_logging_config() -> Path:
+def __find_logging_config() -> Path | None:
     for file in Path(".").glob("logging_config.*"):
         if re.match(r".+\.(json|yaml|yml)$", str(file), re.IGNORECASE):
             return file
@@ -42,7 +42,7 @@ def __default_yaml_config() -> Path:
         return config
 
 
-def __make_directories(config: dict[str, Any]):
+def __make_directories(config: dict[str, Any]) -> None:
     for handler in config["handlers"]:
         if "filename" in config["handlers"][handler]:
             logfile = Path(config["handlers"][handler]["filename"])
@@ -52,7 +52,7 @@ def __make_directories(config: dict[str, Any]):
     return
 
 
-def configure_logging():
+def configure_logging() -> None:
     config = __find_logging_config() or __default_yaml_config()
     suffix = config.suffix.lower()
     match suffix:
