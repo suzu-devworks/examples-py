@@ -15,17 +15,18 @@ pip install pipenv
 Here's how this project is setup:
 
 ```shell
-cd src/examples-packaging-pipenv
+cd packages/examples-packaging-pipenv
 
 pipenv install --dev
 ```
 
-## Inisialize project
+## Create project
 
 This project is initially generated with the following command:
 
 ```shell
-cd examples-packaging-pipenv
+mkdir -p packages/examples-packaging-pipenv
+cd packages/examples-packaging-pipenv
 
 # You need pyenv if you want other python versions.
 # A virtual environment is not created because it was executed in venv.

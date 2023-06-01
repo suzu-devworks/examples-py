@@ -15,18 +15,18 @@ pip install
 Here's how this project is setup:
 
 ```shell
-cd src/examples-packaging-pdm
+cd packages/examples-packaging-pdm
 
 pdm install
 ```
 
-## Initialize project
+## Create project
 
 This project is initially generated with the following command:
 
 ```shell
-mkdir -p src/amples-packaging-pdm
-cd src/amples-packaging-pdm
+mkdir -p packages/examples-packaging-pdm
+cd packages/examples-packaging-pdm
 
 # create new pyproject.toml
 pdm init

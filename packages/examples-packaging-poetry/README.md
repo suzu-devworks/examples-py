@@ -15,18 +15,18 @@ pip install poetry
 Here's how this project is setup:
 
 ```shell
-cd src/examples-packaging-poetry
+cd packages/examples-packaging-poetry
 
 poetry install
 ```
 
-## Initialize project
+## Create project
 
 This project is initially generated with the following command:
 
 ```shell
-mkdir -p src/amples-packaging-poetry
-cd src/amples-packaging-poetry
+mkdir -p packages/examples-packaging-poetry
+cd packages/examples-packaging-poetry
 
 #　doesn't matter if the folder exists
 poetry new .

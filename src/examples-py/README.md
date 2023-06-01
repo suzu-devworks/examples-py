@@ -1,6 +1,6 @@
 # examples-py
 
-## Setups
+## Setup
 
 ```shell
 clone https://github.com/suzu-devworks/examples-py.git
@@ -13,7 +13,7 @@ pdm install
 
 ```
 
-## Create projects
+## Create project
 
 ```shell
 # create virtual environment
