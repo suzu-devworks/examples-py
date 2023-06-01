@@ -1,12 +1,23 @@
 # examples-packaging-pipenv
 
+Examples of projects managed with Pipenv.
+
 ## Setup
 
-create a virtualenv in advance:
+Clone the repository:
 
 ```shell
-python -m venv .venv.pipenv
-. .venv.pipenv/bin/activate
+clone https://github.com/suzu-devworks/examples-py.git
+
+cd examples-py
+
+```
+
+Create a virtualenv in advance:
+
+```shell
+python -m venv .venv
+. .venv/bin/activate
 
 python -m pip install --upgrade pip
 pip install pipenv
@@ -15,21 +26,25 @@ pip install pipenv
 Here's how this project is setup:
 
 ```shell
-cd src/examples-packaging-pipenv
+cd packages/examples-packaging-pipenv
 
+# install dependencies and self.
 pipenv install --dev
+
 ```
 
-## Inisialize project
+## Create project
 
-This project is initially generated with the following command:
+This project was generated with the command:
 
 ```shell
-cd examples-packaging-pipenv
+mkdir -p packages/examples-packaging-pipenv
+cd packages/examples-packaging-pipenv
 
 # You need pyenv if you want other python versions.
 # A virtual environment is not created because it was executed in venv.
 pipenv --python 3.11
 
 pipenv install --dev flake8 mypy black isort pytest-cov
+
 ```

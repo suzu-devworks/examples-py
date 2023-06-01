@@ -1,34 +1,54 @@
 # examples-packaging-pdm
 
+Examples of projects managed with PDM.
+
+[![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm.fming.dev)
+
 ## Setup
 
-create a virtualenv in advance:
+Clone the repository:
 
 ```shell
-python -m venv .venv.pdm
-. .venv.pdm/bin/activate
+clone https://github.com/suzu-devworks/examples-py.git
+
+cd examples-py
+
+```
+
+Create a virtualenv in advance:
+
+```shell
+python -m venv .venv
+. .venv/bin/activate
 
 python -m pip install --upgrade pip
-pip install
+pip install pdm
+
 ```
 
 Here's how this project is setup:
 
 ```shell
-cd src/examples-packaging-pdm
+cd packages/examples-packaging-pdm
 
+# select interpreter
+pdm use
+
+# install dependencies and self.
 pdm install
+
 ```
 
-## Initialize project
+## Create project
 
-This project is initially generated with the following command:
+This project was generated with the command:
 
 ```shell
-mkdir -p src/amples-packaging-pdm
-cd src/amples-packaging-pdm
+mkdir -p packages/examples-packaging-pdm
+cd packages/examples-packaging-pdm
 
 # create new pyproject.toml
 pdm init
 pdm add -d flake8 mypy black isort pytest-cov pyclean
+
 ```

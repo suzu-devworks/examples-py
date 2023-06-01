@@ -1,35 +1,50 @@
 # examples-packaging-setup
 
+Examples of projects managed with setuptools.
+
 ## Setup
 
-create a virtualenv in advance:
+Clone the repository:
 
 ```shell
-python -m venv .venv.setup
-. .venv.setup/bin/activate
+clone https://github.com/suzu-devworks/examples-py.git
+
+cd examples-py
+
+```
+
+Create a virtualenv in advance:
+
+```shell
+python -m venv .venv
+. .venv/bin/activate
 
 python -m pip install --upgrade pip
 pip install --upgrade setuptools wheel
+
 ```
 
 Here's how this project is setup:
 
 ```shell
-cd src/examples-packaging-setup
+cd packages/examples-packaging-setup
 
+# install dependencies and self.
 pip install -e .[dev,doc]
+
 ```
 
-## Initialize project
+## Create project
 
-This project is initially generated with the following command:
+This project was generated with the command:
+
 
 ```shell
-mkdir -p src/examples-packaging-setup
-cd src/examples-packaging-setup
+mkdir -p packages/examples-packaging-setup
+cd packages/examples-packaging-setup
 ```
 
 Create each of these files:
 
-- [setup.py ...](./setup.py)
-- [setup.cfg ...](./setup.cfg)
+- [&#x2710; `setup.py` ...](./setup.py)
+- [&#x2710; `setup.cfg` ...](./setup.cfg)
