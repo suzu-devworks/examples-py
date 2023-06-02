@@ -27,7 +27,7 @@ timezonedata = [
 
 
 @pytest.mark.parametrize("zone,basedate,tzname,offset,dst", timezonedata)
-def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta):
+def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta, dst: timedelta) -> None:
     tz = ZoneInfo(zone)
     assert tz.key == zone
     assert tz.tzname(basedate) == tzname
@@ -35,17 +35,17 @@ def test_timezone(zone: str, basedate: datetime, tzname: str, offset: timedelta,
     assert tz.dst(basedate) == dst
 
 
-def test_timezone_utc():
+def test_timezone_utc() -> None:
     basedate = datetime(2000, 2, 29)
 
     tz = timezone.utc
     # assert tz.key == "UTC"
     assert tz.tzname(basedate) == "UTC"
     assert tz.utcoffset(basedate) == timedelta(0)
-    assert tz.dst(basedate) is None
+    assert tz.dst(basedate) is None  # type: ignore[func-returns-value]
 
 
-def test_datetime_generators():
+def test_datetime_generators() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     nativedate = datetime(2000, 2, 29)
 
@@ -83,7 +83,7 @@ def test_datetime_generators():
     assert now_tz_timetz.tzinfo.tzname(nativedate) == tz_ja.tzname(nativedate)
 
 
-def test_datetime_calculation():
+def test_datetime_calculation() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 12, 34, 56, 789012, tzinfo=tz_ja)
 
@@ -113,7 +113,7 @@ def test_datetime_calculation():
     assert actual is True
 
 
-def test_datetime_convert_tostring():
+def test_datetime_convert_tostring() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 
@@ -137,7 +137,7 @@ def test_datetime_convert_tostring():
     assert text != "2000/02/29 01:23:45 +09:00 JST"
 
 
-def test_datetime_convert_timezone():
+def test_datetime_convert_timezone() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 

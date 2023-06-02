@@ -1,11 +1,8 @@
-# examples-py
+# examples-packaging-pdm
 
-Python programming examples.
+Examples of projects managed with PDM.
 
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm.fming.dev)
-[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
 ## Setup
 
@@ -25,7 +22,6 @@ python -m venv .venv
 . .venv/bin/activate
 
 python -m pip install --upgrade pip
-python -m pip install --upgrade setuptools
 pip install pdm
 
 ```
@@ -33,7 +29,7 @@ pip install pdm
 Here's how this project is setup:
 
 ```shell
-cd src/examples-py
+cd packages/examples-packaging-pdm
 
 # select interpreter
 pdm use
@@ -48,14 +44,11 @@ pdm install
 This project was generated with the command:
 
 ```shell
-mkdir -p src/examples-py
-cd src/examples-py
+mkdir -p packages/examples-packaging-pdm
+cd packages/examples-packaging-pdm
 
-# create new pyproject.toml (in setuptools)
+# create new pyproject.toml
 pdm init
 pdm add -d flake8 mypy black isort pytest-cov pyclean
-pdm add -dG test pytz pyyaml natsort
-
-pdm add pillow
 
 ```

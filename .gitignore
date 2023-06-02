@@ -168,4 +168,3 @@ cython_debug/
 [Ll]ogs/
 .venv.*/
 .DS_Store
-.pdm-python

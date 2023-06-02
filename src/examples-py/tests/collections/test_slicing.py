@@ -10,7 +10,7 @@ References:
 
 
 class TestSlicing:
-    def test_list_length(self):
+    def test_list_length(self) -> None:
         # fmt: off
         matrix = [
             [[1, 1], [1, 2], [1, 3]],
@@ -24,7 +24,7 @@ class TestSlicing:
         assert len(matrix[0]) == 3
         assert len(matrix[0][0]) == 2
 
-    def test_list_slice(self):
+    def test_list_slice(self) -> None:
         """
         sequence[start:stop:step]
 

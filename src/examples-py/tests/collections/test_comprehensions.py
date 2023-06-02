@@ -22,8 +22,11 @@ A list comprehension consists of the following parts:
 """  # noqa E501
 
 
+from typing import Any
+
+
 class TestComprehensions:
-    def test_list_comprehension_basic(self):
+    def test_list_comprehension_basic(self) -> None:
         """
         the same as the following code:
 
@@ -36,7 +39,7 @@ class TestComprehensions:
         list1 = [x**2 for x in range(10)]
         assert list1 == [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
-    def test_list_comprehension_with_optional_predicate(self):
+    def test_list_comprehension_with_optional_predicate(self) -> None:
         """
         the same as the following code:
 
@@ -51,7 +54,7 @@ class TestComprehensions:
         list1 = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
         assert list1 == [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
 
-    def test_list_comprehension_with_output_expression(self):
+    def test_list_comprehension_with_output_expression(self) -> None:
         """
         the same as the following code:
 
@@ -67,7 +70,7 @@ class TestComprehensions:
         list1 = [i if i % 2 == 0 else str(i) for i in range(10)]
         assert list1 == [0, "1", 2, "3", 4, "5", 6, "7", 8, "9"]
 
-    def test_nested_list_comprehensions(self):
+    def test_nested_list_comprehensions(self) -> None:
         # Given a 3x4 matrix:
         # fmt: off
         matrix = [
@@ -88,8 +91,8 @@ class TestComprehensions:
         flatten = [x for row in matrix for x in row]
         assert flatten == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-    def test_dictionary_creation_from_sequence(self):
-        dict1 = {f"{x}^3": x**3 for x in range(10)}
+    def test_dictionary_creation_from_sequence(self) -> None:
+        dict1: dict[str, int] = {f"{x}^3": x**3 for x in range(10)}
         assert dict1 == {
             "0^3": 0,
             "1^3": 1,
@@ -103,8 +106,8 @@ class TestComprehensions:
             "9^3": 729,
         }
 
-    def test_dictionary_append(self):
-        dict1 = {"KEY1": 1, "KEY2": 2}
+    def test_dictionary_append(self) -> None:
+        dict1: dict[str, Any] = {"KEY1": 1, "KEY2": 2}
 
         # use update()
         dict1.update({"KEY3": 123})
@@ -118,9 +121,9 @@ class TestComprehensions:
         dict1 = {**dict1, "KEY5": True}
         assert dict1 == {"KEY1": 1, "KEY2": 2, "KEY3": 123, "KEY4": "key-4", "KEY5": True}
 
-    def test_dictionary_mergeing(self):
-        dict1 = {"KEY1": 1, "KEY2": 2, "KEY3": 3, "KEY4": 4, "KEY5": 5}
-        dict2 = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
+    def test_dictionary_mergeing(self) -> None:
+        dict1: dict[str, Any] = {"KEY1": 1, "KEY2": 2, "KEY3": 3, "KEY4": 4, "KEY5": 5}
+        dict2: dict[str, Any] = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
 
         # use operator **
         merged = {**dict1, **dict2}
@@ -130,9 +133,9 @@ class TestComprehensions:
         dict1.update(dict2)
         assert dict1 == {"KEY1": 1, "KEY2": "string1", "KEY3": 3, "KEY4": "string2", "KEY5": 5, "KEY6": "string3"}
 
-    def test_dictionary_key_matching(self):
-        dict1 = {"KEY1": 1, "KEY2": 2, "KEY3": 3, "KEY4": 4, "KEY5": 5}
-        dict2 = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
+    def test_dictionary_key_matching(self) -> None:
+        dict1: dict[str, Any] = {"KEY1": 1, "KEY2": 2, "KEY3": 3, "KEY4": 4, "KEY5": 5}
+        dict2: dict[str, Any] = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
 
         # Create a dictionary with only dict2 values with matching keys, output all keys of dict1:
         dict3 = {key: dict2[key] if key in dict2 else None for key in dict1.keys()}

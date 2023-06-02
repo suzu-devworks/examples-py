@@ -1,15 +1,27 @@
-## examples-packaging-poetry
+# examples-packaging-poetry
+
+Examples of projects managed with Poetry
 
 ## Setup
 
-create a virtualenv in advance:
+Clone the repository:
 
 ```shell
-python -m venv .venv.poetry
-. .venv.poetry/bin/activate
+clone https://github.com/suzu-devworks/examples-py.git
+
+cd examples-py
+
+```
+
+Create a virtualenv in advance:
+
+```shell
+python -m venv .venv
+. .venv/bin/activate
 
 python -m pip install --upgrade pip
 pip install poetry
+
 ```
 
 Here's how this project is setup:
@@ -17,12 +29,14 @@ Here's how this project is setup:
 ```shell
 cd src/examples-packaging-poetry
 
+# install dependencies and self.
 poetry install
+
 ```
 
-## Initialize project
+## Create project
 
-This project is initially generated with the following command:
+This project was generated with the command:
 
 ```shell
 mkdir -p src/amples-packaging-poetry
@@ -32,4 +46,5 @@ cd src/amples-packaging-poetry
 poetry new .
 poetry add --group dev flake8 mypy black isort pytest-cov pyclean
 poetry add --group dev taskipy
+
 ```

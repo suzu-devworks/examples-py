@@ -1,9 +1,10 @@
+from argparse import ArgumentParser
 from logging import getLogger
 
 logger = getLogger(__name__)
 
 
-def do_logging_sample(args: any):
+def do_logging_sample(args: ArgumentParser) -> None:
     # use loggers
     logger.debug("debug message")
     logger.info("info message")
