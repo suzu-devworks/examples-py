@@ -6,14 +6,15 @@ dependencies = [
   "flask>=3.0.3",
 ]
 description = "Default template for PDM package"
+dynamic = ["version"]
 license = {text = "MIT"}
 name = "examples-flask-media"
 readme = "README.md"
 requires-python = "==3.12.*"
-version = "0.1.0"
 
 [tool.pdm]
 distribution = false
+version = {source = "file", path = "examples/__version__.py"}
 
 [tool.pdm.dev-dependencies]
 dev = [
@@ -28,7 +29,7 @@ dev = [
 [tool.pdm.scripts]
 _clean_dirs = {shell = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.mypy_cache$)\" | xargs rm -rf"}
 clean = {composite = ["pyclean .", "_clean_dirs"]}
-dev = "flask --app flaskr run --debug"
+dev = "flask run --debug"
 format = {composite = ["isort .", "black ."]}
 lint = {composite = ["flake8", "mypy"]}
 test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src/ tests/"
