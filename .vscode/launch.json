@@ -10,35 +10,39 @@
       "args": "${command:pickArgs}"
     },
     {
-      "name": "examples flaskr debugger",
+      "name": "examples-flask-started debugger",
       "type": "debugpy",
       "request": "launch",
       "module": "flask",
       "env": {
-        "FLASK_APP": "flaskr",
+        "FLASK_APP": "${workspaceFolder}/src/web/examples-flask-started/src/flaskr",
         "FLASK_DEBUG": "1"
       },
       "args": [
         "run",
         "--debugger",
-        "--reload"
+        "--reload",
+        "--port",
+        "5001"
       ],
       "jinja": true,
       "autoStartBrowser": false
     },
     {
-      "name": "Flask app.py debugger",
+      "name": "examples-flask-media debugger",
       "type": "debugpy",
       "request": "launch",
       "module": "flask",
       "env": {
-        "FLASK_APP": "app.py",
+        "FLASK_APP": "${workspaceFolder}/src/web/examples-flask-media/src/app.py",
         "FLASK_DEBUG": "1"
       },
       "args": [
         "run",
         "--debugger",
-        "--reload"
+        "--reload",
+        "--port",
+        "5002"
       ],
       "jinja": true,
       "autoStartBrowser": false

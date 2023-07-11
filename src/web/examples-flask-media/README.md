@@ -54,7 +54,12 @@ cd src/web/examples-flask-media
 # create new pyproject.toml
 pdm init -n
 pdm add -d flake8 mypy black isort pytest-cov pyclean
+
 pdm add flask
+pdm add flask-cors
+pdm add opencv-python
+
+pdm add -d types-flask-cors
 ```
 
 

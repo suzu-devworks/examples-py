@@ -20,6 +20,7 @@ However, please note that the code described here is based on my personal opinio
   - [examples-packaging-pdm](./src/packages//examples-packaging-pdm/README.md)
 - web
   - [examples-flask-started](./src/web/examples-flask-started/README.md)
+  - [examples-flask-media](./src/web/examples-flask-media/README.md)
 
 ## More Information
 

@@ -1,0 +1,94 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Webcam streaming example for HLS</title>
+  <link href="{{ url_for('webcam_hls.static', filename='webcam/hls/style.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+  <h1>Webcam streaming example for HLS from FFmpeg</h1>
+  <div class="clock"></div>
+
+  <div class="container">
+    <video controls autoplay muted>
+      <source src="{{ url_for('webcam_hls.stream', file_name='playlist.m3u8') }}" type="application/vnd.apple.mpegurl">
+    </video>
+    <video controls autoplay muted>
+      <source src="https://cdn.jwplayer.com/manifests/pZxWPRg4.m3u8" type="application/vnd.apple.mpegurl">
+    </video>
+
+  </div>
+
+  <script type="text/javascript">
+    setInterval(() => document.querySelector('div.clock').innerText = new Date().toTimeString(),
+      500)
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+  <script>
+    const videos = document.querySelectorAll("video")
+    for (const video of videos) {
+
+      if (Hls.isSupported()) {
+
+        const videoSrc = video.querySelector("source")?.src
+        console.log(`src = ${videoSrc}`)
+
+        const hls_time = 4  /* see hls.js */
+        const timeoutMiliSeconds = (hls_time + 1) * 1000
+        const maxRetry = 5
+
+        const config = {
+          debug: false,
+          enableWorker: true,
+          lowLatencyMode: true,
+          backBufferLength: 90,
+
+          manifestLoadingTimeOut: timeoutMiliSeconds,
+          manifestLoadingMaxRetry: maxRetry,
+          manifestLoadingMaxRetryTimeout: timeoutMiliSeconds,
+          levelLoadingTimeOut: timeoutMiliSeconds,
+          levelLoadingMaxRetry: maxRetry,
+          levelLoadingMaxRetryTimeout: timeoutMiliSeconds,
+          fragLoadingTimeOut: timeoutMiliSeconds,
+          fragLoadingMaxRetry: maxRetry,
+          fragLoadingMaxRetryTimeout: timeoutMiliSeconds,
+
+          liveBackBufferLength: 0,
+        };
+
+        const hls = new Hls(config);
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.ERROR, function (event, data) {
+          if (data.fatal) {
+            switch (data.type) {
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                console.log('fatal media error encountered, try to recover');
+                hls.recoverMediaError();
+                break;
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                console.error('fatal network error encountered', data);
+                // All retries and media options have been exhausted.
+                // Immediately trying to restart loading could cause loop loading.
+                // Consider modifying loading policies to best fit your asset and network
+                // conditions (manifestLoadPolicy, playlistLoadPolicy, fragLoadPolicy).
+                break;
+              default:
+                console.error('cannot recover', data)
+                // cannot recover
+                hls.destroy();
+                break;
+            }
+          }
+        });
+
+      }
+    }
+
+  </script>
+</body>
+
+</html>
