@@ -1,0 +1,21 @@
+[project]
+dependencies = []
+requires-python = ">=3.11"
+
+[tool.pdm.dev-dependencies]
+dev = [
+  "flake8>=6.0.0",
+  "mypy>=1.4.1",
+  "black>=23.7.0",
+  "isort>=5.12.0",
+  "pyclean>=2.7.3",
+]
+src = [
+  "-e file:///${PROJECT_ROOT}/src/examples-py#egg=examples-py",
+]
+
+[tool.pdm.scripts]
+build = {shell = "for proj in src/*/pyproject.toml; do (pdm build -p \"$(dirname $proj)\" ); done"}
+clean = {shell = "for proj in src/*/pyproject.toml; do (cd \"$(dirname $proj)\"; pdm run clean ); done"}
+format = {shell = "for proj in src/*/pyproject.toml; do (cd \"$(dirname $proj)\"; pdm run format ); done"}
+lint = {shell = "for proj in src/*/pyproject.toml; do (cd \"$(dirname $proj)\"; pdm run lint ); done"}
