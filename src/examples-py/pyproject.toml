@@ -43,6 +43,14 @@ test = [
   "natsort>=8.3.1",
 ]
 
+[tool.pdm.scripts]
+clean = {composite = ["pyclean .", "clean_dirs"]}
+clean_dirs = {shell = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.egg-info$)\" | xargs rm -rf"}
+dev = "flask run --debug"
+format = {composite = ["isort src/ tests/", "black src/ tests/"]}
+lint = {composite = ["flake8", "mypy src/ tests/"]}
+test = "pytest --cov=. --cov-branch --cov-report xml"
+
 [tool.pytest.ini_options]
 addopts = "-p no:cacheprovider"
 
@@ -100,9 +108,3 @@ module = [
   "pytz.*",
   "yaml.*",
 ]
-
-[tool.pdm.scripts]
-clean = "pyclean ."
-cleanx = {shell = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.egg-info$)\" | xargs rm -rf"}
-lint = {composite = ["flake8", "mypy src/ tests/"]}
-test = "pytest"
