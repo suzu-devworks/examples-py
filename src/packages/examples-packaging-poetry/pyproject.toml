@@ -10,7 +10,7 @@ version = "0.1.0"
 examples-poetry-cli = 'examples_packaging_poetry.console.command:main'
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
