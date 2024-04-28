@@ -35,7 +35,7 @@ pip install pdm
 Move to the root of your project...
 
 ```shell
-cd src/packages/examples-packaging-pdm
+cd packages/examples-packaging-pdm
 ```
 
 Install this project:
@@ -65,8 +65,8 @@ Hello pdm.
 Create and move project folder:
 
 ```shell
-mkdir -p src/packages/examples-packaging-pdm
-cd src/packages/examples-packaging-pdm
+mkdir -p packages/examples-packaging-pdm
+cd packages/examples-packaging-pdm
 ```
 
 ### Setup project
