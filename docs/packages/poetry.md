@@ -16,9 +16,11 @@
     - [Spawns a shell within the virtualenv](#spawns-a-shell-within-the-virtualenv)
     - [Spawns a command installed into the virtualenv](#spawns-a-command-installed-into-the-virtualenv)
     - [Restore packages](#restore-packages)
-    - [Install packages](#install-packages)
-    - [Update packages](#update-packages)
-    - [Uninstall packages](#uninstall-packages)
+    - [Add package](#add-package)
+    - [List packages](#list-packages)
+    - [Update package](#update-package)
+    - [Update outdated packages](#update-outdated-packages)
+    - [Uninstall package](#uninstall-package)
     - [Build wheel package](#build-wheel-package)
   - [Tips](#tips)
     - [Use a task runner like npm.](#use-a-task-runner-like-npm)
@@ -114,7 +116,7 @@ poetry install
 
 Current projects are installed in editable mode by default.
 
-### Install packages
+### Add package
 
 How to add dependencies:
 
@@ -122,7 +124,13 @@ How to add dependencies:
 poetry add {packages...}
 ```
 
-### Update packages
+### List packages
+
+```shell
+poetry show
+```
+
+### Update package
 
 ```shell
 poetry update {packages...}
@@ -130,7 +138,24 @@ poetry update {packages...}
 
 Same as deleting `poetry.lock` and running install.
 
-### Uninstall packages
+### Update outdated packages
+
+show outdated list:
+
+```shell
+poetry show --outdated
+```
+
+Update all dependency packages:
+
+```shell
+poetry update
+```
+
+`poetry.lock` should be updated.
+
+
+### Uninstall package
 
 ```shell
 poetry remove {packages...}
