@@ -1,0 +1,27 @@
+[project]
+authors = [
+  {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
+]
+dependencies = []
+description = "Default template for PDM package"
+license = {text = "MIT"}
+name = "examples-py"
+readme = "README.md"
+requires-python = "==3.12.*"
+version = "0.1.0"
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.dev-dependencies]
+src = [
+  "-e file:///${PROJECT_ROOT}/src/examples-py#egg=examples-py",
+]
+
+[tool.pdm.scripts]
+_clean_dirs = {shell = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.egg-info$)\" | xargs rm -rf"}
+_foreach = {shell = "for proj in `find src/ -name pyproject.toml | grep -E -v '^src/packages/'` ; do (echo $proj; cd \"$(dirname $proj)\"; {args} ); done"}
+build = {composite = ["_foreach pdm build"], help = "build all projects"}
+clean = {composite = ["_foreach pdm run clean", "_clean_dirs"], help = "clean all projects"}
+format = {composite = ["_foreach pdm format"], help = "format all projects"}
+lint = {composite = ["_foreach pdm lint"], help = "linting all projects"}
