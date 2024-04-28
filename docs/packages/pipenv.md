@@ -200,6 +200,7 @@ Runs lock, then sync.
 ```shell
 pipenv update {packages...}
 pipenv update --outdated
+pipenv update
 ```
 
 ### Uninstall packages
