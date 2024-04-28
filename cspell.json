@@ -1,0 +1,19 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [],
+  "dictionaries": [],
+  "words": [
+    "distutils",
+    "isort",
+    "mypy",
+    "pipenv",
+    "Pipfile",
+    "pyproject",
+    "pytest",
+    "setuptools",
+    "venv"
+  ],
+  "ignoreWords": [],
+  "import": []
+}

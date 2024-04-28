@@ -23,4 +23,5 @@
     "black",
   ],
   "mypy-type-checker.args": [],
+  "mypy-type-checker.importStrategy": "fromEnvironment"
 }
