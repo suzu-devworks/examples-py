@@ -10,7 +10,7 @@
   - [Setuptools configurations](#setuptools-configurations)
     - [Configure `pyproject.toml` project](#configure-pyprojecttoml-project)
     - [Configure `setup.cfg` project](#configure-setupcfg-project)
-  - [Managements](#managements)
+  - [Project management](#project-management)
     - [Dependency management](#dependency-management)
     - [Development mode.](#development-mode)
     - [Build wheel package](#build-wheel-package)
@@ -19,6 +19,8 @@
     - [Clean](#clean)
   - [Tips](#tips)
     - [Settings package version](#settings-package-version)
+  - [Provide Console Scripts](#provide-console-scripts)
+    - [Create entry point](#create-entry-point)
 
 
 ## References
@@ -84,7 +86,7 @@ needed when you need to package additional files that are not automatically incl
 
 Every package should include a license file detailing the terms of distribution.
 
-## Managements
+## Project management
 
 ### Dependency management
 
@@ -152,7 +154,6 @@ python setup.py clean --all
 ```
 
 
-
 ## Tips
 
 ### Settings package version
@@ -176,3 +177,41 @@ version = attr: examples_packaging_setup.__version__
 ...
 ```
 
+
+
+## Provide Console Scripts
+
+How to provide console scripts in the setuptools package.
+
+- [Entry Points](https://setuptools.pypa.io/en/latest/userguide/entry_point.html)
+
+### Create entry point
+
+Create `console/command.py` file:
+
+```py
+def main() -> None:
+    print("Hello setuptools.")
+```
+
+`setup.cfg` is like this:
+
+```ini
+[options.entry_points]
+console_scripts =
+    examples-setup-cli = examples_packaging_setup.console.command:main
+```
+
+Install the package locally:
+
+```shell
+pip install -e .
+```
+
+When you run it:
+
+```console
+$ examples-setup-cli
+
+Hello setuptools.
+```
