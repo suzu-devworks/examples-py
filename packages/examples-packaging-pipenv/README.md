@@ -37,7 +37,7 @@ pip install pipenv
 Move to the root of your project...
 
 ```shell
-cd src/packages/examples-packaging-pipenv
+cd packages/examples-packaging-pipenv
 ```
 
 When you run it:
@@ -64,8 +64,8 @@ It's a warning but I don't care.
 Create and move project folder:
 
 ```shell
-mkdir -p src/packages/examples-packaging-pipenv
-cd src/packages/examples-packaging-pipenv
+mkdir -p packages/examples-packaging-pipenv
+cd packages/examples-packaging-pipenv
 ```
 
 ### Generate `Pipfile` file
