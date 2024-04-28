@@ -17,9 +17,10 @@ Can't you make a wheel package?
     - [Spawns a shell within the virtualenv](#spawns-a-shell-within-the-virtualenv)
     - [Spawns a command installed into the virtualenv](#spawns-a-command-installed-into-the-virtualenv)
     - [Restore packages](#restore-packages)
-    - [Install packages](#install-packages)
-    - [Update packages](#update-packages)
-    - [Uninstall packages](#uninstall-packages)
+    - [Add(Install)packages](#addinstallpackages)
+    - [Update package](#update-package)
+    - [Update outdated packages](#update-outdated-packages)
+    - [Remove(Uninstall) packages](#removeuninstall-packages)
     - [Uninstall all packages](#uninstall-all-packages)
     - [List packages](#list-packages)
     - [Build wheel package](#build-wheel-package)
@@ -167,7 +168,7 @@ from `requirements.txt`
 pipenv install -r ./requirements.txt
 ```
 
-### Install packages
+### Add(Install)packages
 
 Adding a package makes an entry in the `Pipfile`.
 
@@ -193,17 +194,33 @@ Installing dependencies from Pipfile.lock (2cfc5e)…
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 0/0 — 00:00:00
 ```
 
-### Update packages
+### Update package
 
 Runs lock, then sync.
 
 ```shell
 pipenv update {packages...}
+```
+
+### Update outdated packages
+
+show outdated list:
+
+```shell
 pipenv update --outdated
+
+```
+
+Update all dependency packages:
+
+```shell
 pipenv update
 ```
 
-### Uninstall packages
+`Pipfile.lock` is updated.
+
+
+### Remove(Uninstall) packages
 
 Un-installs a provided package and removes it from `Pipfile`.
 

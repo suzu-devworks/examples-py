@@ -20,7 +20,7 @@
     - [List packages](#list-packages)
     - [Update package](#update-package)
     - [Update outdated packages](#update-outdated-packages)
-    - [Uninstall package](#uninstall-package)
+    - [Remove package](#remove-package)
     - [Build wheel package](#build-wheel-package)
   - [Tips](#tips)
     - [Use a task runner like npm.](#use-a-task-runner-like-npm)
@@ -155,7 +155,7 @@ poetry update
 `poetry.lock` should be updated.
 
 
-### Uninstall package
+### Remove package
 
 ```shell
 poetry remove {packages...}
