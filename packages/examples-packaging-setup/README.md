@@ -36,7 +36,7 @@ pip install --upgrade setuptools wheel
 Move to the root of your project...
 
 ```shell
-cd src/packages/examples-packaging-setup
+cd packages/examples-packaging-setup
 ```
 
 Install this project:
@@ -86,8 +86,8 @@ Create these files:
 Generate the initial directory for the package with the following command:
 
 ```shell
-mkdir -p src/examples_packaging_setup/
-touch src/examples_packaging_setup/__init__.py
+mkdir -p examples_packaging_setup/
+touch examples_packaging_setup/__init__.py
 ```
 
 The final directory will look like this:
