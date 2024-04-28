@@ -35,7 +35,7 @@ pip install poetry
 Move to the root of your project...
 
 ```shell
-cd src/packages/examples-packaging-poetry
+cd packages/examples-packaging-poetry
 ```
 
 Install this project:
@@ -64,8 +64,8 @@ Hello poetry.
 Create and move project folder:
 
 ```shell
-mkdir -p src/packages/examples-packaging-poetry
-cd src/packages/examples-packaging-poetry
+mkdir -p packages/examples-packaging-poetry
+cd packages/examples-packaging-poetry
 ```
 
 ### Setup project
