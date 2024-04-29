@@ -1,8 +1,10 @@
 from logging import getLogger
 
+logger = getLogger(__name__)
 
-def do_logging_example():
-    logger = getLogger(__name__)
+
+def do_logging_example(args: any):
+    logger.info("-> logging example started: %s", args)
 
     # use loggers
     logger.debug("debug message")
