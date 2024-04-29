@@ -9,6 +9,7 @@
 
 - [example-py](#example-py)
   - [Overview](#overview)
+  - [Getting Started](#getting-started)
   - [Standard Library study](#standard-library-study)
   - [How the project was initialized](#how-the-project-was-initialized)
 
@@ -17,6 +18,19 @@
 
 This is a project to learn the basic functions and usage of Python.
 
+## Getting Started  
+
+Install dependency packages and install myself locally as editable.
+
+```shell
+pdm install
+```
+
+Executes commands defined in `project.scripts`.
+
+```shell
+examples-cli
+```
 
 ## Standard Library study
 
