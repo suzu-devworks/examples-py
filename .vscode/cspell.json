@@ -1,18 +1,22 @@
 {
   "version": "0.2",
-  "ignorePaths": [],
+  "ignorePaths": [
+    ".git",
+    ".devcontainer",
+    ".config",
+    ".github",
+    ".vscode",
+    "*.lock",
+    ".*"
+  ],
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
-    "distutils",
     "isort",
     "mypy",
-    "pipenv",
-    "Pipfile",
     "pyclean",
     "pyproject",
     "pytest",
-    "setuptools",
     "venv"
   ],
   "ignoreWords": [],

@@ -80,14 +80,16 @@ pdm init
 
 You will need to answer a few questions, to help PDM to create a pyproject.toml file for you.
 
+<!-- // spell-checker:words mypackage -->
+<!-- // spell-checker:words setuptools -->
 ```console
 pdm init
 
 Creating a pyproject.toml for PDM...
 Please enter the Python interpreter to use
-0. /workspaces/examples-py/.venv/bin/python (3.11)
-1. /usr/local/bin/python3.11 (3.11)
-2. /usr/bin/python3.9 (3.9)
+1. /workspaces/examples-py/.venv/bin/python (3.11)
+2. /usr/local/bin/python3.11 (3.11)
+3. /usr/bin/python3.9 (3.9)
 Please select (0):
 Using Python interpreter: /workspaces/examples-py/.venv/bin/python (3.11)
 
@@ -124,7 +126,7 @@ If `.pdm-python` doesn't exist, select the interpreter with `pdm use`.
 
 ### Restore packages
 
-There are some similar commands for installing packages pinned to lockfiles, but with some differences.
+There are some similar commands for installing packages pinned to lock files, but with some differences.
 
 - `pdm sync` installs packages from lock files.
 - `pdm update` updates the lock file and then syncs.
@@ -162,7 +164,7 @@ pdm update {packages...}
 show outdated list:
 
 ```shell
-pdm list --outdated
+pdm outdated
 ```
 
 Update all dependency packages:
@@ -183,6 +185,13 @@ pdm remove {packages...}
 pdm list
 ```
 
+Or show a dependency tree by:
+
+```shell
+pdm list --tree
+```
+
+
 ### Build wheel package
 
 ```shell
@@ -197,6 +206,7 @@ PDM also supports custom script shortcuts in the optional `[tool.pdm.scripts]` s
 
 **`pyproject.toml`**:
 
+<!-- // spell-checker:words pycache -->
 ```toml
 [tool.pdm.scripts]
 clean = "pyclean ."
@@ -265,3 +275,5 @@ $ examples-pdm-cli
 
 Hello pdm.
 ```
+
+<!-- // spell-checker:words virtualenv -->

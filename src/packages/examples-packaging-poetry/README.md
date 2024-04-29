@@ -2,7 +2,7 @@
 
 ## Overview 
 
-This is a project to learn packaging using setuptools.
+This is a project to learn packaging using poetry.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -97,3 +97,5 @@ Install development dependency packages for this project:
 poetry add --group dev flake8 mypy black isort pytest-cov pyclean
 poetry add --group dev taskipy
 ```
+
+<!-- // spell-checker:words taskipy -->

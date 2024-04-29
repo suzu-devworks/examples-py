@@ -110,3 +110,5 @@ Install development dependency packages for this project:
 ```shell
 pip install -e .[dev,doc]
 ```
+
+<!-- // spell-checker:words setuptools -->

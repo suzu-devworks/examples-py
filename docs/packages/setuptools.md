@@ -215,3 +215,8 @@ $ examples-setup-cli
 
 Hello setuptools.
 ```
+
+
+<!-- // spell-checker:words setuptools -->
+<!-- // spell-checker:words distutils -->
+<!-- // spell-checker:words importlib -->

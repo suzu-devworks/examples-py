@@ -256,6 +256,7 @@ pipenv graph
 
 **`Pipfile`**:
 
+<!-- // spell-checker:words runserver -->
 ```ini
 [scripts]
 format = "black -l 119 ."
@@ -332,3 +333,15 @@ Hello pipenv.
 ```
 
 It's a warning but I don't care.
+
+
+<!-- // spell-checker:words pipenv -->
+<!-- // spell-checker:words pyenv -->
+<!-- // spell-checker:words pipfile -->
+<!-- // spell-checker:words anyenv -->
+<!-- // spell-checker:words setuptools -->
+<!-- // spell-checker:words setuptools -->
+<!-- // spell-checker:words subshell -->
+<!-- // spell-checker:words virtualenv -->
+<!-- // spell-checker:words virtualenvs -->
+<!-- // spell-checker:words numpy -->
