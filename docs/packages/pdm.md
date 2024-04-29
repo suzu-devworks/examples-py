@@ -226,8 +226,8 @@ pdm run clean
 **`pyproject.toml`**:
 
 ```toml
-dynamic = ["version"]
 # version = "0.1.0"
+dynamic = ["version"]
 
 [tool.pdm]
 version = {source = "file", path = "src/examples_packaging_pdm/__version.py"}

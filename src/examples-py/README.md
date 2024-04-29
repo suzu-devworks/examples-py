@@ -29,7 +29,7 @@ pdm install
 Executes commands defined in `project.scripts`.
 
 ```shell
-examples-cli
+examples-cli --version
 ```
 
 ## Standard Library study
