@@ -34,10 +34,12 @@ examples-cli --version
 
 ## Standard Library study
 
-- [`datetime`](./tests/standards/datetimes/)<br>
+- [`datetime`](./tests/standards/datetime/)<br>
   Learn how to work with dates with datetime and timezone.
 - [`logging`](./src/examples/standards/logging/)<br>
   Learn log output and settings with console app.
+- [`argparse`](./src/examples/standards/argparse/)<br>
+  Learn how to define and handle command-line arguments using a console app.
 
 
 ## How the project was initialized
@@ -49,5 +51,10 @@ pdm init -n --dist -p src/examples-py
 pdm add -e src/examples-py --dev --group src
 
 cd src/examples-py
-pdm add -d flake8 mypy black isort pytest-cov pyclean
+pdm add --dev flake8 mypy black isort pytest-cov pyclean
+pdm add --dev --group test pytz 
+pdm add pyyaml
 ```
+
+<!-- // spell-checker:words argparse -->
+<!-- // spell-checker:words pyyaml -->

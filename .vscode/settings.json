@@ -15,11 +15,11 @@
     },
   },
   "black-formatter.args": [
-    "--line-length=119",
-    "--max-complexity=10"
+    "--line-length=119"
   ],
   "isort.args": [
-    "--profile black",
+    "--profile",
+    "black",
   ],
   "mypy-type-checker.args": [
     "--config-file .mypy.ini"

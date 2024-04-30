@@ -1,9 +1,10 @@
 from logging import getLogger
+from typing import Any
 
 logger = getLogger(__name__)
 
 
-def do_logging_example(args: any):
+def do_logging_example(args: Any):
     logger.info("-> logging example started: %s", args)
 
     # use loggers
