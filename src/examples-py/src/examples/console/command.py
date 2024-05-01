@@ -5,6 +5,7 @@ from logging import getLogger
 from examples.libraries.argparse import configure_parser as configure_argparse_parser
 from examples.libraries.logging import configure_logging
 from examples.libraries.logging import configure_parser as configure_logging_parser
+from examples.libraries.pillow import configure_exif_parser
 
 configure_logging()
 logger = getLogger("examples.console.command")
@@ -63,6 +64,10 @@ def __parse_arguments():
         description="standard library/logging example",
     )
     configure_logging_parser(logging_parser)
+
+    # spell-checker:words exif
+    exif_parser = subparsers.add_parser("exif", help="exif example", description="pypi library/pillow example")
+    configure_exif_parser(exif_parser)
 
     args = parser.parse_args()
 
