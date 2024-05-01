@@ -53,7 +53,7 @@ pdm add -e src/examples-py --dev --group src
 cd src/examples-py
 pdm add --dev flake8 mypy black isort pytest-cov pyclean
 pdm add --dev --group test pytz 
-pdm add pyyaml
+pdm add pyyaml pillow
 ```
 
 <!-- // spell-checker:words argparse -->

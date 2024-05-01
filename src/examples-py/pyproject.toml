@@ -4,6 +4,7 @@ authors = [
 ]
 dependencies = [
   "pyyaml>=6.0.1",
+  "pillow>=10.3.0",
 ]
 description = "Default template for PDM package"
 license = {text = "MIT"}
@@ -36,6 +37,20 @@ dev = [
 test = [
   "pytz>=2024.1",
 ]
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+line_length = 119
+profile = "black"
+
+[tool.mypy]
+files = ["src/", "tests/"]
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = ['pytz', 'yaml']
 
 [tool.pdm.scripts]
 clean = {composite = ["pyclean ."]}
