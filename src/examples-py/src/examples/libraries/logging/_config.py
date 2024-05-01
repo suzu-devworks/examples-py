@@ -10,7 +10,7 @@ from typing import Any
 import yaml
 
 
-def __find_logging_config() -> Path:
+def __find_logging_config() -> Path | None:
     for file in Path(".").glob("logging_config.*"):
         if re.match(r".+\.(json|yaml|yml)$", str(file), re.IGNORECASE):
             return file

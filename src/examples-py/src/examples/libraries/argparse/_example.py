@@ -3,6 +3,7 @@ from argparse import ArgumentParser, FileType
 from enum import Enum
 from io import TextIOWrapper
 from logging import getLogger
+from typing import Any
 
 logger = getLogger(__name__)
 
@@ -23,7 +24,7 @@ class Game(Enum):
             raise ValueError()
 
 
-def configure_argparse(parser: ArgumentParser):
+def configure_parser(parser: ArgumentParser):
     parser.add_argument(
         "infiles",
         help="input file[s]",
@@ -73,10 +74,10 @@ def configure_argparse(parser: ArgumentParser):
         dest="param_choices",
         help="choices",
     )
-    parser.set_defaults(exec=lambda args: do_argparse_example(args))
+    parser.set_defaults(exec=lambda args: do_example(args))
 
 
-def do_argparse_example(args: any):
+def do_example(args: Any):
     logger.info("-> argparse example started: %s", args)
 
     inputs: list[TextIOWrapper] = args.infiles
@@ -98,5 +99,6 @@ def do_argparse_example(args: any):
     # argparse.FileType does not close.
     if output.name != "<stdout>":
         output.close()
+
 
 # spell-checker:words infiles
