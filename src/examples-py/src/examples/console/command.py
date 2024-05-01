@@ -2,8 +2,9 @@ import importlib.metadata
 from argparse import ArgumentParser, RawTextHelpFormatter
 from logging import getLogger
 
-from examples.libraries.argparse import configure_argparse
-from examples.libraries.logging import configure_logging, do_logging_example
+from examples.libraries.argparse import configure_parser as configure_argparse_parser
+from examples.libraries.logging import configure_logging
+from examples.libraries.logging import configure_parser as configure_logging_parser
 
 configure_logging()
 logger = getLogger("examples.console.command")
@@ -53,7 +54,7 @@ def __parse_arguments():
         help="argparse example",
         description="standard library/argparse example",
     )
-    configure_argparse(args_parser)
+    configure_argparse_parser(args_parser)
 
     # logging
     logging_parser = subparsers.add_parser(
@@ -61,7 +62,7 @@ def __parse_arguments():
         help="logging example",
         description="standard library/logging example",
     )
-    logging_parser.set_defaults(exec=lambda args: do_logging_example(args))
+    configure_logging_parser(logging_parser)
 
     args = parser.parse_args()
 

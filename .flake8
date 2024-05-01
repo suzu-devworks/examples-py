@@ -2,3 +2,4 @@
 extend-ignore = E203
 max-line-length = 119
 max-complexity = 10
+exclude = .git,.venv,__pycache__,old,build,dist,logs

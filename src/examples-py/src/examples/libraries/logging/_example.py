@@ -1,10 +1,15 @@
+from argparse import ArgumentParser
 from logging import getLogger
 from typing import Any
 
 logger = getLogger(__name__)
 
 
-def do_logging_example(args: Any):
+def configure_parser(parser: ArgumentParser):
+    parser.set_defaults(exec=lambda args: do_example(args))
+
+
+def do_example(args: Any):
     logger.info("-> logging example started: %s", args)
 
     # use loggers

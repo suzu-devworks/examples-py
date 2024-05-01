@@ -24,7 +24,7 @@ class Game(Enum):
             raise ValueError()
 
 
-def configure_argparse(parser: ArgumentParser):
+def configure_parser(parser: ArgumentParser):
     parser.add_argument(
         "infiles",
         help="input file[s]",
@@ -74,10 +74,10 @@ def configure_argparse(parser: ArgumentParser):
         dest="param_choices",
         help="choices",
     )
-    parser.set_defaults(exec=lambda args: do_argparse_example(args))
+    parser.set_defaults(exec=lambda args: do_example(args))
 
 
-def do_argparse_example(args: Any):
+def do_example(args: Any):
     logger.info("-> argparse example started: %s", args)
 
     inputs: list[TextIOWrapper] = args.infiles

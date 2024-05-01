@@ -1,3 +1,3 @@
-from ._example import configure_argparse, do_argparse_example
+from ._example import configure_parser
 
-__all__ = ["configure_argparse", "do_argparse_example"]
+__all__ = ["configure_parser"]
