@@ -238,3 +238,8 @@ $ examples-poetry-cli
 
 Hello poetry.
 ```
+
+
+<!-- // spell-checker:words virtualenv -->
+<!-- // spell-checker:words virtualenvs -->
+<!-- // spell-checker:words taskipy -->

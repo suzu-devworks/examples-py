@@ -2,13 +2,20 @@
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+  "pyyaml>=6.0.1",
+  "pillow>=10.3.0",
+]
 description = "Default template for PDM package"
 license = {text = "MIT"}
 name = "examples-py"
 readme = "README.md"
 requires-python = ">=3.12"
-version = "0.1.0"
+# version = "0.1.0"
+dynamic = ["version"]
+
+[project.scripts]
+examples-cli = "examples.console.command:main"
 
 [build-system]
 build-backend = "pdm.backend"
@@ -16,6 +23,7 @@ requires = ["pdm-backend"]
 
 [tool.pdm]
 distribution = true
+version = {source = "file", path = "src/examples/__version__.py"}
 
 [tool.pdm.dev-dependencies]
 dev = [
@@ -26,9 +34,26 @@ dev = [
   "pytest-cov>=5.0.0",
   "pyclean>=3.0.0",
 ]
+test = [
+  "pytz>=2024.1",
+]
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+line_length = 119
+profile = "black"
+
+[tool.mypy]
+files = ["src/", "tests/"]
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = ['pytz', 'yaml']
 
 [tool.pdm.scripts]
 clean = {composite = ["pyclean ."]}
 format = {composite = ["isort src/ tests/", "black src/ tests/"]}
 lint = {composite = ["flake8", "mypy src/ tests/"]}
-test = "pytest --cov=. --cov-branch --cov-report xml"
+test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src tests/"

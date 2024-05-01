@@ -4,7 +4,6 @@
 
 This is a project to learn packaging using pipenv.
 
-
 ## Table of Contents <!-- omit in toc -->
 
 - [examples-packaging-pipenv](#examples-packaging-pipenv)
@@ -107,3 +106,8 @@ Install dependency packages for this project:
 ```shell
 pipenv install --dev flake8 mypy black isort pytest-cov
 ```
+
+<!-- // spell-checker:words pyenv -->
+<!-- // spell-checker:words pipenv -->
+<!-- // spell-checker:words pipfile -->
+<!-- // spell-checker:words virtualenvs -->
