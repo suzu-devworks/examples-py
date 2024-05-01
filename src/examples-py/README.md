@@ -34,11 +34,11 @@ examples-cli --version
 
 ## Standard Library study
 
-- [`datetime`](./tests/standards/datetime/)<br>
+- [`datetime`](./tests/libraries/datetime/)<br>
   Learn how to work with dates with datetime and timezone.
-- [`logging`](./src/examples/standards/logging/)<br>
+- [`logging`](./src/examples/libraries/logging/)<br>
   Learn log output and settings with console app.
-- [`argparse`](./src/examples/standards/argparse/)<br>
+- [`argparse`](./src/examples/libraries/argparse/)<br>
   Learn how to define and handle command-line arguments using a console app.
 
 

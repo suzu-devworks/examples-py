@@ -11,10 +11,10 @@ formatters:
     format: "%(asctime)s [%(levelname)-.1s] %(message)s"
 filters:
   not_output_password:
-    (): examples.standards.logging.NoPasswordFilter
+    (): examples.libraries.logging.NoPasswordFilter
     name: "param"
   warnings_and_below:
-    (): examples.standards.logging.level_filter_factory
+    (): examples.libraries.logging.level_filter_factory
     level: "WARNING"
 handlers:
   console:

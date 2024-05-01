@@ -2,8 +2,8 @@ import importlib.metadata
 from argparse import ArgumentParser, RawTextHelpFormatter
 from logging import getLogger
 
-from examples.standards.argparse import configure_argparse
-from examples.standards.logging import configure_logging, do_logging_example
+from examples.libraries.argparse import configure_argparse
+from examples.libraries.logging import configure_logging, do_logging_example
 
 configure_logging()
 logger = getLogger("examples.console.command")
