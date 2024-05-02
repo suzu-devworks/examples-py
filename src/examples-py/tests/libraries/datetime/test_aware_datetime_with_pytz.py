@@ -1,11 +1,10 @@
-"""
-This test to learn "aware" datetime manipulation.
+"""This test is for learning "aware" datetime manipulation.
 
 An aware objects have an optional time zone information attribute tzinfo
 that can be set to an instance of a subclass of the abstract tzinfo class.
 
-see also
-- https://pythonhosted.org/pytz/
+References:
+    - https://pythonhosted.org/pytz/
 """
 
 from datetime import datetime, time, timedelta

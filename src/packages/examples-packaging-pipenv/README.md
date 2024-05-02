@@ -1,8 +1,5 @@
 # examples-packaging-pipenv
 
-## Overview 
-
-This is a project to learn packaging using pipenv.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -16,6 +13,10 @@ This is a project to learn packaging using pipenv.
     - [Generate source directories](#generate-source-directories)
     - [Install packages](#install-packages)
 
+
+## Overview 
+
+This project is an attempt to create packages using pipenv.
 
 ## Getting started
 

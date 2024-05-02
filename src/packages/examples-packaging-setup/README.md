@@ -1,9 +1,5 @@
 # examples-packaging-setup
 
-## Overview 
-
-This is a project to learn packaging using setuptools.
-
 ## Table of Contents <!-- omit in toc -->
 
 - [examples-packaging-setup](#examples-packaging-setup)
@@ -16,6 +12,10 @@ This is a project to learn packaging using setuptools.
     - [Generate source directories](#generate-source-directories)
     - [Install packages](#install-packages)
 
+
+## Overview 
+
+This project is an attempt to create packages using setuptools.
 
 ## Getting started
 

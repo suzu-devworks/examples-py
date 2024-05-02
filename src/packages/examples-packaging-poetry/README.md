@@ -1,9 +1,5 @@
 ## examples-packaging-poetry
 
-## Overview 
-
-This is a project to learn packaging using poetry.
-
 ## Table of Contents <!-- omit in toc -->
 
 - [examples-packaging-poetry](#examples-packaging-poetry)
@@ -15,6 +11,10 @@ This is a project to learn packaging using poetry.
   - [Setup project](#setup-project)
   - [Install dependency packages](#install-dependency-packages)
 
+
+## Overview 
+
+This project is an attempt to create packages using poetry.
 
 ## Getting started
 

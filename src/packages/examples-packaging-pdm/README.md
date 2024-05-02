@@ -1,9 +1,5 @@
 # examples-packaging-pdm
 
-## Overview 
-
-This is a project to learn packaging using PDM.
-
 ## Table of Contents <!-- omit in toc -->
 
 - [examples-packaging-pdm](#examples-packaging-pdm)
@@ -15,6 +11,10 @@ This is a project to learn packaging using PDM.
     - [Setup project](#setup-project)
     - [Install dependency packages](#install-dependency-packages)
 
+
+## Overview 
+
+This project is an attempt to create packages using PDM.
 
 ## Getting started
 
