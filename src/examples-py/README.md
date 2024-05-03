@@ -40,7 +40,9 @@ examples-cli --version
 - [functional programming](./tests/references/functionals/)<br>
   Learn about functional programming.
 - [sorting](./tests/references/sorting/)<br>
-  Learn about different sorts.
+  Learn about various sorting.
+- [decorators](./tests/references/decorators/)<br>
+  Learn how to define and use decorators.
 
 
 ## Standard library study
