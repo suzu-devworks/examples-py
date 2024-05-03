@@ -43,6 +43,8 @@ examples-cli --version
   > Learn about different sorts.
 - [decorators](./tests/references/decorators/)
   > Learn how to define and use decorators.
+- [data models](./tests/references/data_models/)
+  > Learn data models using special methods in Python.
 
 
 ## Standard library study
