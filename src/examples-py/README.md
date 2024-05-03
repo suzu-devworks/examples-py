@@ -1,4 +1,4 @@
-# example-py
+# examples-py
 
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm.fming.dev)
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
@@ -7,10 +7,11 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [example-py](#example-py)
+- [examples-py](#examples-py)
   - [Overview](#overview)
-  - [Getting Started](#getting-started)
-  - [Standard Library study](#standard-library-study)
+  - [Getting started](#getting-started)
+  - [Language reference](#language-reference)
+  - [Standard library study](#standard-library-study)
   - [How the project was initialized](#how-the-project-was-initialized)
 
 
@@ -18,7 +19,7 @@
 
 This is a project to learn the basic functions and usage of Python.
 
-## Getting Started  
+## Getting started  
 
 Install dependency packages and install myself locally as editable.
 
@@ -32,7 +33,17 @@ Executes commands defined in `project.scripts`.
 examples-cli --version
 ```
 
-## Standard Library study
+## Language reference
+
+- [sequences](./tests/references/sequences/)<br>
+  Learn about basic sequence type operations.
+- [functional programming](./tests/references/functionals/)<br>
+  Learn about functional programming.
+- [sorting](./tests/references/sorting/)<br>
+  Learn about different sorts.
+
+
+## Standard library study
 
 - [`datetime`](./tests/libraries/datetime/)<br>
   Learn how to work with dates with datetime and timezone.
@@ -52,9 +63,10 @@ pdm add -e src/examples-py --dev --group src
 
 cd src/examples-py
 pdm add --dev flake8 mypy black isort pytest-cov pyclean
-pdm add --dev --group test pytz 
+pdm add --dev --group test pytz natsort
 pdm add pyyaml pillow
 ```
 
 <!-- // spell-checker:words argparse -->
 <!-- // spell-checker:words pyyaml -->
+<!-- // spell-checker:words natsort -->

@@ -35,7 +35,8 @@ dev = [
   "pyclean>=3.0.0",
 ]
 test = [
-  "pytz>=2024.1",
+    "pytz>=2024.1",
+    "natsort>=8.4.0",
 ]
 
 [tool.black]
