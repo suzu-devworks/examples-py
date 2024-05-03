@@ -41,11 +41,13 @@ examples-cli --version
   > Learn about functional programming.
 - [sorting](./tests/references/sorting/)
   > Learn about different sorts.
+- [decorators](./tests/references/decorators/)
+  > Learn how to define and use decorators.
 
 
 ## Standard library study
 
-- [`datetime`](./tests/libraries/datetimes/)
+- [`datetime`](./tests/libraries/datetime/)
   > Learn how to work with dates with datetime and timezone.
 - [`logging`](./src/examples/libraries/logging/)
   > Learn log output and settings with console app.
