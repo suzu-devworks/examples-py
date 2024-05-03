@@ -12,9 +12,12 @@ However, please note that the code described here is based on my personal opinio
 
 ## Projects
 
-- [examples-py](./src/example-py/README.md)<br>
-This is a project to learn the basic functions and usage of Python.
-- 
+- [examples-py](./src/examples-py/README.md)
+- packages
+  - [examples-packaging-setup](./src/packages/examples-packaging-setup/README.md)
+  - [examples-packaging-pipenv](./src/packages/examples-packaging-pipenv/README.md)
+  - [examples-packaging-poetry](./src/packages/examples-packaging-poetry/README.md)
+  - [examples-packaging-pdm](./src//packages//examples-packaging-pdm/README.md)
 
 
 ## More Information
@@ -36,3 +39,6 @@ pip install pdm
 
 pdm run build
 ```
+
+<!-- // spell-checker:words setuptools -->
+<!-- // spell-checker:words pipenv -->

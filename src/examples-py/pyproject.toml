@@ -33,10 +33,18 @@ dev = [
   "isort>=5.13.2",
   "pytest-cov>=5.0.0",
   "pyclean>=3.0.0",
+  "pytest-asyncio>=0.23.6",
 ]
 test = [
   "pytz>=2024.1",
+  "natsort>=8.4.0",
 ]
+
+[tool.pdm.scripts]
+clean = {composite = ["pyclean ."]}
+format = {composite = ["isort src/ tests/", "black src/ tests/"]}
+lint = {composite = ["flake8", "mypy src/ tests/"]}
+test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src tests/"
 
 [tool.black]
 line-length = 119
@@ -52,8 +60,7 @@ files = ["src/", "tests/"]
 ignore_missing_imports = true
 module = ['pytz', 'yaml']
 
-[tool.pdm.scripts]
-clean = {composite = ["pyclean ."]}
-format = {composite = ["isort src/ tests/", "black src/ tests/"]}
-lint = {composite = ["flake8", "mypy src/ tests/"]}
-test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src tests/"
+[tool.pytest.ini_options]
+markers = [
+  "asyncio",
+]

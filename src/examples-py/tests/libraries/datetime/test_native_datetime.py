@@ -1,5 +1,4 @@
-"""
-This test to learn "native" datetime manipulation.
+"""This test is for learning "native" datetime manipulation.
 
 A naive object does not contain enough information
 to unambiguously locate itself relative to other date/time objects.
