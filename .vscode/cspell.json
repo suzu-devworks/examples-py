@@ -13,12 +13,14 @@
   "dictionaries": [],
   "words": [
     "isort",
+    "markupsafe",
     "mypy",
     "pyclean",
     "pyproject",
     "pytest",
     "pytz",
-    "venv"
+    "venv",
+    "werkzeug"
   ],
   "ignoreWords": [],
   "import": []

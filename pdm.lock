@@ -2,7 +2,7 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "src", "web", "dev"]
+groups = ["default", "dev", "src", "web"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
 content_hash = "sha256:f3e5eb9fa9316527435d8024de5a5bb2ad4d64252d48c41d4280dde8e52b9633"
@@ -126,7 +126,7 @@ dependencies = [
 
 [[package]]
 name = "examples-py"
-version = "0.1.0"
+version = "0.1.0.dev1"
 requires_python = ">=3.12"
 editable = true
 path = "./src/examples-py"

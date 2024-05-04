@@ -8,6 +8,7 @@
   - [Overview](#overview)
   - [References](#references)
   - [Getting started](#getting-started)
+  - [Tried this](#tried-this)
   - [How the project was initialized](#how-the-project-was-initialized)
 
 
@@ -32,6 +33,12 @@ pdm use
 # install dependencies and self.
 pdm install
 ```
+
+## Tried this
+
+<!-- // spell-checker:words Quickstart -->
+- [Quickstart](https://flask.palletsprojects.com/en/3.0.x/quickstart/)
+
 
 ## How the project was initialized
 

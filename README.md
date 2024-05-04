@@ -17,8 +17,9 @@ However, please note that the code described here is based on my personal opinio
   - [examples-packaging-setup](./src/packages/examples-packaging-setup/README.md)
   - [examples-packaging-pipenv](./src/packages/examples-packaging-pipenv/README.md)
   - [examples-packaging-poetry](./src/packages/examples-packaging-poetry/README.md)
-  - [examples-packaging-pdm](./src//packages//examples-packaging-pdm/README.md)
-
+  - [examples-packaging-pdm](./src/packages//examples-packaging-pdm/README.md)
+- web
+  - [examples-flask-started](./src/web/examples-flask-started/README.md)
 
 ## More Information
 
