@@ -6,7 +6,8 @@
 	"service": "dev",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"remoteEnv": {
-		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+		"WORKSPACE_FOLDER": "/workspaces/${localWorkspaceFolderBasename}"
 	},
 	"remoteUser": "vscode"
 }
