@@ -34,10 +34,17 @@ pdm use
 pdm install
 ```
 
+Create database:
+
+```shell
+flask --app flaskr init-db
+```
+
 ## Tried this
 
 <!-- // spell-checker:words Quickstart -->
 - [Quickstart](https://flask.palletsprojects.com/en/3.0.x/quickstart/)
+- [Tutorial](https://flask.palletsprojects.com/en/3.0.x/tutorial/)
 
 
 ## How the project was initialized
