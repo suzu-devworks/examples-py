@@ -48,7 +48,7 @@ profile = "black"
 src_paths = ["src", "tests"]
 
 ## First party
-known_first_party = ["examples"]
+known_first_party = ["examples", "flaskr"]
 
 [tool.mypy]
 ## Import discovery
