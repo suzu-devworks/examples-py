@@ -3,7 +3,7 @@ authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
 dependencies = [
-    "pillow>=10.3.0",
+  "pillow>=10.3.0",
 ]
 description = "Default template for PDM package"
 license = {text = "MIT"}
@@ -27,3 +27,33 @@ build = {composite = ["_foreach pdm build"], help = "build all projects"}
 clean = {composite = ["_foreach pdm run clean", "_clean_dirs"], help = "clean all projects"}
 format = {composite = ["_foreach pdm format"], help = "format all projects"}
 lint = {composite = ["_foreach pdm lint"], help = "linting all projects"}
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+
+## First party
+known_first_party = ["examples"]
+
+[tool.mypy]
+## Import discovery
+files = ["src", "tests"]
+
+## Platform configuration
+#python_version = 3.12
+
+## Miscellaneous strictness flags
+strict = true
+
+## Configuring error messages
+pretty = true
+show_error_context = true
+
+# mypy per-module options:
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = []

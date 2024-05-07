@@ -7,7 +7,7 @@ from logging.config import dictConfig
 from pathlib import Path
 from typing import Any
 
-import yaml
+import yaml  # type: ignore[import-untyped]
 
 
 def __find_logging_config() -> Path | None:
@@ -23,7 +23,7 @@ def __default_yaml_config() -> Path:
         return config
 
 
-def __make_directories(config: dict[str, Any]):
+def __make_directories(config: dict[str, Any]) -> None:
     for handler in config["handlers"]:
         if "filename" in config["handlers"][handler]:
             logfile = Path(config["handlers"][handler]["filename"])
@@ -33,7 +33,7 @@ def __make_directories(config: dict[str, Any]):
     return
 
 
-def configure_logging():
+def configure_logging() -> None:
     config = __find_logging_config() or __default_yaml_config()
     suffix = config.suffix.lower()
     match suffix:

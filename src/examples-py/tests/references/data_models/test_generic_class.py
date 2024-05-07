@@ -13,7 +13,8 @@ import pytest
 
 
 class TestGenericsClass:
-    def test_basic_generics(self):
+
+    def test_user_define_generics(self) -> None:
         """use typing.Generic"""
         from typing import Generic
 
@@ -36,13 +37,12 @@ class TestGenericsClass:
                 # if not isinstance(value, types[0]):
                 #     raise TypeError("wrong type specified for value.")
 
-            @classmethod
-            def __class_getitem__(cls, params):
-                # Keep parameters for type checking.
-                # but. If the type parameter is not specified,
-                # this will not be called and the previous value will remain.
-                cls.__generic_params = params
-                return super().__class_getitem__(params)
+            # def __class_getitem__(cls, params: Any) -> Any:
+            #     # Keep parameters for type checking.
+            #     # but. If the type parameter is not specified,
+            #     # this will not be called and the previous value will remain.
+            #     cls.__generic_params = params
+            #     return super().__class_getitem__(params)
 
             @property
             def name(self) -> str:
@@ -63,12 +63,12 @@ class TestGenericsClass:
 
         # TODO DON'T DO TYPE ASSERTION!
         with pytest.raises(TypeError) as e:
-            GenericClass[int]("string", "12345")
+            GenericClass[int]("string", "12345")  # type: ignore[arg-type]
             raise TypeError("DON'T DO TYPE ASSERTION!")
         assert str(e.value) == "DON'T DO TYPE ASSERTION!"
 
         with pytest.raises(TypeError) as e:
-            GenericClass[int, bool]("int, bool", None)
+            GenericClass[int, bool]("int, bool", None)  # type:ignore[misc]
         assert re.match("Too many arguments for <class '.+?'>; actual 2, expected 1", str(e.value))
 
         # TODO DON'T DO TYPE ASSERTION!

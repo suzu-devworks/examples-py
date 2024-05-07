@@ -11,7 +11,7 @@ from datetime import datetime, time, timedelta
 from time import time as c_style_time
 
 import pytest
-import pytz
+import pytz  # type:ignore[import-untyped]
 
 timezone_data = [
     ("UTC", datetime(2000, 2, 29), "UTC", timedelta(hours=0), timedelta(0)),
@@ -29,7 +29,7 @@ timezone_data = [
 
 
 @pytest.mark.parametrize("zone,date,tzname,offset,dst", timezone_data)
-def test_pytz_timezones(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta):
+def test_pytz_timezones(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta) -> None:
     tz = pytz.timezone(zone)
     assert tz.zone == zone
     assert tz.tzname(date) == tzname
@@ -37,7 +37,7 @@ def test_pytz_timezones(zone: str, date: datetime, tzname: str, offset: timedelt
     assert tz.dst(date) == dst
 
 
-def test_aware_datetime_generators():
+def test_aware_datetime_generators() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     native_date = datetime(2000, 2, 29)
 
@@ -80,7 +80,7 @@ def test_aware_datetime_generators():
     assert now_tz_timetz.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
 
 
-def test_aware_datetime_calculation():
+def test_aware_datetime_calculation() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 12, 34, 56, 789012))
 
@@ -106,7 +106,7 @@ def test_aware_datetime_calculation():
     assert actual is True
 
 
-def test_aware_datetime_conversion_with_string():
+def test_aware_datetime_conversion_with_string() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 1, 23, 45, 678901))
 
@@ -130,7 +130,7 @@ def test_aware_datetime_conversion_with_string():
     assert text != "2000/02/29 01:23:45 +09:00 JST"
 
 
-def test_aware_datetime_conversion_between_utc_and_jst():
+def test_aware_datetime_conversion_between_utc_and_jst() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 1, 23, 45, 678901))
 
@@ -145,7 +145,7 @@ def test_aware_datetime_conversion_between_utc_and_jst():
     assert str(datetime2) == "2000-02-29 01:23:45.678901+09:00"
 
 
-def test_aware_datetime_conversion_according_to_dst():
+def test_aware_datetime_conversion_according_to_dst() -> None:
     # DST: Daylight saving time.
     # EST/EDT 2019-03-10T03:00 - 2019-11-03T01:00
     est = pytz.timezone("US/Eastern")
@@ -175,7 +175,7 @@ def test_aware_datetime_conversion_according_to_dst():
     assert normal_after.tzinfo.tzname(normal_after) == "EST"
 
 
-def test_aware_datetime_conversion_with_native():
+def test_aware_datetime_conversion_with_native() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901)
 

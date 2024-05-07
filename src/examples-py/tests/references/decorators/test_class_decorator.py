@@ -9,22 +9,24 @@ References:
 
 """
 
+from typing import Any
+
 
 class TestClassDecorator(object):
-    def test_with_pep3129(self):
+    def test_with_pep3129(self) -> None:
         """PEP 3129's class decorator."""
 
-        def foo(cls):
+        def foo(cls: Any) -> Any:
             cls.foo_is = "FOO"
             return cls
 
-        def bar(cls):
+        def bar(cls: Any) -> Any:
             cls.bar_is = "BAR"
 
             return cls
 
         class A:
-            def __init__(self):
+            def __init__(self) -> None:
                 self.param = "PARAM"
 
         a = foo(bar(A()))
@@ -35,10 +37,10 @@ class TestClassDecorator(object):
         @foo
         @bar
         class B:
-            def __init__(self):
+            def __init__(self) -> None:
                 self.param = "PARAM"
 
         b = B()
         assert b.param == "PARAM"
-        assert b.foo_is == "FOO"
-        assert b.bar_is == "BAR"
+        assert b.foo_is == "FOO"  # type: ignore[attr-defined]
+        assert b.bar_is == "BAR"  # type: ignore[attr-defined]

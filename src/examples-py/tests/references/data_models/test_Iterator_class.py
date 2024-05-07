@@ -9,27 +9,28 @@ References:
 """
 
 import asyncio
+from typing import Any, Self
 
 import pytest
 
 
 class TestIteratorClass:
-    def test_basic_special_method_iterator(self):
+    def test_basic_special_method_iterator(self) -> None:
         """Implement two methods
         `object.__iter__()` and
         `object.__next__()`.
         """
 
         class IteratorClass(object):
-            def __init__(self, num: int, *args, **kwargs) -> None:
+            def __init__(self, num: int, *args: Any, **kwargs: Any) -> None:
                 self.__num = num
                 self.__count: int = 0
 
-            def __iter__(self):
+            def __iter__(self) -> Self:
                 # return return an object with __next__ method.
                 return self
 
-            def __next__(self):
+            def __next__(self) -> str:
                 if self.__count < self.__num:
                     value = str(self.__count)
                     self.__count += 1
@@ -53,7 +54,7 @@ class TestIteratorClass:
         assert values == ["0", "1", "2", "3", "4"]
 
     @pytest.mark.asyncio
-    async def test_async_special_method_iterator(self):
+    async def test_async_special_method_iterator(self) -> None:
         """Implement two methods
         `object.__aiter__()` and
         `object.__anext__()`.
@@ -69,15 +70,15 @@ class TestIteratorClass:
         #     return val
 
         class AsyncIterator(object):
-            def __init__(self, num: int, *args, **kwargs) -> None:
+            def __init__(self, num: int, *args: Any, **kwargs: Any) -> None:
                 self.__num = num
                 self.__count: int = 0
 
-            def __aiter__(self):
+            def __aiter__(self) -> Self:
                 # return return an object with __next__ method.
                 return self
 
-            async def __anext__(self):
+            async def __anext__(self) -> str:
                 await asyncio.sleep(0)
                 if self.__count < self.__num:
                     value = str(self.__count)
@@ -87,7 +88,7 @@ class TestIteratorClass:
                 raise StopAsyncIteration()
 
             @property
-            def status(self):
+            def status(self) -> int:
                 return self.__count
 
         count = 0

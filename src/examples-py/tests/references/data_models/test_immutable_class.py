@@ -10,26 +10,25 @@ References:
 """
 
 from dataclasses import FrozenInstanceError, dataclass, field
+from typing import Any
 
 import pytest
 
-# mypy: disable-error-code="annotation-unchecked"
-
 
 class TestImmutableClass:
-    def test_immutable_with_dataclass(self):
+    def test_immutable_with_dataclass(self) -> None:
         """use `@dataclass(frozen=True)`."""
 
         @dataclass(frozen=True)
         class ImmutableClass:
             name: str
             price: float
-            alias: str = None
+            alias: str | None = None
             count: int = field(kw_only=True, default=0)
-            attributes: dict[str:any] = field(
+            attributes: dict[str, Any] = field(
                 default_factory=lambda: ({"type-a": 100, "type-b": True, "type-c": "hello immutable"})
             )
-            features: list[any] = field(default_factory=list)
+            features: list[Any] = field(default_factory=list)
 
         instance = ImmutableClass("Foo", 110.00, count=1)
         assert isinstance(instance, ImmutableClass)
@@ -45,13 +44,13 @@ class TestImmutableClass:
         assert instance.features == []
 
         with pytest.raises(FrozenInstanceError):
-            instance.name = "Bar"
+            instance.name = "Bar"  # type: ignore[misc]
         with pytest.raises(FrozenInstanceError):
-            instance.price = 110.00
+            instance.price = 110.00  # type: ignore[misc]
         with pytest.raises(FrozenInstanceError):
-            instance.alias = "Bas"
+            instance.alias = "Bas"  # type: ignore[misc]
         with pytest.raises(FrozenInstanceError):
-            instance.count = -1
+            instance.count = -1  # type: ignore[misc]
 
         # References such as dictionaries are not immutable.
         instance.attributes["add new entry"] = 10.0
@@ -63,11 +62,11 @@ class TestImmutableClass:
         }
 
         with pytest.raises(FrozenInstanceError):
-            instance.attributes = {"replace new dictionary": False}
+            instance.attributes = {"replace new dictionary": False}  # type: ignore[misc]
 
         # list is also a reference so it is not immutable.
         instance.features.append("append new entry")
         assert instance.features == ["append new entry"]
 
         with pytest.raises(FrozenInstanceError):
-            instance.features = ["replace new list"]
+            instance.features = ["replace new list"]  # type: ignore[misc]

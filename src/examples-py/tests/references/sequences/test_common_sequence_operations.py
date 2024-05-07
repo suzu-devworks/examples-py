@@ -7,7 +7,8 @@ References:
 
 
 class TestCommonSequenceOperations:
-    def test_sequence_length(self):
+
+    def test_sequence_length(self) -> None:
         # fmt: off
         matrix = [
             [[1, 1], [1, 2], [1, 3]],
@@ -21,7 +22,7 @@ class TestCommonSequenceOperations:
         assert len(matrix[0]) == 3
         assert len(matrix[0][0]) == 2
 
-    def test_sequence_slice(self):
+    def test_sequence_slice(self) -> None:
         """`sequence[start:stop:step]`
 
         [ 0, 1, 2, 3, 4, ... -4, -3, -2, -1 ]
@@ -33,12 +34,15 @@ class TestCommonSequenceOperations:
         assert strings[2:5] == "cde"
 
         assert alphabets[20:] == ["u", "v", "w", "x", "y", "z"]
+        # spell-checker:disable-next-line
         assert strings[20:] == "uvwxyz"
 
         assert alphabets[20:-1] == ["u", "v", "w", "x", "y"]
+        # spell-checker:disable-next-line
         assert strings[20:-1] == "uvwxy"
 
         assert alphabets[:10] == ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+        # spell-checker:disable-next-line
         assert strings[:10] == "abcdefghij"
 
         # start < end (positive)

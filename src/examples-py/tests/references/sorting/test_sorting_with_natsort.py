@@ -14,7 +14,7 @@ from natsort import natsorted, ns, os_sorted, realsorted
 
 
 class TestSortingWithNatsort:
-    def test_natural_sorting(self):
+    def test_natural_sorting(self) -> None:
         # fmt: off
         list1 = [
             "2 ft 7 in",
@@ -62,7 +62,7 @@ class TestSortingWithNatsort:
             "version-2.0",
         ]
 
-    def test_natural_real_sorting(self):
+    def test_natural_real_sorting(self) -> None:
         """Real(signed float values) sorting."""
 
         #                +5.10                 -3.00             +5.30               +2.00
@@ -100,7 +100,7 @@ class TestSortingWithNatsort:
             "position5.3.data",
         ]
 
-    def test_natural_windows_sorting(self):
+    def test_natural_windows_sorting(self) -> None:
         """Return value that will be different depending on your platform."""
 
         dirs = os.listdir(".")

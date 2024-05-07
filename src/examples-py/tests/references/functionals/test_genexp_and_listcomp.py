@@ -7,7 +7,8 @@ References:
 
 
 class TestGeneratorExpressionsAndListComprehensions:
-    def test_remove_all_whitespace(self):
+
+    def test_remove_all_whitespace(self) -> None:
         """Remove all whitespace from a string stream."""
 
         line_list = ["  line 1\n", "line 2  \n", " \n", ""]

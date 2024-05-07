@@ -23,7 +23,8 @@ References:
 
 
 class TestListComprehensions:
-    def test_list_comprehension_basic(self):
+
+    def test_list_comprehension_basic(self) -> None:
         """The same as the following code:
 
         ```py
@@ -35,7 +36,7 @@ class TestListComprehensions:
         list1 = [x**2 for x in range(10)]
         assert list1 == [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
-    def test_list_comprehension_with_optional_predicate(self):
+    def test_list_comprehension_with_optional_predicate(self) -> None:
         """The same as the following code:
 
         ```py
@@ -49,7 +50,7 @@ class TestListComprehensions:
         list1 = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
         assert list1 == [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
 
-    def test_list_comprehension_with_output_expression(self):
+    def test_list_comprehension_with_output_expression(self) -> None:
         """The same as the following code:
 
         ```py
@@ -64,7 +65,7 @@ class TestListComprehensions:
         list1 = [i if i % 2 == 0 else str(i) for i in range(10)]
         assert list1 == [0, "1", 2, "3", 4, "5", 6, "7", 8, "9"]
 
-    def test_nested_list_comprehensions(self):
+    def test_nested_list_comprehensions(self) -> None:
         # Given a 3x4 matrix:
         # fmt: off
         matrix = [
@@ -85,7 +86,7 @@ class TestListComprehensions:
         flatten = [x for row in matrix for x in row]
         assert flatten == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-    def test_dictionary_creation_from_sequence(self):
+    def test_dictionary_creation_from_sequence(self) -> None:
         dict1 = {f"{x}^3": x**3 for x in range(10)}
         assert dict1 == {
             "0^3": 0,
@@ -100,8 +101,8 @@ class TestListComprehensions:
             "9^3": 729,
         }
 
-    def test_dictionary_append(self):
-        dict1 = {"KEY1": 1, "KEY2": 2}
+    def test_dictionary_append(self) -> None:
+        dict1: dict[str, int | str] = {"KEY1": 1, "KEY2": 2}
 
         # use update()
         dict1.update({"KEY3": 123})
@@ -121,9 +122,9 @@ class TestListComprehensions:
             "KEY5": True,
         }
 
-    def test_dictionary_merging(self):
-        dict1 = {"KEY1": 1, "KEY2": 2, "KEY3": 3, "KEY4": 4, "KEY5": 5}
-        dict2 = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
+    def test_dictionary_merging(self) -> None:
+        dict1: dict[str, int | str] = {"KEY1": 1, "KEY2": 2, "KEY3": 3, "KEY4": 4, "KEY5": 5}
+        dict2: dict[str, int | str] = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
 
         # use operator **
         merged = {**dict1, **dict2}
@@ -147,7 +148,7 @@ class TestListComprehensions:
             "KEY6": "string3",
         }
 
-    def test_dictionary_key_matching(self):
+    def test_dictionary_key_matching(self) -> None:
         dict1 = {"KEY1": 1, "KEY2": 2, "KEY3": 3, "KEY4": 4, "KEY5": 5}
         dict2 = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
 

@@ -14,26 +14,29 @@ References:
 # spell-checker:words Gof
 
 from functools import wraps
+from typing import Any, Callable, Self, Type
 
 import pytest
 
+TFunc = Callable[..., Any]
+
 
 class TestDecorator(object):
-    def test_without_arguments_not_return_wrapper(self):
+    def test_without_arguments_not_return_wrapper(self) -> None:
         """Pattern of without arguments and not return a wrapper function.
 
         This is the pattern from Example 1 of PEP318.
         This pattern is almost impractical.
         """
 
-        def on_exit(f):
+        def on_exit(f: TFunc) -> TFunc:
             import atexit
 
             atexit.register(f)
             return f
 
         @on_exit
-        def func():
+        def func() -> None:
             print("Exit on called.")
 
         # Called at normal program exit, e.g. when sys.exit() is called,
@@ -41,17 +44,17 @@ class TestDecorator(object):
 
         # `@atexit.register` is just a decorator.
 
-    def test_without_arguments_return_wrapper(self):
+    def test_without_arguments_return_wrapper(self) -> None:
         """Pattern of without arguments and return a wrapper function.
 
         This is the pattern from Example 2 of PEP318.
         The basic pattern, whether or not there is a return value, doesn't seem to matter.
         """
 
-        def singleton(cls):
-            instances = {}
+        def singleton(cls: Type[Any]) -> TFunc:
+            instances: dict[Type[Any], Self] = {}
 
-            def get_instance():
+            def get_instance() -> Any:
                 if cls not in instances:
                     instances[cls] = cls()
                 return instances[cls]
@@ -67,15 +70,15 @@ class TestDecorator(object):
         assert object1 == object2
         assert object1 is object2
 
-    def test_with_arguments_not_return_wrapper(self):
+    def test_with_arguments_not_return_wrapper(self) -> None:
         """Pattern of with arguments and not return a wrapper function.
 
         This is the pattern from Example 3 of PEP318.
         The app/Flask.route function of flask seems to use this pattern.
         """
 
-        def attrs(**kwds):
-            def decorate(f):
+        def attrs(**kwds: Any) -> TFunc:
+            def decorate(f: TFunc) -> TFunc:
                 for k in kwds:
                     setattr(f, k, kwds[k])
                 return f
@@ -84,20 +87,20 @@ class TestDecorator(object):
 
         # spell-checker:words Rossum
         @attrs(versionadded="2.2", author="Guido van Rossum")
-        def do_method(f):
+        def do_method(f: Any) -> None:
             pass
 
         assert do_method.versionadded == "2.2"
         assert do_method.author == "Guido van Rossum"
 
-    def test_with_arguments_return_wrapper(self):
+    def test_with_arguments_return_wrapper(self) -> None:
         """Pattern of with arguments and return a wrapper function.
 
         This is the pattern from Example 4 of PEP318.
         """
 
-        def accepts(*types):
-            def check_accepts(f):
+        def accepts(*types: Any) -> TFunc:
+            def check_accepts(f: TFunc) -> TFunc:
                 # spell-checker:disable next lines
                 # py2: assert len(types) == f.func_code.co_argcount
                 from inspect import signature
@@ -105,7 +108,7 @@ class TestDecorator(object):
                 sig = signature(f)
                 assert len(types) == len(sig.parameters)
 
-                def new_f(*args, **kwds):
+                def new_f(*args: Any, **kwds: Any) -> Any:
                     for a, t in zip(args, types):
                         assert isinstance(a, t), "arg %r does not match %s" % (a, t)
                     return f(*args, **kwds)
@@ -116,9 +119,9 @@ class TestDecorator(object):
 
             return check_accepts
 
-        def returns(rtype):
-            def check_returns(f):
-                def new_f(*args, **kwds):
+        def returns(rtype: Any) -> TFunc:
+            def check_returns(f: TFunc) -> TFunc:
+                def new_f(*args: Any, **kwds: Any) -> Any:
                     result = f(*args, **kwds)
                     assert isinstance(result, rtype), "return value %r does not match %s" % (result, rtype)
                     return result
@@ -131,7 +134,7 @@ class TestDecorator(object):
 
         @accepts(int, (int, float))
         @returns((int, float))
-        def func(arg1, arg2):
+        def func(arg1: Any, arg2: Any) -> Any:
             return arg1 * arg2
 
         assert func(10, 10) == 100
@@ -145,7 +148,7 @@ class TestDecorator(object):
             + " +  where False = isinstance(0.1, <class 'int'>)"
         )
 
-    def test_order_of_decorators_and_order_of_execution(self):
+    def test_order_of_decorators_and_order_of_execution(self) -> None:
         """
         ```py
         @dec2
@@ -163,15 +166,15 @@ class TestDecorator(object):
         ```
         """
 
-        def dec1(f):
-            def wapper(*args, **kwds):
+        def dec1(f: TFunc) -> TFunc:
+            def wapper(*args: Any, **kwds: Any) -> str:
                 result = f(*args, **kwds)
                 return f"[dec1 {result} ]"
 
             return wapper
 
-        def dec2(f):
-            def wapper(*args, **kwds):
+        def dec2(f: TFunc) -> TFunc:
+            def wapper(*args: Any, **kwds: Any) -> str:
                 result = f(*args, **kwds)
                 return f"<dec2 {result} >"
 
@@ -179,55 +182,55 @@ class TestDecorator(object):
 
         @dec2
         @dec1
-        def func1():
+        def func1() -> str:
             return "This is func1."
 
         @dec1
         @dec2
-        def func2():
+        def func2() -> str:
             return "This is func2."
 
         assert func1() == "<dec2 [dec1 This is func1. ] >"
         assert func2() == "[dec1 <dec2 This is func2. > ]"
 
-    def test_use_functools_wraps(self):
+    def test_use_functools_wraps(self) -> None:
         """`@wraps` is updates the wrapper function to look like the wrapped function."""
 
-        def wrap(f):
-            def wapper(*args, **kwds):
+        def wrap(f: TFunc) -> TFunc:
+            def wapper(*args: Any, **kwds: Any) -> None:
                 pass
 
             return wapper
 
-        def wrap_name(f):
-            def wapper(*args, **kwds):
+        def wrap_name(f: TFunc) -> TFunc:
+            def wapper(*args: Any, **kwds: Any) -> None:
                 pass
 
             wapper.__name__ = f.__name__
             return wapper
 
-        def wrap_functools(f):
+        def wrap_functools(f: TFunc) -> TFunc:
             @wraps(f)
-            def wapper(*args, **kwds):
+            def wapper(*args: Any, **kwds: Any) -> str:
                 result = f(*args, **kwds)
                 return f"[ {result} ]"
 
             return wapper
 
         @wrap
-        def func1():
+        def func1() -> None:
             pass
 
         assert func1.__name__ == "wapper"
 
         @wrap_name
-        def func2():
+        def func2() -> None:
             pass
 
         assert func2.__name__ == "func2"
 
         @wrap_functools
-        def func3():
+        def func3() -> None:
             pass
 
         assert func3.__name__ == "func3"

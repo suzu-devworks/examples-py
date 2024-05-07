@@ -10,45 +10,55 @@ References:
 """
 
 import asyncio
+from types import TracebackType
+from typing import Any, AsyncGenerator, Generator, Optional, Self
 
 import pytest
 
 
 class TestContextManagerClass:
     class Resource(object):
-        def __init__(self, *args, **kwargs) -> None:
+
+        def __init__(self, *args: Any, **kwargs: Any) -> None:
             self.status = "INIT"
 
-    def test_basic_special_method_context(self):
+    def test_basic_special_method_context(self) -> None:
         """Implement two methods
         `object.__enter__()` and
         `object.__exit__()`.
         """
 
         class Context(object):
-            def __init__(self, *args, **kwargs) -> None:
+
+            def __init__(self, *args: Any, **kwargs: Any) -> None:
                 self.__status = "INIT"
 
-            def __enter__(self):
+            def __enter__(self) -> Self:
                 self.__status = "ENTER"
                 return self
 
-            def __exit__(self, exc_type, exc_value, traceback) -> None:
+            def __exit__(
+                self,
+                exc_type: Optional[type[BaseException]],
+                exc_value: Optional[BaseException],
+                traceback: Optional[TracebackType],
+            ) -> None:
                 self.__status = "EXIT"
 
             @property
-            def status(self):
+            def status(self) -> str:
                 return self.__status
 
         context = Context()
         assert context.status == "INIT"
 
         with context:
+            raise Exception("xxx")
             assert context.status == "ENTER"
 
         assert context.status == "EXIT"
 
-    def test_inherited_manager_context(self):
+    def test_inherited_manager_context(self) -> None:
         """`contextlib.AbstractContextManager` provides
         a default implementation of `object.__enter__()`.
 
@@ -60,15 +70,20 @@ class TestContextManagerClass:
         """
         from contextlib import AbstractContextManager
 
-        class Context(AbstractContextManager):
-            def __init__(self, *args, **kwargs) -> None:
+        class Context(AbstractContextManager["Context"]):
+            def __init__(self, *args: Any, **kwargs: Any) -> None:
                 self.__status = "INIT"
 
             # def __enter__(self) -> Self:
             #     self.__status = "ENTER"
             #     return super().__enter__()
 
-            def __exit__(self, exc_type, exc_value, traceback) -> None:
+            def __exit__(
+                self,
+                exc_type: Optional[type[BaseException]],
+                exc_value: Optional[BaseException],
+                traceback: Optional[TracebackType],
+            ) -> None:
                 self.__status = "EXIT"
 
             @property
@@ -81,7 +96,7 @@ class TestContextManagerClass:
 
         assert context.status == "EXIT"
 
-    def test_contextmanager_decorator_context(self):
+    def test_contextmanager_decorator_context(self) -> None:
         """`@contextmanager` is function is a decorator that
         can be used to define a factory function
         for with statement context managers, without needing to
@@ -89,11 +104,11 @@ class TestContextManagerClass:
         """
         from contextlib import contextmanager
 
-        def acquire_resource(*args, **kwds):
-            return self.Resource()
+        def acquire_resource(*args: Any, **kwds: Any) -> TestContextManagerClass.Resource:
+            return TestContextManagerClass.Resource()
 
         @contextmanager
-        def managed_resource(*args, **kwds):
+        def managed_resource(*args: Any, **kwds: Any) -> Generator[TestContextManagerClass.Resource, Any, None]:
             # Code to acquire resource, e.g.:
             resource = acquire_resource(*args, **kwds)
             try:
@@ -110,38 +125,43 @@ class TestContextManagerClass:
         assert context.status == "EXIT"
 
     @pytest.mark.asyncio
-    async def test_async_special_method_context(self):
+    async def test_async_special_method_context(self) -> None:
         """Implement two methods
         `object.__aenter__()` and
         `object.__aexit__()`.
         """
 
         class AsyncContext(object):
-            def __init__(self, *args, **kwargs) -> None:
+            def __init__(self) -> None:
                 self.__status = "INIT"
 
-            def __await__(self):
-                return self._awaitable.__await__()
+            def __await__(self) -> Any:
+                async def _awaitable() -> None:
+                    await asyncio.sleep(0)
 
-            async def _awaitable():
-                await asyncio.sleep(0)
+                return _awaitable().__await__()
 
-            async def __aenter__(self):
+            async def __aenter__(self) -> Self:
                 await asyncio.sleep(0)
                 self.__status = "async ENTER"
                 return self
 
-            async def __aexit__(self, exc_type, exc_value, traceback):
+            async def __aexit__(
+                self,
+                exc_type: Optional[type[BaseException]],
+                exc_value: Optional[BaseException],
+                traceback: Optional[TracebackType],
+            ) -> None:
                 await asyncio.sleep(0)
                 self.__status = "async EXIT"
 
             @property
-            def status(self):
+            def status(self) -> str:
                 return self.__status
 
         # sync context is not work.
         with pytest.raises(TypeError):
-            with AsyncContext() as context:
+            with AsyncContext() as context:  # type:ignore[attr-defined]
                 pass
 
         # async context is work.
@@ -151,17 +171,17 @@ class TestContextManagerClass:
         assert context.status == "async EXIT"
 
     @pytest.mark.asyncio
-    async def test_asynccontextmanager_decorator_context(self):
+    async def test_asynccontextmanager_decorator_context(self) -> None:
         from contextlib import asynccontextmanager
 
-        async def acquire_resource_aync():
+        async def acquire_resource_async() -> TestContextManagerClass.Resource:
             await asyncio.sleep(0)
             return self.Resource()
 
         @asynccontextmanager
-        async def managed_resource_async():
+        async def managed_resource_async() -> AsyncGenerator[TestContextManagerClass.Resource, None]:
             # conn = await acquire_db_connection()
-            resource = await acquire_resource_aync()
+            resource = await acquire_resource_async()
             try:
                 # yield conn
                 resource.status = "async ENTER"
