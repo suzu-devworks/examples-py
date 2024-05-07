@@ -42,23 +42,27 @@ test = [
 
 [tool.pdm.scripts]
 clean = {composite = ["pyclean ."]}
-format = {composite = ["isort src/ tests/", "black src/ tests/"]}
-lint = {composite = ["flake8", "mypy src/ tests/"]}
-test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src tests/"
+format = {composite = ["isort .", "black ."]}
+lint = {composite = ["flake8", "mypy"]}
+test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src/ tests/"
 
 [tool.black]
 line-length = 119
 
 [tool.isort]
-line_length = 119
 profile = "black"
+src_paths = ["src", "tests"]
 
 [tool.mypy]
 files = ["src/", "tests/"]
+pretty = true
+python_version = 3.12
+show_error_context = true
+strict = true
 
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
-module = ['pytz', 'yaml']
+module = []
 
 [tool.pytest.ini_options]
 markers = [

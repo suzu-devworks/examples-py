@@ -15,13 +15,14 @@
     },
   },
   "black-formatter.args": [
-    "--line-length=119"
+    "-v"
   ],
   "isort.args": [
-    "--profile",
-    "black",
+    "--settings-path",
+    "pyproject.toml",
   ],
   "mypy-type-checker.args": [
-    "--config-file .mypy.ini"
+    "--config-file=pyproject.toml",
   ],
+  "flake8.args": [],
 }
