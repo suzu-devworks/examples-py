@@ -5,11 +5,11 @@ from typing import Any
 logger = getLogger(__name__)
 
 
-def configure_parser(parser: ArgumentParser):
+def configure_parser(parser: ArgumentParser) -> None:
     parser.set_defaults(exec=lambda args: do_example(args))
 
 
-def do_example(args: Any):
+def do_example(args: Any) -> None:
     logger.info("-> logging example started: %s", args)
 
     # use loggers

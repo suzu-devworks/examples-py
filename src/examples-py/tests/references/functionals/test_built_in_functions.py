@@ -8,7 +8,8 @@ References:
 
 
 class TestBuiltInFunctions:
-    def test_map(self):
+
+    def test_map(self) -> None:
         """`map(function, iterable, *iterables)`
 
         Return an iterator that applies function to every item of iterable,
@@ -30,7 +31,7 @@ class TestBuiltInFunctions:
         cubed_comp = [x * x * x for x in list2]
         assert cubed_comp == [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
 
-    def test_filter(self):
+    def test_filter(self) -> None:
         """`filter(function, iterable)`
 
         Construct an iterator from those elements of iterable
@@ -44,7 +45,7 @@ class TestBuiltInFunctions:
         filtered_comp = [x for x in list1 if x % 3 == 0 or x % 5 == 0]
         assert filtered_comp == [3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24]
 
-    def test_enumerate(self):
+    def test_enumerate(self) -> None:
         """`enumerate(iterable, start=0)`
 
         Return an enumerate object.
@@ -55,7 +56,7 @@ class TestBuiltInFunctions:
 
         assert actual == [(0, "subject"), (1, "verb"), (2, "object")]
 
-    def test_sorted(self):
+    def test_sorted(self) -> None:
         """`sorted(iterable, /, *, key=None, reverse=False)`
 
         Return a new sorted list from the items in iterable.
@@ -80,7 +81,7 @@ class TestBuiltInFunctions:
             769,
         ]
 
-    def test_any(self):
+    def test_any(self) -> None:
         """`any(iterable)`
 
         Return True if any element of the iterable is true.
@@ -92,7 +93,7 @@ class TestBuiltInFunctions:
         assert any([False, False, True]) is True
         assert any(["", "", "_"]) is True
 
-    def test_all(self):
+    def test_all(self) -> None:
         """`all(iterable)`
 
         Return True if all elements of the iterable are true
@@ -105,7 +106,7 @@ class TestBuiltInFunctions:
         assert all([True, True, True]) is True
         assert all(["a", "b", "c"]) is True
 
-    def test_zip(self):
+    def test_zip(self) -> None:
         """`zip(*iterables, strict=False)`
 
         Iterate over several iterables in parallel,

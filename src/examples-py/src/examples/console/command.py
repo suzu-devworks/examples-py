@@ -1,5 +1,5 @@
 import importlib.metadata
-from argparse import ArgumentParser, RawTextHelpFormatter
+from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from logging import getLogger
 
 from examples.libraries.argparse import configure_parser as configure_argparse_parser
@@ -13,7 +13,7 @@ logger = getLogger("examples.console.command")
 __version__ = importlib.metadata.version("examples-py")
 
 
-def __parse_arguments():
+def __parse_arguments() -> Namespace:
     parser = ArgumentParser(
         description="console examples for argparse.",
         formatter_class=RawTextHelpFormatter,
@@ -74,7 +74,7 @@ def __parse_arguments():
     return args
 
 
-def main():
+def main() -> None:
     args = __parse_arguments()
 
     logger.info("===== start... ")

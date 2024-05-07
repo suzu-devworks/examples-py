@@ -13,18 +13,18 @@ class Game(Enum):
     paper = 2
     scissors = 3
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     @staticmethod
-    def from_string(s):
+    def from_string(s: str) -> "Game":
         try:
             return Game[s]
         except KeyError:
             raise ValueError()
 
 
-def configure_parser(parser: ArgumentParser):
+def configure_parser(parser: ArgumentParser) -> None:
     parser.add_argument(
         "infiles",
         help="input file[s]",
@@ -77,7 +77,7 @@ def configure_parser(parser: ArgumentParser):
     parser.set_defaults(exec=lambda args: do_example(args))
 
 
-def do_example(args: Any):
+def do_example(args: Any) -> None:
     logger.info("-> argparse example started: %s", args)
 
     inputs: list[TextIOWrapper] = args.infiles

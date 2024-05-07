@@ -12,7 +12,7 @@ from functools import reduce
 
 class TestFunctools:
 
-    def test_reduce(self):
+    def test_reduce(self) -> None:
         """`functools.reduce(function, iterable[, initializer])`
 
         Apply function of two arguments cumulatively to the items of iterable,
@@ -20,10 +20,10 @@ class TestFunctools:
         """
 
         list1 = ["A", "BB", "C"]
-        actual = reduce(operator.concat, list1)
+        actual1 = reduce(operator.concat, list1)  # type: ignore[arg-type]
         # spell-checker:disable-next-line
-        assert actual == "ABBC"
+        assert actual1 == "ABBC"
 
-        list1 = range(1, 11)
-        actual = reduce(lambda x, y: x + y, list1)
-        assert actual == 55
+        range1 = range(1, 11)
+        actual2 = reduce(lambda x, y: x + y, range1)
+        assert actual2 == 55

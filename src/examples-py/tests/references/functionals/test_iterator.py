@@ -7,7 +7,8 @@ References:
 
 
 class TestIterator:
-    def test_iterator_basic(self):
+
+    def test_iterator_basic(self) -> None:
         """`iter(object)`
 
         Return an iterator object.
@@ -25,7 +26,7 @@ class TestIterator:
             print("Expected!", e)
             pass
 
-    def test_iterator_with_for_loop(self):
+    def test_iterator_with_for_loop(self) -> None:
         list = [1, 2, 3]
 
         actual = []
@@ -40,13 +41,13 @@ class TestIterator:
 
         assert actual == [1, 2, 3]
 
-    def test_iterator_to_tuple(self):
+    def test_iterator_to_tuple(self) -> None:
         list = [1, 2, 3]
 
         iterator = iter(list)
         actual = tuple(iterator)
 
-        assert actual != [1, 2, 3]
+        assert actual != [1, 2, 3]  # type: ignore[comparison-overlap]
         assert actual == (1, 2, 3)
 
         # sequence unpack

@@ -9,7 +9,8 @@ from operator import attrgetter, itemgetter, methodcaller
 
 
 class TestSorting(object):
-    def test_sort_or_sorted(self):
+
+    def test_sort_or_sorted(self) -> None:
         """`sort` or `sorted`.
 
         - The `sort()` mutates the list without returning a return value. This is the same for the `reverse()`.
@@ -36,7 +37,7 @@ class TestSorting(object):
         assert sort_result is None
         assert list1 == ["Apple", "Banana", "Kiwi", "apple", "banana", "orange", "pear"]
 
-    def test_sorted_with_key(self):
+    def test_sorted_with_key(self) -> None:
         list1 = ["orange", "Apple", "pear", "Banana", "Kiwi", "apple", "banana"]
 
         # ignore case sort.
@@ -63,7 +64,7 @@ class TestSorting(object):
             "orange",
         ]
 
-    def test_sorted_with_operator(self):
+    def test_sorted_with_operator(self) -> None:
         tuples = [
             ("john", "A", 15),
             ("jane", "B", 12),
@@ -75,12 +76,12 @@ class TestSorting(object):
         assert [x[0] for x in sorted_by_itemgetter] == ["dave", "jane", "john"]
 
         class Student:
-            def __init__(self, name, grade, age):
+            def __init__(self, name: str, grade: str, age: int):
                 self.name = name
                 self.grade = grade
                 self.age = age
 
-            def get_age(self, reverse: bool):
+            def get_age(self, reverse: bool) -> int:
                 return self.age
 
         students = [
@@ -100,7 +101,7 @@ class TestSorting(object):
         sorted_by_methodcaller = sorted(students, key=methodcaller("get_age", {"reverse": False}))
         assert [x.name for x in sorted_by_methodcaller] == ["dave", "jane", "john"]
 
-    def test_reversed_sorted(self):
+    def test_reversed_sorted(self) -> None:
         list1 = ["orange", "Apple", "pear", "Banana", "Kiwi", "apple", "banana"]
 
         # Descending sort use reverse parameter.
@@ -117,9 +118,9 @@ class TestSorting(object):
         ]
 
         # Descending sort use reversed.
-        sorted_result = reversed(sorted(list1))
-        assert not isinstance(sorted_result, list)
-        assert list(sorted_result) == [
+        sorted_reversed_result = reversed(sorted(list1))
+        assert not isinstance(sorted_reversed_result, list)
+        assert list(sorted_reversed_result) == [
             "pear",
             "orange",
             "banana",

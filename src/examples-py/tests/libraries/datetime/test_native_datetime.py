@@ -7,7 +7,7 @@ to unambiguously locate itself relative to other date/time objects.
 from datetime import UTC, date, datetime, time, timedelta
 
 
-def test_native_datetime_generators():
+def test_native_datetime_generators() -> None:
     # datetime (naive)
     now = datetime.now()
     assert isinstance(now, datetime)
@@ -34,7 +34,7 @@ def test_native_datetime_generators():
     now_time.tzinfo is None
 
 
-def test_native_datetime_properties():
+def test_native_datetime_properties() -> None:
     # fixed datetime
     fixed = datetime(2021, 7, 31, 12, 34, 56, 789012)
     assert fixed.year == 2021
@@ -66,7 +66,7 @@ def test_native_datetime_properties():
     assert fixed_time.microsecond == 789012
 
 
-def test_native_datetime_calculation():
+def test_native_datetime_calculation() -> None:
     datetime1 = datetime(2000, 2, 29, 12, 34, 56, 789012)
 
     # datetime2 = datetime1 + timedelta
@@ -86,7 +86,7 @@ def test_native_datetime_calculation():
     assert actual is True
 
 
-def test_native_datetime_conversion_with_string():
+def test_native_datetime_conversion_with_string() -> None:
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901)
 
     # convert datetime to string(ISO8601)

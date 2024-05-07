@@ -1,4 +1,5 @@
-from logging import Filter
+from logging import Filter, LogRecord
+from typing import Callable
 
 
 class NoPasswordFilter(Filter):
@@ -9,12 +10,12 @@ class NoPasswordFilter(Filter):
     def __init__(self, name: str = "") -> None:
         super().__init__(name)
 
-    def filter(self, record):
+    def filter(self, record: LogRecord) -> bool:
         log_message = record.getMessage()
         return "password" not in log_message
 
 
-def level_filter_factory(level: str):
+def level_filter_factory(level: str) -> Callable[[LogRecord], bool]:
     """Custom handling of levels:
     https://docs.python.org/3/howto/logging-cookbook.html#custom-handling-of-levels
     """
@@ -22,8 +23,8 @@ def level_filter_factory(level: str):
 
     level = getattr(original, level)
 
-    def filter(record):
+    def filter(record: LogRecord) -> bool:
         # spell-checker:words levelno
-        return record.levelno <= level
+        return record.levelno <= int(level)
 
     return filter
