@@ -53,7 +53,6 @@ class TestContextManagerClass:
         assert context.status == "INIT"
 
         with context:
-            raise Exception("xxx")
             assert context.status == "ENTER"
 
         assert context.status == "EXIT"

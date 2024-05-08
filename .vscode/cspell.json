@@ -12,13 +12,16 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
+    "flaskr",
     "isort",
+    "markupsafe",
     "mypy",
     "pyclean",
     "pyproject",
     "pytest",
     "pytz",
-    "venv"
+    "venv",
+    "werkzeug"
   ],
   "ignoreWords": [],
   "import": []

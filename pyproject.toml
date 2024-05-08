@@ -4,6 +4,7 @@ authors = [
 ]
 dependencies = [
   "pillow>=10.3.0",
+  "flask>=3.0.3",
 ]
 description = "Default template for PDM package"
 license = {text = "MIT"}
@@ -16,8 +17,19 @@ version = "0.1.0"
 distribution = false
 
 [tool.pdm.dev-dependencies]
+dev = [
+  "flake8>=7.0.0",
+  "mypy>=1.10.0",
+  "black>=24.4.2",
+  "isort>=5.13.2",
+  "pytest-cov>=5.0.0",
+  "pyclean>=3.0.0",
+]
 src = [
   "-e file:///${PROJECT_ROOT}/src/examples-py#egg=examples-py",
+]
+web = [
+  "-e file:///${PROJECT_ROOT}/src/web/examples-flask-started#egg=examples-flask-started",
 ]
 
 [tool.pdm.scripts]
@@ -36,7 +48,7 @@ profile = "black"
 src_paths = ["src", "tests"]
 
 ## First party
-known_first_party = ["examples"]
+known_first_party = ["examples", "flaskr"]
 
 [tool.mypy]
 ## Import discovery
