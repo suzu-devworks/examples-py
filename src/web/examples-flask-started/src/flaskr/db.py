@@ -1,3 +1,4 @@
+import datetime
 import sqlite3
 from typing import Any
 
@@ -42,3 +43,11 @@ def init_app(app: Flask) -> None:
     # spell-checker:words teardown_appcontext
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+
+
+def convert_datetime(val: bytes) -> datetime.datetime:
+    """Convert ISO 8601 datetime to datetime.datetime object."""
+    return datetime.datetime.fromisoformat(val.decode())
+
+
+sqlite3.register_converter("timestamp", convert_datetime)

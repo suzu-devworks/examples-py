@@ -4,7 +4,7 @@ from flask.testing import FlaskClient
 
 from flaskr.db import get_db
 
-from .conftest import AuthActions  # type: ignore[import-untyped]
+from .conftest import AuthActions
 
 
 def test_register(client: FlaskClient, app: Flask) -> None:
