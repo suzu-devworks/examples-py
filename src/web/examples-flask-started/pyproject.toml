@@ -18,6 +18,7 @@ build-backend = "pdm.backend"
 requires = ["pdm-backend"]
 
 [tool.pdm]
+distribution = false
 version = {source = "file", path = "src/examples/__version__.py"}
 
 [tool.pdm.build]

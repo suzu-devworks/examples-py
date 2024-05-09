@@ -25,7 +25,7 @@ Flask web programming examples.
 ## Getting started
 
 ```shell
-cd src/examples-flask-started
+cd src/web/examples-flask-started
 
 # select interpreter
 pdm use
@@ -52,8 +52,8 @@ flask --app flaskr init-db
 This project was initialized with the following command:
 
 ```shell
-mkdir -p src/examples-flask-started
-cd src/examples-flask-started
+mkdir -p src/web/examples-flask-started
+cd src/web/examples-flask-started
 
 # create new pyproject.toml
 pdm init
