@@ -1,0 +1,9 @@
+/* webcam/mjpeg css */
+
+h1 {
+    text-shadow: 5px 5px 10px rgb(154 205 50);
+}
+
+.container img {
+    height: 70vh;
+}

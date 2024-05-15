@@ -4,6 +4,7 @@ authors = [
 ]
 dependencies = [
   "flask>=3.0.3",
+  "opencv-python>=4.9.0.80",
 ]
 description = "Default template for PDM package"
 dynamic = ["version"]

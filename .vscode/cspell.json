@@ -15,6 +15,7 @@
     "flaskr",
     "isort",
     "markupsafe",
+    "mjpeg",
     "mypy",
     "pyclean",
     "pyproject",
