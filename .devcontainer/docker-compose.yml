@@ -8,6 +8,10 @@ services:
     tty: true
     environment:
       - DISPLAY:${DISPLAY}
+    ports:
+      - "5501:5501"
+      - "5501:5501/udp"
+
     volumes:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock
