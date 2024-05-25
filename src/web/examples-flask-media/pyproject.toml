@@ -1,0 +1,56 @@
+[project]
+authors = [
+  {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
+]
+dependencies = [
+  "flask>=3.0.3",
+]
+description = "Default template for PDM package"
+license = {text = "MIT"}
+name = "examples-flask-media"
+readme = "README.md"
+requires-python = "==3.12.*"
+version = "0.1.0"
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.dev-dependencies]
+dev = [
+  "flake8>=7.0.0",
+  "mypy>=1.10.0",
+  "black>=24.4.2",
+  "isort>=5.13.2",
+  "pytest-cov>=5.0.0",
+  "pyclean>=3.0.0",
+]
+
+[tool.pdm.scripts]
+_clean_dirs = {shell = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.mypy_cache$)\" | xargs rm -rf"}
+clean = {composite = ["pyclean .", "_clean_dirs"]}
+dev = "flask --app flaskr run --debug"
+format = {composite = ["isort .", "black ."]}
+lint = {composite = ["flake8", "mypy"]}
+test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src/ tests/"
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+
+[tool.mypy]
+files = ["src/", "tests/"]
+pretty = true
+python_version = 3.12
+show_error_context = true
+strict = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = []
+
+[tool.coverage.run]
+branch = true
+source = ["src/"]

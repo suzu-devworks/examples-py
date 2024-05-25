@@ -30,6 +30,7 @@ src = [
 ]
 web = [
   "-e file:///${PROJECT_ROOT}/src/web/examples-flask-started#egg=examples-flask-started",
+  "-e file:///${PROJECT_ROOT}/src/web/examples-flask-media#egg=examples-flask-media",
 ]
 
 [tool.pdm.scripts]
