@@ -8,6 +8,7 @@
   - [Overview](#overview)
   - [References](#references)
   - [Getting started](#getting-started)
+  - [Examples index](#examples-index)
   - [How the project was initialized](#how-the-project-was-initialized)
   - [Troubleshooting](#troubleshooting)
     - [ImportError: libGL.so.1: cannot open shared object file: No such file or directory](#importerror-libglso1-cannot-open-shared-object-file-no-such-file-or-directory)
@@ -36,6 +37,9 @@ Start flask server:
 pdm run dev
 ```
 
+## Examples index
+
+- [Live streaming webcams](./src/examples/webcam/README.md)
 
 ## How the project was initialized
 
