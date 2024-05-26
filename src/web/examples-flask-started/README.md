@@ -45,6 +45,7 @@ flask --app flaskr init-db
 <!-- // spell-checker:words Quickstart -->
 - [Quickstart](https://flask.palletsprojects.com/en/3.0.x/quickstart/)
 - [Tutorial](https://flask.palletsprojects.com/en/3.0.x/tutorial/)
+- [Blueprint](https://flask.palletsprojects.com/en/3.0.x/blueprints/)
 
 
 ## How the project was initialized
