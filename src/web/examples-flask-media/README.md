@@ -39,7 +39,9 @@ pdm run dev
 
 ## Examples index
 
-- [Live streaming webcams](./src/examples/webcam/README.md)
+- [Live streaming webcam](./src/examples/webcam/README.md)
+- [Video streaming](./src/examples/video/README.md)
+
 
 ## How the project was initialized
 

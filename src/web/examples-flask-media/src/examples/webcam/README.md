@@ -1,8 +1,8 @@
-# Live streaming webcams
+# Live streaming webcam
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Live streaming webcams](#live-streaming-webcams)
+- [Live streaming webcam](#live-streaming-webcam)
   - [Webcam streaming example for MJPEG](#webcam-streaming-example-for-mjpeg)
     - [Composition](#composition)
     - [MJPEG over HTTP](#mjpeg-over-http)

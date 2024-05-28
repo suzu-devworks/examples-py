@@ -2,12 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python debugger: Flask",
+      "name": "examples",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/examples-py/src/examples/console/command.py",
+      "console": "integratedTerminal",
+      "args": "${command:pickArgs}"
+    },
+    {
+      "name": "examples flaskr debugger",
       "type": "debugpy",
       "request": "launch",
       "module": "flask",
       "env": {
-        "FLASK_APP": "app.py",
+        "FLASK_APP": "flaskr",
         "FLASK_DEBUG": "1"
       },
       "args": [
@@ -19,20 +27,12 @@
       "autoStartBrowser": false
     },
     {
-      "name": "examples",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${workspaceFolder}/src/examples-py/src/examples/console/command.py",
-      "console": "integratedTerminal",
-      "args": "${command:pickArgs}"
-    },
-    {
-      "name": "examples: flaskr",
+      "name": "Flask app.py debugger",
       "type": "debugpy",
       "request": "launch",
       "module": "flask",
       "env": {
-        "FLASK_APP": "${workspaceFolder}/src/web/examples-flask-started/src/flaskr/__init__.py",
+        "FLASK_APP": "app.py",
         "FLASK_DEBUG": "1"
       },
       "args": [
