@@ -6,7 +6,7 @@ from flask import Blueprint, Response, current_app, render_template
 
 from .video_camera import VideoCamera
 
-bp = Blueprint("webcam_mjpeg", __name__, template_folder="templates")
+bp = Blueprint("webcam_mjpeg", __name__, static_folder="static", template_folder="templates")
 bp.add_url_rule("/", endpoint="index")
 
 # export MJPEG_SRC="/workspaces/examples-py/temp/input.mp4"
