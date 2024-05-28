@@ -1,0 +1,10 @@
+/* This file is not used */
+h1 {
+    color: crimson;
+}
+
+.css-test::before {
+    content: "app3/static/style-app3.css";
+    color: rgb(0 110 0);
+    font-size: 1.5rem;
+}

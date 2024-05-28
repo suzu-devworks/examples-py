@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <title>app5/nested1/</title>
+  <link rel="stylesheet" href="{{url_for('app5.nested1.static', filename='app5/nested1/style-nested1.css')}}">
+</head>
+
+<body>
+  <h1>app5/nested1/templates/nested1/index.html</h1>
+
+  <section>
+    <section>
+      <h2>Where is template looking?</h2>
+      <p>Reference the templates folder relative to the folder where the blueprint is defined.</p>
+      <div class="code-block">
+        <div><code>bp = Blueprint("nested1", __name__, ... , template_folder="templates")</code></div>
+      </div>
+      <p>Find here: <code> app5/ nested1 / templates </code></p>
+      <p>However, if you use url_for on template, it will be assumed to be registered with app5,
+        so there is no point in localizing the templates folder.</p>
+      <p>Even if you create it in /templates, you cannot create a nested structure.</p>
+      <ul>
+        <li><a href="{{ url_for('app5.nested1.index')}}"><code>return render_template("nested1/index.html")</code></a>
+        </li>
+        <li><a href="{{ url_for('app5.nested1.about')}}"><code>return render_template("nested1/about.html")</code></a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Where is static looking?</h2>
+      <div class="code-block">
+        <div><code>bp = Blueprint("nested1", __name__, ... , static_folder="static")</code></div>
+      </div>
+      <p>Find here: <code> nested1 / static </code></p>
+
+      <div class="css-test"> is applied.</div>
+    </section>
+</body>
+
+</html>

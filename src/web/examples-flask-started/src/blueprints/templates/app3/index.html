@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <title>app3</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='app3/style-app3.css')}}">
+  <link rel="stylesheet" href="{{url_for('app3.static', filename='style-app3.css')}}">
+</head>
+
+<body>
+  <h1>root:templates/app3/index.html</h1>
+
+  <section>
+    <h2>Where is template looking?</h2>
+    <p>It seems that specifying from the root is the worst method.</p>
+    <div class="code-block">
+      <div><code>bp = Blueprint("app3", __name__, ..., template_folder="/templates")</code>
+      </div>
+    </div>
+    <p>Find here: <code> root: / templates </code> only.</p>
+    <ul>
+      <li><a href="{{ url_for('app3.index')}}"><code>return render_template("app3/index.html")</code></a></li>
+      <li><a href="{{ url_for('app3.about')}}"><code>return render_template("app3/about.html")</code>
+          (TemplateNotFound)</a>
+      </li>
+    </ul>
+
+    </p>
+  </section>
+
+  <section>
+    <h2>Where is static looking?</h2>
+    <p>Can't find <code>url_for('app3.static', filename='style-app3.css')</code> anymore.</p>
+    <div class="code-block">
+      <div><code>bp = Blueprint("app2", __name__, ... , static_folder="/static")</code></div>
+    </div>
+    <p>Find here: <code> / app3 / static </code> ?, But I don't refer to it. Use only 'static'.</p>
+    <div class="css-test"> is applied.</div>
+  </section>
+</body>
+
+</html>

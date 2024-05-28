@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <title>app2</title>
+  <link rel="stylesheet" href="{{url_for('app2.static', filename='style-app2.css')}}">
+</head>
+
+<body>
+  <h1>app2/templates/index-app2.html</h1>
+
+  <section>
+    <h2>What is the final mapped url_prefix?</h2>
+    <p>url_prefix is overridden by register_blueprint over the constructor.</p>
+    <div class="code-block">
+      <div>
+        <code>bp = Blueprint("app2", __name__, ... , url_prefix="/app2")</code>
+      </div>
+      <div>
+        <code>app.register_blueprint(bp, url_prefix="/app2-alias")</code>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where is template looking?</h2>
+    <p>Reference the templates folder relative to the folder where the blueprint is defined.</p>
+    <div class="code-block">
+      <div><code>bp = Blueprint("app2", __name__, ... , template_folder="templates")</code></div>
+    </div>
+    <p>Find here: <code> app2 / templates </code></p>
+    <p>However, if the same name exists in the root:templates folder, that seems to take precedence.</p>
+    <ul>
+      <li><a href="{{ url_for('app2.index')}}"><code>return render_template("index-app2.html")</code></a></li>
+      <li><a href="{{ url_for('app2.about')}}"><code>return render_template("about-app2.html")</code></a></li>
+    </ul>
+    <p>Therefore, the official recommendation is to specify the folder using the blueprint name.</p>
+    <ul>
+      <li><a href="{{ url_for('app2.hello')}}"><code>return render_template("app2/hello.html")</code></a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Where is static looking?</h2>
+    <p>Reference the static folder relative to the folder where the blueprint is defined.</p>
+    <div class="code-block">
+      <div><code>bp = Blueprint("app2", __name__, ... , static_folder="static")</code></div>
+    </div>
+    <p>Find here: <code> app2 / static </code></p>
+
+    <div class="css-test"> is applied.</div>
+  </section>
+</body>
+
+</html>
