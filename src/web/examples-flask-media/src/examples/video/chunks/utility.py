@@ -18,3 +18,11 @@ def parse_range_header(range_header: str | None) -> tuple[int, int | None]:
 
 def format_range_header(start: int, length: int, file_size: int) -> str:
     return "bytes {0}-{1}/{2}".format(start, start + length - 1, file_size)
+
+
+def get_video_mimetype(suffix: str) -> str:
+    values = {
+        ".mp4": "video/mp4",
+        ".webm": "video/webm",
+    }
+    return values[suffix]
