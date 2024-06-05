@@ -28,7 +28,7 @@ class VideoCamera:
             self.thread.join()
             self.thread = None
 
-        if (self.video is not None):
+        if self.video is not None:
             self.video.release()
 
     def start(self, framerate: int = 30) -> None:
