@@ -20,9 +20,10 @@
     - [Project setup](#project-setup)
     - [Create virtualenv](#create-virtualenv)
     - [Restore packages](#restore-packages)
-    - [Install packages](#install-packages)
-    - [Update packages](#update-packages)
-    - [Uninstall packages](#uninstall-packages)
+    - [Add package](#add-package)
+    - [Update package](#update-package)
+    - [Update outdated packages](#update-outdated-packages)
+    - [Remove package](#remove-package)
     - [List packages](#list-packages)
     - [Build wheel package](#build-wheel-package)
   - [Tips](#tips)
@@ -131,7 +132,7 @@ There are some similar commands for installing packages pinned to lockfiles, but
 
 `pdm install` installs the current project in editable mode.
 
-### Install packages
+### Add package
 
 ```shell
 pdm add {packages...}
@@ -150,14 +151,27 @@ Editable dependencies:
 pdm add -e {location} --dev
 ```
 
-### Update packages
+### Update package
 
 ```shell
-pdm update
 pdm update {packages...}
 ```
 
-### Uninstall packages
+### Update outdated packages
+
+show outdated list:
+
+```shell
+pdm list --outdated
+```
+
+Update all dependency packages:
+
+```shell
+pdm update
+```
+
+### Remove package
 
 ```shell
 pdm remove {packages...}
