@@ -11,4 +11,38 @@ requires-python = "==3.12.*"
 version = "0.1.0"
 
 [tool.pdm.dev-dependencies]
-dev = []
+dev = [
+  "flake8>=7.0.0",
+  "mypy>=1.10.0",
+  "black>=24.4.2",
+  "isort>=5.13.2",
+  "pytest-cov>=5.0.0",
+  "pyclean>=3.0.0",
+]
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+#
+known_first_party = ["examples"]
+
+[tool.mypy]
+## Import discovery
+files = ["src"]
+
+## Platform configuration
+python_version = 3.12
+
+## Miscellaneous strictness flags
+strict = true
+
+## Configuring error messages
+pretty = true
+show_error_context = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = []

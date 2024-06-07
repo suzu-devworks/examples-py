@@ -1,12 +1,30 @@
 {
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
   "[toml]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "be5invis.toml"
   },
+  "black-formatter.args": [
+    "-v"
+  ],
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "flake8.args": [],
+  "isort.args": [
+    "--settings-path",
+    "pyproject.toml"
+  ],
+  "mypy-type-checker.args": [
+    "--config-file=pyproject.toml"
+  ],
   "python.analysis.autoFormatStrings": false,
   "python.terminal.activateEnvInCurrentTerminal": true,
   "python.terminal.activateEnvironment": true,

@@ -1,8 +1,13 @@
 {
   "recommendations": [
-    "EditorConfig.EditorConfig",
-    "ms-python.python",
     "be5invis.toml",
-    "streetsidesoftware.code-spell-checker"
+    "EditorConfig.EditorConfig",
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-python.isort",
+    "ms-python.mypy-type-checker",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "streetsidesoftware.code-spell-checker",
   ]
 }
