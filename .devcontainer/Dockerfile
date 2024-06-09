@@ -4,7 +4,8 @@ FROM mcr.microsoft.com/devcontainers/python:${VARIANT} as dev-stage
 ## Configure apt and install packages
 RUN set -x \
     && apt update \
-    && apt install sqlite3 \
+    && apt install -y sqlite3 \
+    && apt install -y libgl1-mesa-dev netcat-openbsd netcat-traditional \
     ;
 
 # Clean up

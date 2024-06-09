@@ -1,0 +1,15 @@
+/* webcam/mjpeg css */
+
+h1 {
+    text-shadow: 5px 5px 10px rgb(154 205 50);
+}
+
+.container {
+    display: flex;
+}
+
+.container img {
+    max-height: 70vh;
+    /* -webkit-transform: scaleX(-1);
+    transform: scaleX(-1); */
+}

@@ -1,0 +1,13 @@
+/* webcam/hlss css */
+
+h1 {
+    text-shadow: 5px 5px 10px rgb(100 180 240);
+}
+
+.container {
+    display: flex;
+}
+
+.container video {
+    max-width: 50vw;
+}

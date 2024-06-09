@@ -1,0 +1,19 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Home - examples-flask-media</title>
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+  <h1>Home</h1>
+  <h2>Examples</h2>
+  <ul>
+    <li><a href="{{ url_for('webcam_mjpeg.index') }}">Webcam streaming example for MJPEG</a></li>
+    <li><a href="{{ url_for('webcam_hls.index') }}">Webcam streaming example for HLS</a></li>
+    <li><a href="{{ url_for('video_chunks.index') }}">Video chunk streaming example</a></li>
+  </ul>
+</body>
+
+</html>
