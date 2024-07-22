@@ -163,6 +163,7 @@ cython_debug/
 [Tt]emp/
 [Ll]ogs/
 .venv.*/
+.cov/
 .DS_Store
 .pdm-python
 .venv.*
