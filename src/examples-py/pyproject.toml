@@ -51,7 +51,12 @@ ignore = "E203,E266,W503"
 max-line-length = 119
 
 [tool.mypy]
-check_untyped_defs = true
+files = ["src/", "tests/"]
+pretty = true
+python_version = 3.12
+show_error_context = true
+strict = true
+
+[[tool.mypy.overrides]]
 ignore_missing_imports = true
-no_strict_optional = true
-python_version = "3.12"
+module = []

@@ -1,5 +1,4 @@
-"""
-This test to learn "aware" datetime manipulation.
+"""This test is for learning "aware" datetime manipulation.
 
 An aware objects have an optional time zone information attribute tzinfo
 that can be set to an instance of a subclass of the abstract tzinfo class.
@@ -27,7 +26,7 @@ timezone_data = [
 
 
 @pytest.mark.parametrize("zone,date,tzname,offset,dst", timezone_data)
-def test_zoneinfo_timezones(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta):
+def test_zoneinfo_timezones(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta) -> None:
     tz = ZoneInfo(zone)
     assert tz.key == zone
     assert tz.tzname(date) == tzname
@@ -35,7 +34,7 @@ def test_zoneinfo_timezones(zone: str, date: datetime, tzname: str, offset: time
     assert tz.dst(date) == dst
 
 
-def test_aware_datetime_generators():
+def test_aware_datetime_generators() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     native_date = datetime(2000, 2, 29)
 
@@ -73,7 +72,7 @@ def test_aware_datetime_generators():
     assert now_tz_timetz.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
 
 
-def test_datetime_calculation():
+def test_datetime_calculation() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 12, 34, 56, 789012, tzinfo=tz_ja)
 
@@ -103,7 +102,7 @@ def test_datetime_calculation():
     assert actual is True
 
 
-def test_datetime_convert_tostring():
+def test_datetime_convert_tostring() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 
@@ -127,7 +126,7 @@ def test_datetime_convert_tostring():
     assert text != "2000/02/29 01:23:45 +09:00 JST"
 
 
-def test_datetime_convert_timezone():
+def test_datetime_convert_timezone() -> None:
     tz_ja = ZoneInfo("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 

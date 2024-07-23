@@ -1,11 +1,10 @@
-"""
-This test to learn "aware" datetime manipulation.
+"""This test is for learning "aware" datetime manipulation.
 
 An aware objects have an optional time zone information attribute tzinfo
 that can be set to an instance of a subclass of the abstract tzinfo class.
 
-see also
-- https://pythonhosted.org/pytz/
+References:
+    - https://pythonhosted.org/pytz/
 """
 
 from datetime import datetime, time, timedelta
@@ -30,7 +29,7 @@ timezone_data = [
 
 
 @pytest.mark.parametrize("zone,date,tzname,offset,dst", timezone_data)
-def test_pytz_timezones(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta):
+def test_pytz_timezones(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta) -> None:
     tz = pytz.timezone(zone)
     assert tz.zone == zone
     assert tz.tzname(date) == tzname
@@ -38,7 +37,7 @@ def test_pytz_timezones(zone: str, date: datetime, tzname: str, offset: timedelt
     assert tz.dst(date) == dst
 
 
-def test_aware_datetime_generators():
+def test_aware_datetime_generators() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     native_date = datetime(2000, 2, 29)
 
@@ -81,7 +80,7 @@ def test_aware_datetime_generators():
     assert now_tz_timetz.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
 
 
-def test_aware_datetime_calculation():
+def test_aware_datetime_calculation() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 12, 34, 56, 789012))
 
@@ -107,7 +106,7 @@ def test_aware_datetime_calculation():
     assert actual is True
 
 
-def test_aware_datetime_conversion_with_string():
+def test_aware_datetime_conversion_with_string() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 1, 23, 45, 678901))
 
@@ -131,7 +130,7 @@ def test_aware_datetime_conversion_with_string():
     assert text != "2000/02/29 01:23:45 +09:00 JST"
 
 
-def test_aware_datetime_conversion_between_utc_and_jst():
+def test_aware_datetime_conversion_between_utc_and_jst() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = tz_ja.localize(datetime(2000, 2, 29, 1, 23, 45, 678901))
 
@@ -146,64 +145,70 @@ def test_aware_datetime_conversion_between_utc_and_jst():
     assert str(datetime2) == "2000-02-29 01:23:45.678901+09:00"
 
 
-def test_aware_datetime_conversion_according_to_dst():
+def test_aware_datetime_conversion_according_to_dst() -> None:
     # DST: Daylight saving time.
     # EST/EDT 2019-03-10T03:00 - 2019-11-03T01:00
     est = pytz.timezone("US/Eastern")
-    edt_start = datetime(2019, 3, 10, hour=2, minute=0, second=0)
+    edt_start = datetime(2019, 3, 10, hour=3 - 1, minute=0, second=0)
     edt_end = datetime(2019, 11, 3, hour=0, minute=59, second=59)
 
     edt_before = edt_start - timedelta(seconds=1)
-    local_before = est.localize(edt_before)
-    normal_before = est.normalize(est.localize(edt_before))
-    assert local_before.tzinfo == normal_before.tzinfo
-    assert normal_before.tzinfo.tzname(normal_before) == "EST"
+    before_localized = est.localize(edt_before)
+    before_normalized = est.normalize(est.localize(edt_before))
+    assert before_normalized.tzinfo is not None
+    assert before_normalized.tzinfo.tzname(before_normalized) == "EST"
+    assert before_localized.tzinfo == before_normalized.tzinfo
 
-    local_start = est.localize(edt_start)
-    normal_start = est.normalize(est.localize(edt_start))
-    assert local_start.tzinfo != normal_start.tzinfo
-    assert normal_start.tzinfo.tzname(normal_start) == "EDT"
+    start_localized = est.localize(edt_start)
+    start_normalized = est.normalize(est.localize(edt_start))
+    assert start_localized.tzinfo is not None
+    assert start_localized.tzinfo.tzname(start_localized) == "EST"
+    assert start_normalized.tzinfo is not None
+    assert start_normalized.tzinfo.tzname(start_normalized) == "EDT"
+    assert start_normalized.tzinfo != start_localized.tzinfo
 
-    local_end = est.localize(edt_end)
-    normal_end = est.normalize(est.localize(edt_end))
-    assert local_end.tzinfo == normal_end.tzinfo
-    assert normal_end.tzinfo.tzname(normal_end) == "EDT"
+    end_localized = est.localize(edt_end)
+    end_normalized = est.normalize(est.localize(edt_end))
+    assert end_normalized.tzinfo is not None
+    assert end_normalized.tzinfo.tzname(end_normalized) == "EDT"
+    assert end_normalized.tzinfo == end_localized.tzinfo
 
     edt_after = edt_end + timedelta(seconds=1)
-    local_edt_after = est.localize(edt_after)
-    normal_after = est.normalize(est.localize(edt_after))
-    assert local_edt_after.tzinfo == normal_after.tzinfo
-    assert normal_after.tzinfo.tzname(normal_after) == "EST"
+    after_localized = est.localize(edt_after)
+    after_normalized = est.normalize(est.localize(edt_after))
+    assert after_normalized.tzinfo is not None
+    assert after_normalized.tzinfo.tzname(after_normalized) == "EST"
+    assert after_normalized.tzinfo == after_localized.tzinfo
 
 
-def test_aware_datetime_conversion_with_native():
+def test_aware_datetime_conversion_with_native() -> None:
     tz_ja = pytz.timezone("Asia/Tokyo")
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901)
 
+    # This is because before 1888, the time was +09:19 away from UTC.
+    assert repr(tz_ja) == "<DstTzInfo 'Asia/Tokyo' LMT+9:19:00 STD>"
+
     # convert native -> aware(localize)
     aware = tz_ja.localize(datetime1)
-    assert aware.tzinfo is not None
     assert str(aware) == "2000-02-29 01:23:45.678901+09:00"
-
-    # pytz bug ????
+    assert aware.tzinfo is not None
     assert aware.tzinfo != tz_ja
     assert repr(aware.tzinfo) == "<DstTzInfo 'Asia/Tokyo' JST+9:00:00 STD>"
-    assert repr(tz_ja) == "<DstTzInfo 'Asia/Tokyo' LMT+9:19:00 STD>"
 
     # convert aware -> native
     native = aware.replace(tzinfo=None)
-    assert native.tzinfo is None
     assert str(native) == "2000-02-29 01:23:45.678901"
+    assert native.tzinfo is None
 
     # convert native -> aware (astimezone)
     as_zone = native.astimezone(tz=tz_ja)
-    assert as_zone.tzinfo is not None
     assert str(as_zone) == "2000-02-29 10:23:45.678901+09:00"
+    assert as_zone.tzinfo is not None
+    assert as_zone.tzinfo != tz_ja
+    assert repr(as_zone.tzinfo) == "<DstTzInfo 'Asia/Tokyo' JST+9:00:00 STD>"
     assert as_zone != aware
 
-    # pytz bug ????
     aware2 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
-    assert aware2.tzinfo is not None
-    assert aware2.tzinfo != aware.tzinfo
-    assert str(aware2) == "2000-02-29 01:23:45.678901+09:19"  # ???
-    assert aware2 != aware
+    assert str(aware2) == "2000-02-29 01:23:45.678901+09:19"
+    aware3 = tz_ja.localize(aware2.replace(tzinfo=None))
+    assert str(aware3) == "2000-02-29 01:23:45.678901+09:00"
