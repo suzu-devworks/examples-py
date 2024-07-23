@@ -16,8 +16,8 @@ This is a project to learn the basic functions and usage of Python.
 
 ## Standard Library study
 
-- [`datetime`](./tests/standards/datetimes/)  
-Learn how to work with dates with datetime and timezone.
+- [`datetime`](./tests/libraries/datetimes/)
+  > Learn how to work with dates with datetime and timezone.
 
 
 ## How the project was initialized
@@ -29,5 +29,7 @@ pdm init -n --dist -p src/examples-py
 pdm add -e src/examples-py --dev --group src
 
 cd src/examples-py
-pdm add -d flake8 mypy black isort pytest-cov pyclean
+pdm add --dev flake8 mypy black isort pytest-cov pyclean
+pdm add --dev --group test pytz
+pdm add --dev types-pytz
 ```

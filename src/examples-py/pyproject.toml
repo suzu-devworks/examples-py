@@ -6,9 +6,7 @@ requires = ["pdm-backend"]
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = [
-  "pytz>=2024.1",
-]
+dependencies = []
 description = "Default template for PDM package"
 license = {text = "MIT"}
 name = "examples-py"
@@ -28,6 +26,9 @@ dev = [
   "pytest-cov>=5.0.0",
   "pyclean>=3.0.0",
   "types-pytz>=2024.1.0.20240417",
+]
+test = [
+  "pytz>=2024.1",
 ]
 
 [tool.pdm.scripts]
