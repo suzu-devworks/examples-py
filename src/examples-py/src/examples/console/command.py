@@ -2,7 +2,6 @@ from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from logging import getLogger
 
 from examples.libraries.logging import configure_logging
-from examples.libraries.logging.example import do_logging_example
 
 from .arguments import configure_arguments
 
@@ -25,22 +24,24 @@ def _parse_arguments() -> Namespace:
     )
 
     # argparse
-    from examples.libraries.argparse import configure_arguments as configure_argparse
+    from examples.libraries.argparse import configure_arguments as configure_args_argparse
 
     args_parser = subparsers.add_parser(
         "argparse",
         help="argparse example",
         description="standard library/argparse example",
     )
-    configure_argparse(args_parser)
+    configure_args_argparse(args_parser)
 
     # logging
+    from examples.libraries.logging import configure_arguments as configure_args_logging
+
     logging_parser = subparsers.add_parser(
         "logging",
         help="logging example",
         description="standard library/logging example",
     )
-    logging_parser.set_defaults(exec=lambda args: do_logging_example())
+    configure_args_logging(logging_parser)
 
     args = parser.parse_args()
 

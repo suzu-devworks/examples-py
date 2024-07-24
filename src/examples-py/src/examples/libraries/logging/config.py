@@ -10,20 +10,20 @@ from typing import Any
 import yaml
 
 
-def __find_logging_config() -> Path | None:
+def _find_logging_config() -> Path | None:
     for file in Path(".").glob("logging_config.*"):
         if re.match(r".+\.(json|yaml|yml)$", str(file), re.IGNORECASE):
             return file
     return None
 
 
-def __default_yaml_config() -> Path:
+def _default_yaml_config() -> Path:
     resource = resource_files("examples.resources.logging")
     with as_file(resource.joinpath("logging_config.yaml")) as config:
         return config
 
 
-def __make_directories(config: dict[str, Any]) -> None:
+def _make_directories(config: dict[str, Any]) -> None:
     for handler in config["handlers"]:
         if "filename" in config["handlers"][handler]:
             logfile = Path(config["handlers"][handler]["filename"])
@@ -34,19 +34,19 @@ def __make_directories(config: dict[str, Any]) -> None:
 
 
 def configure_logging() -> None:
-    config = __find_logging_config() or __default_yaml_config()
+    config = _find_logging_config() or _default_yaml_config()
     suffix = config.suffix.lower()
     match suffix:
         case ".json":
             with open(config) as file:
                 config_dict = json.load(file)
-            __make_directories(config_dict)
+            _make_directories(config_dict)
             dictConfig(config_dict)
 
         case ".yaml" | ".yml":
             with open(config) as file:
                 config_dict = yaml.safe_load(file)
-            __make_directories(config_dict)
+            _make_directories(config_dict)
             dictConfig(config_dict)
 
         case _:
