@@ -16,11 +16,11 @@
   },
   "black-formatter.args": [
     "--line-length=119",
-    "--max-complexity=10"
   ],
   "isort.args": [
     "--profile",
     "black",
+    "-l 119"
   ],
   "mypy-type-checker.args": [],
   "mypy-type-checker.importStrategy": "fromEnvironment"

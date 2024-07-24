@@ -1,20 +1,63 @@
+from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from logging import getLogger
 
-from examples.libraries.logging import configure_logging, do_logging_example
+from examples.libraries.logging import configure_logging
+
+from .arguments import configure_arguments
 
 configure_logging()
+_logger = getLogger("examples.console.command")
+
+
+def _parse_arguments() -> Namespace:
+    parser = ArgumentParser(
+        description="console examples for argparse.",
+        formatter_class=RawTextHelpFormatter,
+    )
+    configure_arguments(parser)
+
+    subparsers = parser.add_subparsers(
+        title="sub commands",
+        description="for examples commands",
+        help="choose command",
+        required=True,
+    )
+
+    # argparse
+    from examples.libraries.argparse import configure_arguments as configure_args_argparse
+
+    args_parser = subparsers.add_parser(
+        "argparse",
+        help="argparse example",
+        description="standard library/argparse example",
+    )
+    configure_args_argparse(args_parser)
+
+    # logging
+    from examples.libraries.logging import configure_arguments as configure_args_logging
+
+    logging_parser = subparsers.add_parser(
+        "logging",
+        help="logging example",
+        description="standard library/logging example",
+    )
+    configure_args_logging(logging_parser)
+
+    args = parser.parse_args()
+
+    return args
 
 
 def main() -> None:
-    logger = getLogger("examples.console.command")
-    logger.info("start")
+    args = _parse_arguments()
+    _logger.info("#start")
 
     try:
-        do_logging_example()
+        args.exec(args)
     except Exception:
-        logger.exception("Exiting due to an unhandled exception.")
+        _logger.exception("Exiting due to an unhandled exception.")
 
-    logger.info("end")
+    _logger.info("#end")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "examples",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/examples-py/src/examples/console/command.py",
+      "console": "integratedTerminal",
+      "args": "${command:pickArgs}"
+    }
+  ]
+}
