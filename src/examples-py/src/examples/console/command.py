@@ -4,8 +4,10 @@ from logging import getLogger
 from examples.libraries.logging import configure_logging
 from examples.libraries.logging.example import do_logging_example
 
+from .arguments import configure_arguments
+
 configure_logging()
-logger = getLogger("examples.console.command")
+_logger = getLogger("examples.console.command")
 
 
 def _parse_arguments() -> Namespace:
@@ -13,6 +15,7 @@ def _parse_arguments() -> Namespace:
         description="console examples for argparse.",
         formatter_class=RawTextHelpFormatter,
     )
+    configure_arguments(parser)
 
     subparsers = parser.add_subparsers(
         title="sub commands",
@@ -36,14 +39,14 @@ def _parse_arguments() -> Namespace:
 
 def main() -> None:
     args = _parse_arguments()
-    logger.info("#start")
+    _logger.info("#start")
 
     try:
         args.exec(args)
     except Exception:
-        logger.exception("Exiting due to an unhandled exception.")
+        _logger.exception("Exiting due to an unhandled exception.")
 
-    logger.info("#end")
+    _logger.info("#end")
 
 
 if __name__ == "__main__":
