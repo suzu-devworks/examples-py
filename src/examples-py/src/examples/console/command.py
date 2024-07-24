@@ -24,6 +24,16 @@ def _parse_arguments() -> Namespace:
         required=True,
     )
 
+    # argparse
+    from examples.libraries.argparse import configure_arguments as configure_argparse
+
+    args_parser = subparsers.add_parser(
+        "argparse",
+        help="argparse example",
+        description="standard library/argparse example",
+    )
+    configure_argparse(args_parser)
+
     # logging
     logging_parser = subparsers.add_parser(
         "logging",
