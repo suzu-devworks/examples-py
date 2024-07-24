@@ -7,6 +7,7 @@
 
 This is a project to learn the basic functions and usage of Python.
 
+
 ## Table of Contents <!-- omit in toc -->
 
 - [example-py](#example-py)
@@ -18,6 +19,8 @@ This is a project to learn the basic functions and usage of Python.
 
 - [`datetime`](./tests/libraries/datetimes/)
   > Learn how to work with dates with datetime and timezone.
+- [`logging`](./src/examples/libraries/logging/)
+  > Learn log output and settings with console app.
 
 
 ## How the project was initialized
@@ -30,6 +33,9 @@ pdm add -e src/examples-py --dev --group src
 
 cd src/examples-py
 pdm add --dev flake8 mypy black isort pytest-cov pyclean
+pdm add pyyaml
 pdm add --dev --group test pytz
-pdm add --dev types-pytz
+pdm add --dev types-pytz types-PyYAML
 ```
+
+<!-- spell-checker:words pyyaml -->

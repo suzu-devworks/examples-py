@@ -6,13 +6,18 @@ requires = ["pdm-backend"]
 authors = [
   {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+  "pyyaml>=6.0.1",
+]
 description = "Default template for PDM package"
 license = {text = "MIT"}
 name = "examples-py"
 readme = "README.md"
 requires-python = ">=3.12"
 version = "0.1.0"
+
+[project.scripts]
+examples-cli = "examples.console.command:main"
 
 [tool.pdm]
 distribution = true
@@ -26,6 +31,7 @@ dev = [
   "pytest-cov>=5.0.0",
   "pyclean>=3.0.0",
   "types-pytz>=2024.1.0.20240417",
+  "types-PyYAML>=6.0.12.20240311",
 ]
 test = [
   "pytz>=2024.1",
