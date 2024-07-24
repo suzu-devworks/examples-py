@@ -11,9 +11,24 @@ This is a project to learn the basic functions and usage of Python.
 ## Table of Contents <!-- omit in toc -->
 
 - [example-py](#example-py)
+  - [Getting Started](#getting-started)
   - [Standard Library study](#standard-library-study)
   - [How the project was initialized](#how-the-project-was-initialized)
 
+
+## Getting Started  
+
+Install dependency packages and install myself locally as editable.
+
+```shell
+pdm install
+```
+
+Executes commands defined in `project.scripts`.
+
+```shell
+examples-cli --version
+```
 
 ## Standard Library study
 
@@ -21,7 +36,8 @@ This is a project to learn the basic functions and usage of Python.
   > Learn how to work with dates with datetime and timezone.
 - [`logging`](./src/examples/libraries/logging/)
   > Learn log output and settings with console app.
-
+- [`argparse`](./src/examples/libraries/argparse/)
+  > Learn how to define and handle command-line arguments using a console app.
 
 ## How the project was initialized
 
