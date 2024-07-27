@@ -35,9 +35,11 @@ dev = [
   "types-pytz>=2024.1.0.20240417",
   "types-PyYAML>=6.0.12.20240311",
   "types-Pillow>=10.2.0.20240520",
+  "pytest-asyncio>=0.23.6",
 ]
 test = [
   "pytz>=2024.1",
+  "natsort>=8.4.0",
 ]
 
 [tool.pdm.scripts]
@@ -45,9 +47,6 @@ clean = {composite = ["pyclean ."]}
 format = {composite = ["isort src/ tests/", "black src/ tests/"]}
 lint = {composite = ["flake8", "mypy src/ tests/"]}
 test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src tests/"
-
-[tool.pytest.ini_options]
-addopts = "-p no:cacheprovider"
 
 [tool.black]
 line-length = 119
@@ -69,4 +68,10 @@ strict = true
 
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
-module = []
+module = ["natsort"]
+
+[tool.pytest.ini_options]
+addopts = "-p no:cacheprovider"
+markers = [
+  "asyncio",
+]
