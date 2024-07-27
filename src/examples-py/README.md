@@ -1,4 +1,4 @@
-# example-py
+# examples-py
 
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm.fming.dev)
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
@@ -10,10 +10,11 @@ This is a project to learn the basic functions and usage of Python.
 
 ## Table of Contents <!-- omit in toc -->
 
-- [example-py](#example-py)
+- [examples-py](#examples-py)
   - [Getting Started](#getting-started)
-  - [Standard Library study](#standard-library-study)
-  - [Other Libraries study](#other-libraries-study)
+  - [Language reference](#language-reference)
+  - [Standard library study](#standard-library-study)
+  - [Other libraries study](#other-libraries-study)
   - [How the project was initialized](#how-the-project-was-initialized)
 
 
@@ -32,7 +33,17 @@ examples-cli --version
 ```
 
 
-## Standard Library study
+## Language reference
+
+- [sequences](./tests/references/sequences/)
+  > Learn about basic sequence type operations.
+- [functional programming](./tests/references/functionals/)
+  > Learn about functional programming.
+- [sorting](./tests/references/sorting/)
+  > Learn about different sorts.
+
+
+## Standard library study
 
 - [`datetime`](./tests/libraries/datetimes/)
   > Learn how to work with dates with datetime and timezone.
@@ -42,7 +53,7 @@ examples-cli --version
   > Learn how to define and handle command-line arguments using a console app.
 
 
-## Other Libraries study
+## Other libraries study
 
 - ['pillow'](./src/examples/libraries/pillow/)
   > Learn how to use Pillow in a console app to manipulate images and exif information.
@@ -60,9 +71,12 @@ pdm add -e src/examples-py --dev --group src
 
 cd src/examples-py
 pdm add --dev flake8 mypy black isort pytest-cov pyclean
+pdm add --dev --group test pytz natsort
 pdm add pyyaml pillow
 pdm add --dev --group test pytz
 pdm add --dev types-pytz types-PyYAML types-Pillow
 ```
 
 <!-- spell-checker:words pyyaml -->
+<!-- spell-checker:words natsort -->
+

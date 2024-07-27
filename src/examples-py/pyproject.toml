@@ -38,6 +38,7 @@ dev = [
 ]
 test = [
   "pytz>=2024.1",
+  "natsort>=8.4.0",
 ]
 
 [tool.pdm.scripts]
@@ -69,4 +70,4 @@ strict = true
 
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
-module = []
+module = ["natsort"]
