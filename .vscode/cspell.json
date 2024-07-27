@@ -4,14 +4,15 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
+    "exif",
     "isort",
     "mypy",
     "pyclean",
     "pyproject",
     "pytest",
     "pytz",
-    "virtualenv",
-    "venv"
+    "venv",
+    "virtualenv"
   ],
   "ignoreWords": [],
   "import": []

@@ -13,6 +13,7 @@ This is a project to learn the basic functions and usage of Python.
 - [example-py](#example-py)
   - [Getting Started](#getting-started)
   - [Standard Library study](#standard-library-study)
+  - [Other Libraries study](#other-libraries-study)
   - [How the project was initialized](#how-the-project-was-initialized)
 
 
@@ -30,6 +31,7 @@ Executes commands defined in `project.scripts`.
 examples-cli --version
 ```
 
+
 ## Standard Library study
 
 - [`datetime`](./tests/libraries/datetimes/)
@@ -38,6 +40,15 @@ examples-cli --version
   > Learn log output and settings with console app.
 - [`argparse`](./src/examples/libraries/argparse/)
   > Learn how to define and handle command-line arguments using a console app.
+
+
+## Other Libraries study
+
+- ['pillow'](./src/examples/libraries/pillow/)
+  > Learn how to use Pillow in a console app to manipulate images and exif information.
+
+<!-- spell-checker:words argparse -->
+
 
 ## How the project was initialized
 
@@ -49,9 +60,9 @@ pdm add -e src/examples-py --dev --group src
 
 cd src/examples-py
 pdm add --dev flake8 mypy black isort pytest-cov pyclean
-pdm add pyyaml
+pdm add pyyaml pillow
 pdm add --dev --group test pytz
-pdm add --dev types-pytz types-PyYAML
+pdm add --dev types-pytz types-PyYAML types-Pillow
 ```
 
 <!-- spell-checker:words pyyaml -->

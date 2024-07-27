@@ -8,6 +8,7 @@ authors = [
 ]
 dependencies = [
   "pyyaml>=6.0.1",
+  "pillow>=10.4.0",
 ]
 description = "Default template for PDM package"
 dynamic = ["version"]
@@ -33,6 +34,7 @@ dev = [
   "pyclean>=3.0.0",
   "types-pytz>=2024.1.0.20240417",
   "types-PyYAML>=6.0.12.20240311",
+  "types-Pillow>=10.2.0.20240520",
 ]
 test = [
   "pytz>=2024.1",

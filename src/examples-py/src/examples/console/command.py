@@ -43,6 +43,17 @@ def _parse_arguments() -> Namespace:
     )
     configure_args_logging(logging_parser)
 
+    # spell-checker:words exif
+    # pillow exif
+    from examples.libraries.pillow.exif import configure_arguments as configure_args_exif
+
+    exif_parser = subparsers.add_parser(
+        "exif",
+        help="exif example",
+        description="pypi library/pillow example",
+    )
+    configure_args_exif(exif_parser)
+
     args = parser.parse_args()
 
     return args
