@@ -59,7 +59,7 @@ examples-cli --version
 
 ## Other libraries study
 
-- ['pillow'](./src/examples/libraries/pillow/)
+- [`pillow`](./src/examples/libraries/pillow/)
   > Learn how to use Pillow in a console app to manipulate images and exif information.
 
 <!-- spell-checker:words argparse -->
