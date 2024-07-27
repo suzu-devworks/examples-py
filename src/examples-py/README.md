@@ -20,6 +20,12 @@ This is a project to learn the basic functions and usage of Python.
 
 ## Getting Started  
 
+Install package manager.
+
+```shell
+curl -sSL https://pdm-project.org/install-pdm.py | python3 -
+```
+
 Install dependency packages and install myself locally as editable.
 
 ```shell

@@ -2,6 +2,7 @@
 
 Workspace for studying Python programming.
 
+
 ## What is this
 
 This repository is the author's personal playground to learn Python and experiment with its features.
