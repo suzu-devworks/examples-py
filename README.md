@@ -12,3 +12,4 @@ However, please note that the code described here is based on my personal opinio
 
 ## Projects
 
+- [examples-py](./src//examples-py/README.md)
