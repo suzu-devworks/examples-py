@@ -1,0 +1,8 @@
+[project]
+dependencies = []
+requires-python = ">=3.12"
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "-e file:///${PROJECT_ROOT}/src/examples-py#egg=examples-py",
+]
