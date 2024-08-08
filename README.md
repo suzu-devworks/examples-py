@@ -1,5 +1,7 @@
 # examples-py
 
+[![CodeQL](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql)
+
 Workspace for studying Python programming.
 
 
