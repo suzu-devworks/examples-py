@@ -160,11 +160,10 @@ cython_debug/
 #.idea/
 
 ##> Add
-[Tt]emp/
-[Ll]ogs/
-.venv.*/
-.cov/
 .DS_Store
+.cov/
 .pdm-python
-.venv.*
+.venv.*/
+[Ll]ogs/
+[Tt]emp/
 trace.zip

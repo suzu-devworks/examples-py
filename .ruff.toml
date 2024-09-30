@@ -1,0 +1,34 @@
+# ruff.toml
+#
+exclude = [".venv"]
+
+# Same as Black.
+indent-width = 4
+line-length = 119
+
+# Assume Python 3.12
+target-version = "py312"
+
+[lint]
+ignore = []
+select = [
+  # "E",  # pycodestyle Error
+  # "W",  # pycodestyle Warning
+  "E4",
+  "E7",
+  "E9",
+  "F", # Pyflakes
+  # "UP", # pyupgrade
+  # "B",   # flake8-bugbear
+  # "SIM", # flake8-simplify
+  # "ANN", # flake8-annotations
+  # "I", # isort
+]
+
+[lint.isort]
+known-first-party = ["examples", "flaskr"]
+
+[format]
+docstring-code-format = true
+indent-style = "space"
+quote-style = "double"

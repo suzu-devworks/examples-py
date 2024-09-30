@@ -4,7 +4,7 @@ requires = ["pdm-backend"]
 
 [project]
 authors = [
-  {name = "A.suzuki", email = "suzu.devworks@gmail.com"},
+  { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
 ]
 dependencies = [
   "pyyaml>=6.0.1",
@@ -12,7 +12,7 @@ dependencies = [
 ]
 description = "Default template for PDM package"
 dynamic = ["version"]
-license = {text = "MIT"}
+license = { text = "MIT" }
 name = "examples-py"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -22,7 +22,7 @@ examples-cli = "examples.console.command:main"
 
 [tool.pdm]
 distribution = true
-version = {source = "file", path = "src/examples/__version__.py"}
+version = { source = "file", path = "src/examples/__version__.py" }
 
 [tool.pdm.dev-dependencies]
 dev = [
@@ -43,9 +43,9 @@ test = [
 ]
 
 [tool.pdm.scripts]
-clean = {composite = ["pyclean ."]}
-format = {composite = ["isort src/ tests/", "black src/ tests/"]}
-lint = {composite = ["flake8", "mypy src/ tests/"]}
+clean = { composite = ["pyclean ."] }
+format = { composite = ["isort src/ tests/", "black src/ tests/"] }
+lint = { composite = ["flake8", "mypy src/ tests/"] }
 test = "pytest --durations=0 --cov-branch --cov-report xml:.cov/coverage.xml --cov=src tests/"
 
 [tool.black]
@@ -62,7 +62,7 @@ max-line-length = 119
 [tool.mypy]
 files = ["src/", "tests/"]
 pretty = true
-python_version = 3.12
+python_version = "3.12"
 show_error_context = true
 strict = true
 
