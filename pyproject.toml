@@ -1,8 +1,28 @@
 [project]
-dependencies = []
-requires-python = ">=3.12"
-
-[tool.pdm.dev-dependencies]
-dev = [
-    "-e file:///${PROJECT_ROOT}/src/examples-py#egg=examples-py",
+authors = [
+  { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
 ]
+dependencies = []
+description = "Add your description here"
+name = "examples-py"
+readme = "README.md"
+requires-python = ">= 3.12"
+version = "0.1.0"
+
+[tool.rye]
+dev-dependencies = [
+  "mypy>=1.11.2",
+  "pyclean>=3.0.0",
+  "ruff>=0.6.8",
+]
+managed = true
+virtual = true
+
+[tool.rye.workspace]
+members = ["apps/*", "libs/*"]
+
+[tool.rye.scripts]
+clean = { chain = ["clean:pyclean"] }
+# cannot use pipe.
+# "clean:dirs" = { cmd = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.mypy_cache$)\" | xargs rm -rf" }
+"clean:pyclean" = "pyclean ."

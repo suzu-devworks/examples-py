@@ -12,10 +12,11 @@
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "evenBetterToml.formatter.allowedBlankLines": 80,
   "evenBetterToml.formatter.arrayAutoCollapse": false,
-  "evenBetterToml.formatter.arrayAutoExpand": true,
-  "evenBetterToml.formatter.columnWidth": 80,
+  "evenBetterToml.formatter.columnWidth": 90,
+  "evenBetterToml.formatter.inlineTableExpand": true,
+  "evenBetterToml.formatter.reorderArrays": true,
+  "evenBetterToml.formatter.reorderKeys": true,
   "mypy-type-checker.args": [],
   "python.analysis.autoFormatStrings": false,
   "python.terminal.activateEnvInCurrentTerminal": true,
@@ -28,5 +29,5 @@
   "ruff.lint.args": [
     "--config=.ruff.toml"
   ],
-  "terminal.integrated.environmentChangesRelaunch": true
+  "terminal.integrated.environmentChangesRelaunch": true,
 }
