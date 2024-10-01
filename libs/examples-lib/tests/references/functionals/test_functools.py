@@ -11,7 +11,6 @@ from functools import reduce
 
 
 class TestFunctools:
-
     def test_reduce(self) -> None:
         """`functools.reduce(function, iterable[, initializer])`
 

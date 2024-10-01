@@ -8,7 +8,6 @@ References:
 
 
 class TestBuiltInFunctions:
-
     def test_map(self) -> None:
         """`map(function, iterable, *iterables)`
 

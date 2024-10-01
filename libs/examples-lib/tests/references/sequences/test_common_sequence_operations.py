@@ -6,7 +6,6 @@ References:
 
 
 class TestCommonSequenceOperations:
-
     def test_sequence_length(self) -> None:
         # fmt: off
         matrix = [

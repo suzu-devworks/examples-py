@@ -18,7 +18,6 @@ import pytest
 
 class TestContextManagerClass:
     class Resource(object):
-
         def __init__(self, *args: Any, **kwargs: Any) -> None:
             self.status = "INIT"
 
@@ -29,7 +28,6 @@ class TestContextManagerClass:
         """
 
         class Context(object):
-
             def __init__(self, *args: Any, **kwargs: Any) -> None:
                 self.__status = "INIT"
 

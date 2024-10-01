@@ -10,7 +10,6 @@ from typing import Generator
 
 
 class TestGenerator:
-
     def test_yield_generator(self) -> None:
         """The `yield` expression is
         used when defining a generator function or an asynchronous generator

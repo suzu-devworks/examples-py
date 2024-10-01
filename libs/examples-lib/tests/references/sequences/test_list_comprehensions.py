@@ -23,7 +23,6 @@ References:
 
 
 class TestListComprehensions:
-
     def test_list_comprehension_basic(self) -> None:
         """The same as the following code:
 
@@ -41,8 +40,8 @@ class TestListComprehensions:
 
         ```py
         combs = []
-        for x in [1,2,3]:
-            for y in [3,1,4]:
+        for x in [1, 2, 3]:
+            for y in [3, 1, 4]:
                 if x != y:
                     combs.append((x, y))
         ```
@@ -54,9 +53,9 @@ class TestListComprehensions:
         """The same as the following code:
 
         ```py
-        extension =[]
+        extension = []
         for i in range(10):
-            if i%2 == 0:
+            if i % 2 == 0:
                 extension.append(i)
             else:
                 extension.append(str(i))

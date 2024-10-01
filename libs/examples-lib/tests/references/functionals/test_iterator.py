@@ -7,7 +7,6 @@ References:
 
 
 class TestIterator:
-
     def test_iterator_basic(self) -> None:
         """`iter(object)`
 

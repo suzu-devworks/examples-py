@@ -13,7 +13,6 @@ import pytest
 
 
 class TestGenericsClass:
-
     def test_user_define_generics(self) -> None:
         """use typing.Generic"""
         from typing import Generic

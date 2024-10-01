@@ -9,7 +9,6 @@ from operator import attrgetter, itemgetter, methodcaller
 
 
 class TestSorting(object):
-
     def test_sort_or_sorted(self) -> None:
         """`sort` or `sorted`.
 

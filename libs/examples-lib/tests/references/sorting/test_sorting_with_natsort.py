@@ -9,10 +9,6 @@ import os
 
 from natsort import natsorted, ns, os_sorted, realsorted
 
-# spell-checker:words natsort
-# spell-checker:words natsorted
-# spell-checker:words realsorted
-
 
 class TestSortingWithNatsort:
     def test_natural_sorting(self) -> None:

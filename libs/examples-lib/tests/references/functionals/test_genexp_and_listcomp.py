@@ -7,7 +7,6 @@ References:
 
 
 class TestGeneratorExpressionsAndListComprehensions:
-
     def test_remove_all_whitespace(self) -> None:
         """Remove all whitespace from a string stream."""
 
