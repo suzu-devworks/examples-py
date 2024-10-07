@@ -9,8 +9,16 @@
 #   generate-hashes: false
 #   universal: false
 
+-e file:apps/examples-cli
 -e file:libs/examples-lib
+    # via examples-cli
 natsort==8.4.0
     # via examples-lib
+numpy==2.1.2
+    # via examples-lib
+pillow==10.4.0
+    # via examples-cli
 pytz==2024.2
     # via examples-lib
+pyyaml==6.0.2
+    # via examples-cli

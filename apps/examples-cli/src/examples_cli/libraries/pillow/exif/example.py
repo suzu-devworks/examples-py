@@ -1,5 +1,4 @@
-import sys
-from argparse import ArgumentParser, FileType, Namespace
+from argparse import Namespace
 from fractions import Fraction
 from logging import getLogger
 from pathlib import Path
@@ -12,7 +11,7 @@ from PIL.ExifTags import Base as EXIFTAGS
 logger = getLogger(__name__)
 
 
-def _do_example(args: Namespace) -> None:
+def do_example(args: Namespace) -> None:
     """do sample.
 
     References:
@@ -37,7 +36,7 @@ def _do_example(args: Namespace) -> None:
         second = value[2]
         return f"{degree}°{minute}'{second}\"{ref}"
 
-    def loginfo_all(list: list[Tuple[Any, Any, Any]]) -> None:
+    def dump_info(list: list[Tuple[Any, Any, Any]]) -> None:
         for key, name, value in list:
             logger.info(f"{key:5d} {name:20s} : {str(value)}")
 
@@ -47,12 +46,12 @@ def _do_example(args: Namespace) -> None:
         # gets EXIF tag.
         exif = image.getexif()
         exif_info = [(k, TAGS.get(k, k), v) for k, v in exif.items()]
-        loginfo_all(sorted(exif_info))
+        dump_info(sorted(exif_info))
 
         # gets EXIF private tag.
         exif_private = exif.get_ifd(IFD.Exif)
         exif_private_info = [(k, TAGS.get(k, k), v) for k, v in exif_private.items() if k != EXIFTAGS.MakerNote]
-        loginfo_all(sorted(exif_private_info))
+        dump_info(sorted(exif_private_info))
 
         shutter = to_fraction(exif_private[EXIFTAGS.ShutterSpeedValue])
         expose = to_fraction(exif_private[EXIFTAGS.ExposureTime])
@@ -63,7 +62,7 @@ def _do_example(args: Namespace) -> None:
         # gets GPS tag.
         gps = exif.get_ifd(IFD.GPSInfo)
         gps_info = [(k, GPSTAGS.get(k, k), v) for k, v in gps.items()]
-        loginfo_all(sorted(gps_info))
+        dump_info(sorted(gps_info))
 
         lat = to_coordinate(gps[GPS.GPSLatitudeRef], gps[GPS.GPSLatitude])
         long = to_coordinate(gps[GPS.GPSLongitudeRef], gps[GPS.GPSLongitude])
@@ -72,27 +71,3 @@ def _do_example(args: Namespace) -> None:
         logger.info("\n")
 
     return
-
-
-# spell-checker:words getexif
-# spell-checker:words infile
-# spell-checker:words loginfo
-# spell-checker:words EXIFTAGS
-# spell-checker:words GPSTAGS
-
-
-def configure_arguments(parser: ArgumentParser) -> None:
-    parser.add_argument(
-        "infile",
-        help="input file",
-    )
-    parser.add_argument(
-        "-o",
-        "--out",
-        dest="out",
-        help="output stream",
-        nargs="?",
-        type=FileType("w"),
-        default=sys.stdout,
-    )
-    parser.set_defaults(exec=lambda args: _do_example(args))

@@ -24,7 +24,6 @@ def level_filter_factory(level: str) -> Callable[[LogRecord], bool]:
     levelno = getattr(original, level, original.DEBUG)
 
     def filter(record: LogRecord) -> bool:
-        # spell-checker:words levelno
         return record.levelno <= levelno
 
     return filter

@@ -18,7 +18,7 @@ def _find_logging_config() -> Path | None:
 
 
 def _default_yaml_config() -> Path:
-    resource = resource_files("examples.resources.logging")
+    resource = resource_files(__package__)
     with as_file(resource.joinpath("logging_config.yaml")) as config:
         return config
 
@@ -50,7 +50,6 @@ def configure_logging() -> None:
             dictConfig(config_dict)
 
         case _:
-            # spell-checker: words levelname
             basicConfig(
                 level=DEBUG,
                 format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s",

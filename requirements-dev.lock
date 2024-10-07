@@ -9,7 +9,9 @@
 #   generate-hashes: false
 #   universal: false
 
+-e file:apps/examples-cli
 -e file:libs/examples-lib
+    # via examples-cli
 coverage==7.6.1
     # via pytest-cov
 iniconfig==2.0.0
@@ -19,8 +21,12 @@ mypy-extensions==1.0.0
     # via mypy
 natsort==8.4.0
     # via examples-lib
+numpy==2.1.2
+    # via examples-lib
 packaging==24.1
     # via pytest
+pillow==10.4.0
+    # via examples-cli
 pluggy==1.5.0
     # via pytest
 pyclean==3.0.0
@@ -31,7 +37,11 @@ pytest-asyncio==0.24.0
 pytest-cov==5.0.0
 pytz==2024.2
     # via examples-lib
-ruff==0.6.8
-types-pytz==2024.2.0.20240913
+pyyaml==6.0.2
+    # via examples-cli
+ruff==0.6.9
+types-pillow==10.2.0.20240822
+types-pytz==2024.2.0.20241003
+types-pyyaml==6.0.12.20240917
 typing-extensions==4.12.2
     # via mypy

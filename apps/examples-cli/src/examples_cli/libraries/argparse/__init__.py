@@ -1,36 +1,8 @@
 import sys
-from argparse import ArgumentParser, FileType, Namespace
-from io import TextIOWrapper
-from logging import getLogger
+from argparse import ArgumentParser, FileType
 
+from .example import do_example
 from .game import Game
-
-logger = getLogger(__name__)
-
-
-def _do_example(args: Namespace) -> None:
-    logger.info("-> argparse example started: %s", args)
-
-    # spell-checker:words infiles
-    inputs: list[TextIOWrapper] = args.infiles
-    output: TextIOWrapper = args.outfile
-
-    try:
-        for input in inputs:
-            for line in input:
-                # line contains newline
-                output.write(line)
-
-            # argparse.FileType does not close.
-            if input.name != "<stdin>":
-                input.close()
-
-    except KeyboardInterrupt:
-        logger.warning("interrupt!")
-
-    # argparse.FileType does not close.
-    if output.name != "<stdout>":
-        output.close()
 
 
 def configure_arguments(parser: ArgumentParser) -> None:
@@ -83,4 +55,4 @@ def configure_arguments(parser: ArgumentParser) -> None:
         dest="param_choices",
         help="choices",
     )
-    parser.set_defaults(exec=lambda args: _do_example(args))
+    parser.set_defaults(exec=lambda args: do_example(args))
