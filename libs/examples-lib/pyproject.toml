@@ -4,6 +4,7 @@ authors = [
 ]
 dependencies = [
   "natsort>=8.4.0",
+  "numpy>=2.1.2",
   "pytz>=2024.2",
 ]
 description = "Add your description here"
