@@ -27,6 +27,8 @@ This is a project to learn the basic functions and usage of Python.
 
 - [`datetime`](./tests/libraries/datetime/)
   > Learn how to work with dates with datetime and timezone.
+- [`NumPy`](./tests/libraries/numpy/)
+  > NumPy provides support for typed multidimensional arrays for efficient numerical computation and a large library of high-level mathematical functions to manipulate them.
 
 ## Development
 
@@ -38,6 +40,6 @@ This project was initialized with the following command:
 rye init libs/examples-lib
 cd libs/examples-lib
 rye add --dev pytest-cov pytest-asyncio 
-rye add pytz natsort
+rye add pytz natsort numpy
 rye add --dev types-pytz
 ```

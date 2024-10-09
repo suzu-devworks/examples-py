@@ -4,8 +4,13 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
+    "arange",
+    "dtype",
+    "linalg",
     "natsort",
     "natsorted",
+    "ndarray",
+    "numpy",
     "realsorted"
   ],
   "ignoreWords": [],
