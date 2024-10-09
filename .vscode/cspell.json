@@ -4,7 +4,8 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
-    "exif",
+    "argparse",
+    "asyncio",
     "isort",
     "mypy",
     "pyclean",
@@ -15,5 +16,6 @@
     "virtualenv"
   ],
   "ignoreWords": [],
-  "import": []
+  "import": [],
+  "enabled": true
 }

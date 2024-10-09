@@ -1,9 +1,12 @@
 # examples-py
 
+[![Rye](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/rye/main/artwork/badge.json)](https://rye.astral.sh)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 [![CodeQL](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql)
 
-Workspace for studying Python programming.
 
+Workspace for studying Python programming.
 
 ## What is this
 
@@ -12,7 +15,7 @@ This might be helpful for developers having the same problem.
 
 However, please note that the code described here is based on my personal opinion and may contain many inaccuracies.
 
-
 ## Projects
 
-- [examples-py](./src//examples-py/README.md)
+- [examples-lib](./libs/examples-lib/README.md)
+- [examples-cli](./apps/examples-cli/README.md)

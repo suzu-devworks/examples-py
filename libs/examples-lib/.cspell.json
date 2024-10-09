@@ -1,0 +1,20 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [],
+  "dictionaries": [],
+  "words": [
+    "arange",
+    "dtype",
+    "linalg",
+    "natsort",
+    "natsorted",
+    "ndarray",
+    "numpy",
+    "realsorted"
+  ],
+  "ignoreWords": [],
+  "import": [
+    "../../.vscode/cspell.json"
+  ]
+}
