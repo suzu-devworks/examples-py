@@ -4,7 +4,7 @@ An aware objects have an optional time zone information attribute tzinfo
 that can be set to an instance of a subclass of the abstract tzinfo class.
 """
 
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from time import time as c_style_time
 from zoneinfo import ZoneInfo
 
@@ -44,10 +44,10 @@ def test_aware_datetime_generators() -> None:
     assert now.tzinfo is not None
     assert now.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
 
-    utc = datetime.now(tz=timezone.utc)
+    utc = datetime.now(tz=UTC)
     assert isinstance(utc, datetime)
     assert utc.tzinfo is not None
-    assert utc.tzinfo.tzname(native_date) == timezone.utc.tzname(native_date)
+    assert utc.tzinfo.tzname(native_date) == UTC.tzname(native_date)
 
     today = datetime.today().astimezone(tz_ja)
     assert isinstance(today, datetime)
@@ -89,7 +89,7 @@ def test_datetime_calculation() -> None:
     assert timedelta1 == timedelta(days=-33)
 
     # timedelta = datetime1(aware) - datetime2(utc)
-    timedelta1 = datetime1 - datetime(2000, 4, 2, 12, 34, 56, 789012, tzinfo=timezone.utc)
+    timedelta1 = datetime1 - datetime(2000, 4, 2, 12, 34, 56, 789012, tzinfo=UTC)
     assert timedelta1 == timedelta(days=-34, hours=15)
 
     # timedelta = datetime1(aware) - datetime2(native)
@@ -110,7 +110,7 @@ def test_datetime_convert_tostring() -> None:
     iso8601 = datetime1.isoformat()
     assert iso8601 == "2000-02-29T01:23:45.678901+09:00"
 
-    iso8601utc = datetime1.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    iso8601utc = datetime1.astimezone(UTC).isoformat().replace("+00:00", "Z")
     assert iso8601utc == "2000-02-28T16:23:45.678901Z"
 
     # convert string(ISO8601) to datetime
@@ -131,7 +131,7 @@ def test_datetime_convert_timezone() -> None:
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 
     # convert JST -> UTC
-    utc = datetime1.astimezone(tz=timezone.utc)
+    utc = datetime1.astimezone(tz=UTC)
     assert utc.tzinfo != datetime1.tzinfo
     assert str(utc) == "2000-02-28 16:23:45.678901+00:00"
 

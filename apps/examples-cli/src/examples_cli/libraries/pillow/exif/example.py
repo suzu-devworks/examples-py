@@ -2,7 +2,7 @@ from argparse import Namespace
 from fractions import Fraction
 from logging import getLogger
 from pathlib import Path
-from typing import Any, Tuple
+from typing import Any
 
 from PIL import Image
 from PIL.ExifTags import GPS, GPSTAGS, IFD, TAGS
@@ -36,7 +36,7 @@ def do_example(args: Namespace) -> None:
         second = value[2]
         return f"{degree}°{minute}'{second}\"{ref}"
 
-    def dump_info(list: list[Tuple[Any, Any, Any]]) -> None:
+    def dump_info(list: list[tuple[Any, Any, Any]]) -> None:
         for key, name, value in list:
             logger.info(f"{key:5d} {name:20s} : {str(value)}")
 

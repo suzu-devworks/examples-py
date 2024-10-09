@@ -31,7 +31,7 @@ def test_native_datetime_generators() -> None:
     # datetime.time (naive)
     now_time = datetime.now().time()
     assert isinstance(now_time, time)
-    now_time.tzinfo is None
+    assert now_time.tzinfo is None
 
 
 def test_native_datetime_properties() -> None:

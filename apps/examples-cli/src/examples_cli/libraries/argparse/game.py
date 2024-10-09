@@ -13,5 +13,5 @@ class Game(Enum):
     def from_string(s: str) -> "Game":
         try:
             return Game[s]
-        except KeyError:
-            raise ValueError()
+        except KeyError as e:
+            raise ValueError(f"key [{s}] is not found") from e

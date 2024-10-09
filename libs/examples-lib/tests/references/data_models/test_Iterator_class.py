@@ -21,7 +21,7 @@ class TestIteratorClass:
         `object.__next__()`.
         """
 
-        class IteratorClass(object):
+        class IteratorClass:
             def __init__(self, num: int, *args: Any, **kwargs: Any) -> None:
                 self.__num = num
                 self.__count: int = 0
@@ -69,7 +69,7 @@ class TestIteratorClass:
         #         raise StopAsyncIteration
         #     return val
 
-        class AsyncIterator(object):
+        class AsyncIterator:
             def __init__(self, num: int, *args: Any, **kwargs: Any) -> None:
                 self.__num = num
                 self.__count: int = 0

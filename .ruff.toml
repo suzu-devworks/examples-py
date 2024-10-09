@@ -10,19 +10,21 @@ line-length = 119
 target-version = "py312"
 
 [lint]
-ignore = []
+ignore = ["ANN101", "ANN401"]
 select = [
-  # "E",  # pycodestyle Error
-  # "W",  # pycodestyle Warning
+  "W", # pycodestyle Warning
+  # "E",   # pycodestyle Error
   "E4",
   "E7",
   "E9",
-  "F", # Pyflakes
-  # "UP", # pyupgrade
-  # "B",   # flake8-bugbear
-  # "SIM", # flake8-simplify
-  # "ANN", # flake8-annotations
-  # "I", # isort
+  "F",  # Pyflakes
+  "UP", # pyupgrade
+  # flake8
+  "ANN", # flake8-annotations
+  "B",   # flake8-bugbear
+  "SIM", # flake8-simplify
+  # isort
+  "I", # isort
 ]
 
 [lint.isort]

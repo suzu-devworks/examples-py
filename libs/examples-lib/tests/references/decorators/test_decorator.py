@@ -14,15 +14,16 @@ References:
 
 # spell-checker:words Gof
 
+from collections.abc import Callable
 from functools import wraps
-from typing import Any, Callable, Self, Type
+from typing import Any, Self
 
 import pytest
 
 TFunc = Callable[..., Any]
 
 
-class TestDecorator(object):
+class TestDecorator:
     def test_without_arguments_not_return_wrapper(self) -> None:
         """Pattern of without arguments and not return a wrapper function.
 
@@ -52,8 +53,8 @@ class TestDecorator(object):
         The basic pattern, whether or not there is a return value, doesn't seem to matter.
         """
 
-        def singleton(cls: Type[Any]) -> TFunc:
-            instances: dict[Type[Any], Self] = {}
+        def singleton(cls: type[Any]) -> TFunc:
+            instances: dict[type[Any], Self] = {}
 
             def get_instance() -> Any:
                 if cls not in instances:
@@ -110,8 +111,8 @@ class TestDecorator(object):
                 assert len(types) == len(sig.parameters)
 
                 def new_f(*args: Any, **kwds: Any) -> Any:
-                    for a, t in zip(args, types):
-                        assert isinstance(a, t), "arg %r does not match %s" % (a, t)
+                    for a, t in zip(args, types, strict=False):
+                        assert isinstance(a, t), f"arg {a!r} does not match {t}"
                     return f(*args, **kwds)
 
                 # py2: new_f.func_name = f.func_name
@@ -124,7 +125,7 @@ class TestDecorator(object):
             def check_returns(f: TFunc) -> TFunc:
                 def new_f(*args: Any, **kwds: Any) -> Any:
                     result = f(*args, **kwds)
-                    assert isinstance(result, rtype), "return value %r does not match %s" % (result, rtype)
+                    assert isinstance(result, rtype), f"return value {result!r} does not match {rtype}"
                     return result
 
                 # py2: new_f.func_name = f.func_name

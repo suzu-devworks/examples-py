@@ -10,14 +10,15 @@ References:
 """
 
 import asyncio
+from collections.abc import AsyncGenerator, Generator
 from types import TracebackType
-from typing import Any, AsyncGenerator, Generator, Optional, Self
+from typing import Any, Self
 
 import pytest
 
 
 class TestContextManagerClass:
-    class Resource(object):
+    class Resource:
         def __init__(self, *args: Any, **kwargs: Any) -> None:
             self.status = "INIT"
 
@@ -27,7 +28,7 @@ class TestContextManagerClass:
         `object.__exit__()`.
         """
 
-        class Context(object):
+        class Context:
             def __init__(self, *args: Any, **kwargs: Any) -> None:
                 self.__status = "INIT"
 
@@ -37,9 +38,9 @@ class TestContextManagerClass:
 
             def __exit__(
                 self,
-                exc_type: Optional[type[BaseException]],
-                exc_value: Optional[BaseException],
-                traceback: Optional[TracebackType],
+                exc_type: type[BaseException] | None,
+                exc_value: BaseException | None,
+                traceback: TracebackType | None,
             ) -> None:
                 self.__status = "EXIT"
 
@@ -78,9 +79,9 @@ class TestContextManagerClass:
 
             def __exit__(
                 self,
-                exc_type: Optional[type[BaseException]],
-                exc_value: Optional[BaseException],
-                traceback: Optional[TracebackType],
+                exc_type: type[BaseException] | None,
+                exc_value: BaseException | None,
+                traceback: TracebackType | None,
             ) -> None:
                 self.__status = "EXIT"
 
@@ -129,7 +130,7 @@ class TestContextManagerClass:
         `object.__aexit__()`.
         """
 
-        class AsyncContext(object):
+        class AsyncContext:
             def __init__(self) -> None:
                 self.__status = "INIT"
 
@@ -146,9 +147,9 @@ class TestContextManagerClass:
 
             async def __aexit__(
                 self,
-                exc_type: Optional[type[BaseException]],
-                exc_value: Optional[BaseException],
-                traceback: Optional[TracebackType],
+                exc_type: type[BaseException] | None,
+                exc_value: BaseException | None,
+                traceback: TracebackType | None,
             ) -> None:
                 await asyncio.sleep(0)
                 self.__status = "async EXIT"
@@ -158,9 +159,8 @@ class TestContextManagerClass:
                 return self.__status
 
         # sync context is not work.
-        with pytest.raises(TypeError):
-            with AsyncContext() as context:  # type:ignore[attr-defined]
-                pass
+        with pytest.raises(TypeError), AsyncContext() as context:  # type:ignore[attr-defined]
+            pass
 
         # async context is work.
         async with AsyncContext() as context:

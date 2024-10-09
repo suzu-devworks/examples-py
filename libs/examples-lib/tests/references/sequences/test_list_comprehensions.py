@@ -78,7 +78,7 @@ class TestListComprehensions:
         assert transposed == [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 
         # use zip:
-        zipped = [[x, y, z] for x, y, z in zip(*matrix)]
+        zipped = [[x, y, z] for x, y, z in zip(*matrix, strict=False)]
         assert zipped == [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 
         # to flatten
@@ -152,7 +152,7 @@ class TestListComprehensions:
         dict2 = {"KEY2": "string1", "KEY4": "string2", "KEY6": "string3"}
 
         # Create a dictionary with only dict2 values with matching keys, output all keys of dict1:
-        dict3 = {key: dict2[key] if key in dict2 else None for key in dict1.keys()}
+        dict3 = {key: dict2.get(key) for key in dict1}
         assert dict3 == {
             "KEY1": None,
             "KEY2": "string1",
@@ -163,7 +163,7 @@ class TestListComprehensions:
 
         # Creates a dictionary by updating dict1 with values from dict2 that have matching keys,
         #  and prints all keys in dict1:
-        dict4 = {key: dict2[key] if key in dict2 else value for key, value in dict1.items()}
+        dict4 = {key: dict2.get(key, value) for key, value in dict1.items()}
         assert dict4 == {
             "KEY1": 1,
             "KEY2": "string1",

@@ -114,10 +114,10 @@ class TestBuiltInFunctions:
         list1 = ["a", "b", "c"]
         second = (1, 2, 3)
 
-        zipped = zip(list1, second)
+        zipped = zip(list1, second, strict=False)
         assert list(zipped) == [("a", 1), ("b", 2), ("c", 3)]
 
         list2 = ["d", "e"]
-        zipped = zip(list2, second)
+        zipped = zip(list2, second, strict=False)
         # second: 3 is lost.
         assert list(zipped) == [("d", 1), ("e", 2)]

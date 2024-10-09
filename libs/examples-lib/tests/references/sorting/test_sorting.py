@@ -8,7 +8,7 @@ References:
 from operator import attrgetter, itemgetter, methodcaller
 
 
-class TestSorting(object):
+class TestSorting:
     def test_sort_or_sorted(self) -> None:
         """`sort` or `sorted`.
 
@@ -75,7 +75,7 @@ class TestSorting(object):
         assert [x[0] for x in sorted_by_itemgetter] == ["dave", "jane", "john"]
 
         class Student:
-            def __init__(self, name: str, grade: str, age: int):
+            def __init__(self, name: str, grade: str, age: int) -> None:
                 self.name = name
                 self.grade = grade
                 self.age = age

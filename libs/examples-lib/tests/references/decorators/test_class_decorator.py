@@ -12,7 +12,7 @@ References:
 from typing import Any
 
 
-class TestClassDecorator(object):
+class TestClassDecorator:
     def test_with_pep3129(self) -> None:
         """PEP 3129's class decorator."""
 
