@@ -5,7 +5,6 @@
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 [![CodeQL](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql)
 
-
 Workspace for studying Python programming.
 
 ## What is this
