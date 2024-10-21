@@ -14,9 +14,9 @@
     # via examples-cli
 natsort==8.4.0
     # via examples-lib
-numpy==2.1.2
+numpy==2.1.3
     # via examples-lib
-pillow==10.4.0
+pillow==11.0.0
     # via examples-cli
 pytz==2024.2
     # via examples-lib

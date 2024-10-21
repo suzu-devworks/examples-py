@@ -1,6 +1,11 @@
 {
   "version": "0.2",
-  "ignorePaths": [],
+  "ignorePaths": [
+    ".devcontainer",
+    ".vscode",
+    "**/.git/**",
+    "**/*.lock"
+  ],
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
