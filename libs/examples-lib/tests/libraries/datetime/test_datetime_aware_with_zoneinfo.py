@@ -2,10 +2,14 @@
 
 An aware objects have an optional time zone information attribute tzinfo
 that can be set to an instance of a subclass of the abstract tzinfo class.
+
+References:
+    - https://docs.python.org/ja/3/library/zoneinfo.html
 """
 
 from datetime import UTC, datetime, time, timedelta
 from time import time as c_style_time
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import pytest
@@ -26,108 +30,117 @@ timezone_data = [
 
 
 @pytest.mark.parametrize("zone,date,tzname,offset,dst", timezone_data)
-def test_zoneinfo_timezones(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta) -> None:
+def test_timezone_properties(zone: str, date: datetime, tzname: str, offset: timedelta, dst: timedelta) -> None:
+    """Accessing timezone properties."""
+
     tz = ZoneInfo(zone)
+
     assert tz.key == zone
     assert tz.tzname(date) == tzname
     assert tz.utcoffset(date) == offset
     assert tz.dst(date) == dst
 
 
-def test_aware_datetime_generators() -> None:
-    tz_ja = ZoneInfo("Asia/Tokyo")
-    native_date = datetime(2000, 2, 29)
+@pytest.fixture
+def tz_ja() -> Any:
+    return ZoneInfo("Asia/Tokyo")
+
+
+def test_creation(tz_ja: Any) -> None:
+    """Create a aware datetime in several ways."""
 
     # datetime (aware)
+
     now = datetime.now(tz=tz_ja)
     assert isinstance(now, datetime)
     assert now.tzinfo is not None
-    assert now.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
+    assert now.tzinfo == tz_ja
 
     utc = datetime.now(tz=UTC)
     assert isinstance(utc, datetime)
-    assert utc.tzinfo is not None
-    assert utc.tzinfo.tzname(native_date) == UTC.tzname(native_date)
+    assert utc.tzinfo == UTC
 
     today = datetime.today().astimezone(tz_ja)
     assert isinstance(today, datetime)
-    assert today.tzinfo is not None
-    assert today.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
+    assert today.tzinfo == tz_ja
 
     fromtimestamp = datetime.fromtimestamp(c_style_time(), tz=tz_ja)
     assert isinstance(fromtimestamp, datetime)
-    assert fromtimestamp.tzinfo is not None
-    assert fromtimestamp.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
+    assert fromtimestamp.tzinfo == tz_ja
 
     # date
 
     # datetime.time (aware)
+
     now_tz_time = datetime.now(tz=tz_ja).time()
     assert isinstance(now_tz_time, time)
     assert now_tz_time.tzinfo is None
 
     now_tz_timetz = datetime.now(tz=tz_ja).timetz()
     assert isinstance(now_tz_timetz, time)
-    assert now_tz_timetz.tzinfo is not None
-    assert now_tz_timetz.tzinfo.tzname(native_date) == tz_ja.tzname(native_date)
+    assert now_tz_timetz.tzinfo == tz_ja
 
 
-def test_datetime_calculation() -> None:
-    tz_ja = ZoneInfo("Asia/Tokyo")
-    datetime1 = datetime(2000, 2, 29, 12, 34, 56, 789012, tzinfo=tz_ja)
+def test_calculation(tz_ja: Any) -> None:
+    """Calculate with datetime."""
 
-    # datetime2(aware) = datetime1(aware) + timedelta
-    datetime2 = datetime1 + timedelta(days=1, hours=2, seconds=30)
-    assert datetime2 == datetime(2000, 3, 1, 14, 35, 26, 789012, tzinfo=tz_ja)
+    base_datetime = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 
-    # datetime2(aware) = datetime1(aware) - timedelta
-    datetime2 = datetime1 - timedelta(days=1, hours=2, seconds=30)
-    assert datetime2 == datetime(2000, 2, 28, 10, 34, 26, 789012, tzinfo=tz_ja)
+    # datetime(aware) = datetime(aware) + timedelta
+    actual = base_datetime + timedelta(days=1, hours=2, seconds=30)
+    assert actual == datetime(2000, 3, 1, 3, 24, 15, 678901, tzinfo=tz_ja)
 
-    # timedelta = datetime1(aware) - datetime2(aware)
-    timedelta1 = datetime1 - datetime(2000, 4, 2, 12, 34, 56, 789012, tzinfo=tz_ja)
+    # datetime(aware) = datetime(aware) - timedelta
+    actual = base_datetime - timedelta(days=1, hours=2, seconds=30)
+    assert actual == datetime(2000, 2, 27, 23, 23, 15, 678901, tzinfo=tz_ja)
+
+    # timedelta = datetime(aware) - datetime(aware)
+    timedelta1 = base_datetime - datetime(2000, 4, 2, 1, 23, 45, 678901, tzinfo=tz_ja)
     assert timedelta1 == timedelta(days=-33)
 
-    # timedelta = datetime1(aware) - datetime2(utc)
-    timedelta1 = datetime1 - datetime(2000, 4, 2, 12, 34, 56, 789012, tzinfo=UTC)
+    # timedelta = datetime(aware) - datetime(utc)
+    timedelta1 = base_datetime - datetime(2000, 4, 2, 1, 23, 45, 678901, tzinfo=UTC)
     assert timedelta1 == timedelta(days=-34, hours=15)
 
-    # timedelta = datetime1(aware) - datetime2(native)
+    # timedelta = datetime(aware) - datetime(native)
     with pytest.raises(TypeError) as ex:
-        datetime1 - datetime(2000, 4, 2, 12, 34, 56, 789012)
+        base_datetime - datetime(2000, 2, 28, 10, 34, 26, 789012)
     assert str(ex.value) == "can't subtract offset-naive and offset-aware datetimes"
 
-    # datetime1(aware) < datetime2(aware)
-    actual = datetime1 < datetime(2000, 4, 2, 12, 34, 56, 789012, tzinfo=tz_ja)
-    assert actual is True
+    # datetime (==|<|>) datetime
+    assert base_datetime != datetime(2000, 2, 29, 1, 23, 45, 999999, tzinfo=tz_ja)
+    assert base_datetime > datetime(2000, 2, 29, 1, 23, 44, 678901, tzinfo=tz_ja)
+    assert base_datetime < datetime(2000, 2, 29, 1, 23, 46, 678901, tzinfo=tz_ja)
 
 
-def test_datetime_convert_tostring() -> None:
-    tz_ja = ZoneInfo("Asia/Tokyo")
-    datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
+def test_conversion_string(tz_ja: Any) -> None:
+    """Converts between date and string types."""
+
+    base_datetime = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 
     # convert datetime to string(ISO8601)
-    iso8601 = datetime1.isoformat()
+    iso8601 = base_datetime.isoformat()
     assert iso8601 == "2000-02-29T01:23:45.678901+09:00"
 
-    iso8601utc = datetime1.astimezone(UTC).isoformat().replace("+00:00", "Z")
+    iso8601utc = base_datetime.astimezone(UTC).isoformat().replace("+00:00", "Z")
     assert iso8601utc == "2000-02-28T16:23:45.678901Z"
 
-    # convert string(ISO8601) to datetime
+    # convert datetime from string(ISO8601)
     datetime2 = datetime.strptime(iso8601, "%Y-%m-%dT%H:%M:%S.%f%z")
-    assert datetime2 == datetime1
+    assert datetime2 == base_datetime
 
     datetime2 = datetime.strptime(iso8601utc, "%Y-%m-%dT%H:%M:%S.%f%z")
-    assert datetime2 == datetime1
+    assert datetime2 == base_datetime
 
     # convert datetime to string
-    text = datetime1.strftime("%Y/%m/%d %H:%M:%S %z %Z")
+    text = base_datetime.strftime("%Y/%m/%d %H:%M:%S %z %Z")
     assert text == "2000/02/29 01:23:45 +0900 JST"
     assert text != "2000/02/29 01:23:45 +09:00 JST"
 
 
-def test_datetime_convert_timezone() -> None:
-    tz_ja = ZoneInfo("Asia/Tokyo")
+def test_conversion_timezone_utc(tz_ja: Any) -> None:
+    """Converts between JST and UTC timezone."""
+
     datetime1 = datetime(2000, 2, 29, 1, 23, 45, 678901, tzinfo=tz_ja)
 
     # convert JST -> UTC
