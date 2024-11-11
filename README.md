@@ -14,7 +14,11 @@ This might be helpful for developers having the same problem.
 
 However, please note that the code described here is based on my personal opinion and may contain many inaccuracies.
 
-## Projects
+## Example Projects
 
 - [examples-lib](./libs/examples-lib/README.md)
 - [examples-cli](./apps/examples-cli/README.md)
+
+## More documents
+
+- [doc](./docs/README.md)

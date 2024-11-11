@@ -11,8 +11,10 @@
   "words": [
     "argparse",
     "asyncio",
+    "devel",
     "isort",
     "mypy",
+    "pycache",
     "pyclean",
     "pyproject",
     "pytest",
