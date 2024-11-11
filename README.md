@@ -5,7 +5,6 @@
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 [![CodeQL](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql)
 
-
 Workspace for studying Python programming.
 
 ## What is this
@@ -15,7 +14,11 @@ This might be helpful for developers having the same problem.
 
 However, please note that the code described here is based on my personal opinion and may contain many inaccuracies.
 
-## Projects
+## Example Projects
 
 - [examples-lib](./libs/examples-lib/README.md)
 - [examples-cli](./apps/examples-cli/README.md)
+
+## More documents
+
+- [doc](./docs/README.md)

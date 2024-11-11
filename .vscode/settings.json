@@ -1,4 +1,11 @@
 {
+  "[markdown]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "explicit"
+    },
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
@@ -17,6 +24,15 @@
   "evenBetterToml.formatter.inlineTableExpand": true,
   "evenBetterToml.formatter.reorderArrays": true,
   "evenBetterToml.formatter.reorderKeys": true,
+  "markdownlint.config": {},
+  "markdownlint.lintWorkspaceGlobs": [
+    "**/*.{md,mkd,mdwn,mdown,markdown,markdn,mdtxt,mdtext,workbook}",
+    "!**/bower_components",
+    "!**/node_modules",
+    "!**/vendor",
+    "!**/.git",
+    "!**/.venv",
+  ],
   "mypy-type-checker.args": [],
   "python.analysis.autoFormatStrings": false,
   "python.terminal.activateEnvInCurrentTerminal": true,
@@ -29,5 +45,5 @@
   "ruff.lint.args": [
     "--config=.ruff.toml"
   ],
-  "terminal.integrated.environmentChangesRelaunch": true,
+  "terminal.integrated.environmentChangesRelaunch": true
 }

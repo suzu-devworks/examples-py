@@ -1,29 +1,32 @@
 # docs
 
-## Development
+Various things about Python.
 
-### How the workspace was initialized
+## Table of Contents <!-- omit in toc -->
 
-create `pyproject.toml` file and directory:
+- [docs](#docs)
+  - [PEP](#pep)
+  - [Environments for Python](#environments-for-python)
 
-```shell
-rye init .
-```
+## PEP
 
-Add lines `pyproject.toml`:
+PEP stands for Python Enhancement Proposal. A PEP is a design document providing information to the Python community, or describing a new feature for Python or its processes or environment.
 
-```toml
-[tool.rye]
-dev-dependencies = []
-managed = true
-virtual = true
+- [PEP 440](./pep/PEP440.md)
 
-[tool.rye.workspace]
-members = ["apps/*", "libs/*"]
-```
+## Environments for Python
 
-Add development tools:
+Environment required for python development.
 
-```shell
-rye add -d ruff mypy pyclean
-```
+- Python environments
+  - [pip](./environment/pip.md)
+  - [pyenv](./environment/pyenv.md)
+  - [pyenv virtualenv](./environment/pyenv-virtualenv.md)
+  - [venv](./environment/venv.md)
+  
+- Package managements
+  - [Setuptools](./managements/setuptools.md)
+  - [Pipenv](./managements/pipenv.md)
+  - [Poetry](./managements/poetry.md)
+  - [PDM](./managements/pdm.md)
+  - [Rye](./managements/rye.md)

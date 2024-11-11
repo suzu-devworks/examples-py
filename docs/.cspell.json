@@ -1,0 +1,25 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [],
+  "dictionaries": [],
+  "words": [
+    "anyenv",
+    "distutils",
+    "lockfiles",
+    "numpy",
+    "Pipenv",
+    "Pipfile",
+    "pyenv",
+    "pyvenv",
+    "readline",
+    "Setuptools",
+    "taskipy",
+    "virtualenvs",
+    "zipimport"
+  ],
+  "ignoreWords": [],
+  "import": [
+    "../.vscode/cspell.json"
+  ]
+}

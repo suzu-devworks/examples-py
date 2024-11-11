@@ -28,7 +28,7 @@ This is a project to learn the basic functions and usage of Python.
 - [`datetime`](./tests/libraries/datetime/)
   > Learn how to work with dates with datetime and timezone.
 - [`NumPy`](./tests/libraries/numpy/)
-  > NumPy provides support for typed multidimensional arrays for efficient numerical computation and a large library of high-level mathematical functions to manipulate them.
+  > Learn how to use NumPy to perform high-level mathematical functions that underpin image processing and machine learning.them.
 
 ## Development
 

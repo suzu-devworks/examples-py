@@ -1,13 +1,20 @@
 {
   "version": "0.2",
-  "ignorePaths": [],
+  "ignorePaths": [
+    ".devcontainer",
+    ".vscode",
+    "**/.git/**",
+    "**/*.lock"
+  ],
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
     "argparse",
     "asyncio",
+    "devel",
     "isort",
     "mypy",
+    "pycache",
     "pyclean",
     "pyproject",
     "pytest",
