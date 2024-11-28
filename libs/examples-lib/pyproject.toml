@@ -33,6 +33,8 @@ packages = ["src/examples_lib"]
 
 [tool.pytest.ini_options]
 addopts = "-p no:cacheprovider"
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"
 markers = [
   "asyncio",
 ]

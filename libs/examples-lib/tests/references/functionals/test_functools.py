@@ -10,19 +10,18 @@ import operator
 from functools import reduce
 
 
-class TestFunctools:
-    def test_reduce(self) -> None:
-        """`functools.reduce(function, iterable[, initializer])`
+def test_using_functools_reduce() -> None:
+    """`functools.reduce(function, iterable[, initializer])`
 
-        Apply function of two arguments cumulatively to the items of iterable,
-        from left to right, so as to reduce the iterable to a single value
-        """
+    Apply function of two arguments cumulatively to the items of iterable,
+    from left to right, so as to reduce the iterable to a single value
+    """
 
-        list1 = ["A", "BB", "C"]
-        actual1 = reduce(operator.concat, list1)  # type: ignore[arg-type]
-        # spell-checker:disable-next-line
-        assert actual1 == "ABBC"
+    list1 = ["A", "BB", "C"]
+    actual1 = reduce(operator.concat, list1)  # type: ignore[arg-type]
+    # spell-checker:disable-next-line
+    assert actual1 == "ABBC"
 
-        range1 = range(1, 11)
-        actual2 = reduce(lambda x, y: x + y, range1)
-        assert actual2 == 55
+    range1 = range(1, 11)
+    actual2 = reduce(lambda x, y: x + y, range1)
+    assert actual2 == 55

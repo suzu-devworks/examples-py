@@ -5,11 +5,13 @@
   "dictionaries": [],
   "words": [
     "arange",
+    "autouse",
     "dtype",
     "linalg",
     "natsort",
     "natsorted",
     "ndarray",
+    "ndarrays",
     "numpy",
     "realsorted"
   ],

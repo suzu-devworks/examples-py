@@ -13,22 +13,15 @@ This is a project to learn the basic functions and usage of Python.
 ## Language reference
 
 - [sequences](./tests/references/sequences/)
-  > Learn about basic sequence type operations.
 - [functional programming](./tests/references/functionals/)
-  > Learn about functional programming.
 - [sorting](./tests/references/sorting/)
-  > Learn about different sorts.
 - [decorators](./tests/references/decorators/)
-  > Learn how to define and use decorators.
 - [data models](./tests/references/data_models/)
-  > Learn data models using special methods in Python.
 
 ## Standard library study
 
 - [`datetime`](./tests/libraries/datetime/)
-  > Learn how to work with dates with datetime and timezone.
 - [`NumPy`](./tests/libraries/numpy/)
-  > Learn how to use NumPy to perform high-level mathematical functions that underpin image processing and machine learning.them.
 
 ## Development
 
