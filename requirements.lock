@@ -10,6 +10,7 @@
 #   universal: false
 
 -e file:apps/examples-cli
+-e file:apps/examples-ipc
 -e file:libs/examples-lib
     # via examples-cli
 natsort==8.4.0
@@ -18,6 +19,8 @@ numpy==2.1.3
     # via examples-lib
 pillow==11.0.0
     # via examples-cli
+posix-ipc==1.1.1
+    # via examples-ipc
 pytz==2024.2
     # via examples-lib
 pyyaml==6.0.2

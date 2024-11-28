@@ -10,6 +10,7 @@
 #   universal: false
 
 -e file:apps/examples-cli
+-e file:apps/examples-ipc
 -e file:libs/examples-lib
     # via examples-cli
 coverage==7.6.4
@@ -29,6 +30,8 @@ pillow==11.0.0
     # via examples-cli
 pluggy==1.5.0
     # via pytest
+posix-ipc==1.1.1
+    # via examples-ipc
 pyclean==3.0.0
 pytest==8.3.3
     # via pytest-asyncio
