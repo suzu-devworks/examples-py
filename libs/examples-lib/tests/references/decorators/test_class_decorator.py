@@ -12,35 +12,34 @@ References:
 from typing import Any
 
 
-class TestClassDecorator:
-    def test_with_pep3129(self) -> None:
-        """PEP 3129's class decorator."""
+def test_with_pep3129() -> None:
+    """PEP 3129's class decorator."""
 
-        def foo(cls: Any) -> Any:
-            cls.foo_is = "FOO"
-            return cls
+    def foo(cls: Any) -> Any:
+        cls.foo_is = "FOO"
+        return cls
 
-        def bar(cls: Any) -> Any:
-            cls.bar_is = "BAR"
+    def bar(cls: Any) -> Any:
+        cls.bar_is = "BAR"
 
-            return cls
+        return cls
 
-        class A:
-            def __init__(self) -> None:
-                self.param = "PARAM"
+    class A:
+        def __init__(self) -> None:
+            self.param = "PARAM"
 
-        a = foo(bar(A()))
-        assert a.param == "PARAM"
-        assert a.foo_is == "FOO"
-        assert a.bar_is == "BAR"
+    a = foo(bar(A()))
+    assert a.param == "PARAM"
+    assert a.foo_is == "FOO"
+    assert a.bar_is == "BAR"
 
-        @foo
-        @bar
-        class B:
-            def __init__(self) -> None:
-                self.param = "PARAM"
+    @foo
+    @bar
+    class B:
+        def __init__(self) -> None:
+            self.param = "PARAM"
 
-        b = B()
-        assert b.param == "PARAM"
-        assert b.foo_is == "FOO"  # type: ignore[attr-defined]
-        assert b.bar_is == "BAR"  # type: ignore[attr-defined]
+    b = B()
+    assert b.param == "PARAM"
+    assert b.foo_is == "FOO"  # type: ignore[attr-defined]
+    assert b.bar_is == "BAR"  # type: ignore[attr-defined]
