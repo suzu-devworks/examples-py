@@ -5,10 +5,10 @@ from datetime import datetime
 import posix_ipc
 
 
-def run(queue_name: str) -> None:
-    mq = posix_ipc.MessageQueue(queue_name, posix_ipc.O_CREAT)
+def run(name: str) -> None:
+    mq = posix_ipc.MessageQueue(name, posix_ipc.O_CREAT)
 
-    print(f"start queue server: {queue_name}")
+    print(f"start queue server: {name}")
     try:
         while True:
             now = datetime.now().time()
@@ -21,4 +21,4 @@ def run(queue_name: str) -> None:
         pass
 
     mq.close()
-    print(f"end queue server: {queue_name}")
+    print(f"end queue server: {name}")

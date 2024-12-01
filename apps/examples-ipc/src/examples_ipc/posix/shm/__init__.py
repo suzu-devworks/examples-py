@@ -7,7 +7,7 @@ from .server import run as _service_run
 
 
 def _clean(name: str) -> None:
-    posix_ipc.unlink_message_queue(name)
+    posix_ipc.unlink_shared_memory(name)
     print(f"{name} is removed.")
 
 
@@ -19,7 +19,7 @@ def _run(args: Namespace) -> None:
         _service_run(args.name)
 
     else:
-        _client_run(args.name, args.count)
+        _client_run(args.name)
 
 
 def configure_arguments(parser: ArgumentParser) -> None:
@@ -33,22 +33,14 @@ def configure_arguments(parser: ArgumentParser) -> None:
         "--server",
         action="store_true",
         dest="is_server_mode",
-        help="run as a service and displays the contents of the message queue.",
+        help="run as a service and displays the contents of the shared memory.",
         default=False,
-    )
-    parser.add_argument(
-        "-c",
-        "--count",
-        dest="count",
-        type=int,
-        help="the number of send in client mode.",
-        default=10,
     )
     parser.add_argument(
         "-n",
         "--name",
         dest="name",
-        help="messaging queue name.",
-        default="/test-queue",
+        help="shared memory name.",
+        default="/test-shm",
     )
     parser.set_defaults(exec=lambda args: _run(args))
