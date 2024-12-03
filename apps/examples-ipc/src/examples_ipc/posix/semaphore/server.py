@@ -5,21 +5,21 @@ import posix_ipc
 
 
 def run(name: str, count: int) -> None:
-    shm = posix_ipc.Semaphore(name, flags=posix_ipc.O_CREAT, initial_value=count)
+    sem = posix_ipc.Semaphore(name, flags=posix_ipc.O_CREAT, initial_value=count)
 
     print(f"start semaphore server: {name} size: {count}")
     try:
         while True:
-            shm.acquire()
+            sem.acquire()
             now = datetime.now().time()
-            print(now, f"semaphore: {shm.value}")
+            print(now, f"semaphore: {sem.value}")
             time.sleep(1)
 
-            shm.release()
+            sem.release()
 
     except KeyboardInterrupt:
         print("canceled.")
         pass
 
-    shm.close()
+    sem.close()
     print(f"end semaphore server: {name}")

@@ -26,13 +26,13 @@ It doesn't matter whether you start the server or the client first.
 Start the server:
 
 ```shell
-examples-ipc posix mqueue -s -n /test
+examples-ipc posix msg -s -n /test
 ```
 
 Start the client:
 
 ```shell
-examples-ipc posix mqueue -n /test -c 15
+examples-ipc posix msg -n /test -c 15
 ```
 
 If you start both, messages from the client will appear on the server console:
@@ -57,7 +57,7 @@ If you start both, messages from the client will appear on the server console:
 To delete a POSIX queue:
 
 ```shell
-examples-ipc posix mqueue --clean -n /test
+examples-ipc posix msg --clean -n /test
 ```
 
 You can check the status of the queue with the following command:
@@ -132,7 +132,7 @@ cat /dev/shm/{shared-memory-name}
 Start the server:
 
 ```shell
-examples-ipc posix semaphore -s -n /test
+examples-ipc posix sem -s -n /test
 ```
 
 Check the semaphore value every 3 seconds.
@@ -147,7 +147,7 @@ start semaphore server: /test size: 2
 Run the client:
 
 ```shell
-examples-ipc posix semaphore -n /test
+examples-ipc posix sem -n /test
 ```
 
 The semaphore value on the server console will be decreased by 1.
@@ -168,7 +168,7 @@ If the semaphore is 0, the client fails.
 Running the client with `--release` will increment the semaphore by 1.
 
 ```shell
-examples-ipc posix semaphore -n /test --release
+examples-ipc posix sem -n /test --release
 ```
 
 The semaphore value on the server changes.

@@ -11,8 +11,8 @@ def run(name: str) -> None:
     print(f"start queue server: {name}")
     try:
         while True:
-            now = datetime.now().time()
             message = mq.receive()
+            now = datetime.now().time()
             print(now, json.loads(message[0]))
             time.sleep(1)
 

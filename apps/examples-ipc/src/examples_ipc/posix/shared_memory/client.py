@@ -17,7 +17,7 @@ def run(name: str) -> None:
             mm.seek(0)
             mm.write(text.encode(encoding="utf-8"))
             mm.write(b"\n")
-            mm.write(b"\0") # For the unexpected
+            mm.write(b"\0")  # For the unexpected
             print(f"write: {text}")
 
     except KeyboardInterrupt:
