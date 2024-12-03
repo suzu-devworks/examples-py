@@ -13,7 +13,7 @@
 -e file:apps/examples-ipc
 -e file:libs/examples-lib
     # via examples-cli
-coverage==7.6.4
+coverage==7.6.8
     # via pytest-cov
 iniconfig==2.0.0
     # via pytest
@@ -33,7 +33,7 @@ pluggy==1.5.0
 posix-ipc==1.1.1
     # via examples-ipc
 pyclean==3.0.0
-pytest==8.3.3
+pytest==8.3.4
     # via pytest-asyncio
     # via pytest-cov
 pytest-asyncio==0.24.0
@@ -42,7 +42,9 @@ pytz==2024.2
     # via examples-lib
 pyyaml==6.0.2
     # via examples-cli
-ruff==0.7.3
+ruff==0.8.1
+sysv-ipc==1.1.0
+    # via examples-ipc
 types-pillow==10.2.0.20240822
 types-pytz==2024.2.0.20241003
 types-pyyaml==6.0.12.20240917

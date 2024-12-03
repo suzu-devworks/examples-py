@@ -3,7 +3,8 @@ authors = [
   { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
 ]
 dependencies = [
-  "posix-ipc>=1.1.1",
+    "posix-ipc>=1.1.1",
+    "sysv-ipc>=1.1.0",
 ]
 description = "Add your description here"
 name = "examples-ipc"

@@ -1,7 +1,8 @@
 import importlib.metadata
 from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 
-from .posix import configure_arguments as configure_args_posix
+from .posix import configure_arguments as configure_posix
+from .sysv import configure_arguments as configure_sysv
 
 _version = importlib.metadata.version("examples-ipc")
 
@@ -25,8 +26,11 @@ def parse_arguments() -> Namespace:
 
     subparsers = parser.add_subparsers(required=True)
 
-    args_parser = subparsers.add_parser("posix", help="POSIX IPC examples")
-    configure_args_posix(args_parser)
+    posix_parser = subparsers.add_parser("posix", help="POSIX IPC examples")
+    configure_posix(posix_parser)
+
+    sysv_parser = subparsers.add_parser("sysv", help="SystemV IPC examples")
+    configure_sysv(sysv_parser)
 
     args = parser.parse_args()
     return args

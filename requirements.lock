@@ -25,3 +25,5 @@ pytz==2024.2
     # via examples-lib
 pyyaml==6.0.2
     # via examples-cli
+sysv-ipc==1.1.0
+    # via examples-ipc
