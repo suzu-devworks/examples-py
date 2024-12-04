@@ -9,13 +9,14 @@ def run(name: str, count: int) -> None:
 
     print(f"start semaphore server: {name} size: {count}")
     try:
+        previous = None
         while True:
-            sem.acquire()
-            now = datetime.now().time()
-            print(now, f"semaphore: {sem.value}")
-            time.sleep(1)
+            if previous != sem.value:
+                previous = sem.value
+                now = datetime.now().time()
+                print(now, f"semaphore: {sem.value}")
 
-            sem.release()
+            time.sleep(1)
 
     except KeyboardInterrupt:
         print("canceled.")
