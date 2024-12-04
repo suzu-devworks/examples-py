@@ -18,10 +18,10 @@ def _run(args: Namespace) -> None:
         _clean(args.key)
 
     elif args.is_server_mode:
-        _service_run(args.key)
+        _service_run(args.key, args.size)
 
     else:
-        _client_run(args.key)
+        _client_run(args.key, args.size)
 
 
 def configure_arguments(parser: ArgumentParser) -> None:
@@ -44,5 +44,12 @@ def configure_arguments(parser: ArgumentParser) -> None:
         type=int,
         help="shared memory key.",
         default=100,
+    )
+    parser.add_argument(
+        "-b",
+        "--size",
+        type=int,
+        help="shared memory bytes size.",
+        default=20,
     )
     parser.set_defaults(exec=lambda args: _run(args))

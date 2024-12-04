@@ -16,10 +16,10 @@ def _run(args: Namespace) -> None:
         _clean(args.name)
 
     elif args.is_server_mode:
-        _service_run(args.name)
+        _service_run(args.name, args.size)
 
     else:
-        _client_run(args.name)
+        _client_run(args.name, args.size)
 
 
 def configure_arguments(parser: ArgumentParser) -> None:
@@ -39,8 +39,14 @@ def configure_arguments(parser: ArgumentParser) -> None:
     parser.add_argument(
         "-n",
         "--name",
-        dest="name",
         help="shared memory name.",
         default="/test-shm",
+    )
+    parser.add_argument(
+        "-b",
+        "--size",
+        type=int,
+        help="shared memory bytes size.",
+        default=20,
     )
     parser.set_defaults(exec=lambda args: _run(args))
