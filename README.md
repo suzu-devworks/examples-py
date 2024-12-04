@@ -16,8 +16,14 @@ However, please note that the code described here is based on my personal opinio
 
 ## Example Projects
 
+### Library and Tests
+
 - [examples-lib](./libs/examples-lib/README.md)
+
+### Applications
+
 - [examples-cli](./apps/examples-cli/README.md)
+- [examples-ipc](./apps/examples-ipc/README.md)
 
 ## More documents
 

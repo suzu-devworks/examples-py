@@ -6,9 +6,12 @@ This project is about learning about the capabilities and usage of messaging usi
 
 - [examples-ipc](#examples-ipc)
   - [Getting Started](#getting-started)
-    - [POSIX IPC message queues](#posix-ipc-message-queues)
+    - [POSIX IPC message queue](#posix-ipc-message-queue)
     - [POSIX IPC shared memory](#posix-ipc-shared-memory)
     - [POSIX IPC semaphore](#posix-ipc-semaphore)
+    - [SystemV IPC message queue](#systemv-ipc-message-queue)
+    - [SystemV IPC shared memory](#systemv-ipc-shared-memory)
+    - [SystemV IPC semaphore](#systemv-ipc-semaphore)
   - [References](#references)
 
 ## Getting Started  
@@ -19,20 +22,20 @@ Install dependency packages and install myself locally:
 rye sync
 ```
 
-### POSIX IPC message queues
+### POSIX IPC message queue
 
 It doesn't matter whether you start the server or the client first.
 
 Start the server:
 
 ```shell
-examples-ipc posix msg -s -n /test
+examples-ipc posix msq -s -n /test
 ```
 
 Start the client:
 
 ```shell
-examples-ipc posix msg -n /test -c 15
+examples-ipc posix msq -n /test -c 15
 ```
 
 If you start both, messages from the client will appear on the server console:
@@ -54,10 +57,10 @@ If you start both, messages from the client will appear on the server console:
 09:39:51.058542 {'count': 14}
 ```
 
-To delete a POSIX queue:
+To delete a POSIX message queue:
 
 ```shell
-examples-ipc posix msg --clean -n /test
+examples-ipc posix msq --clean -n /test
 ```
 
 You can check the status of the queue with the following command:
@@ -84,7 +87,8 @@ Read the shared memory every 3 second.
 
 ```console
 start shared memory server: /test
-14:38:54.422853 
+04:44:28.716438 
+04:44:31.722418 
 ...
 ```
 
@@ -98,7 +102,7 @@ The client will wait for input.
 
 ```console
 write to /test-shm
-Please enter something: hello,world{enter}
+Please enter something: {input here}
 ```
 
 When you enter some text on the client and press Enter, that text is written to the shared memory.
@@ -107,15 +111,13 @@ Displays what you type in the server console:
 
 ```console
 ...
-14:51:43.439146
-14:51:46.440134 hello,world
-14:51:49.445372 hello,world
+04:46:28.896235 
+04:46:31.897707 hello,world
+04:46:34.903215 hello,world
 ...
 ```
 
-Unlike C, when reading shared memory we use a little trick to write only one line of text because it is not NULL terminated (It's a bit of a lack of consideration).
-
-To delete a POSIX queue:
+To delete a POSIX shared memory:
 
 ```shell
 examples-ipc posix shm --clean -n /test
@@ -135,13 +137,11 @@ Start the server:
 examples-ipc posix sem -s -n /test
 ```
 
-Check the semaphore value every 3 seconds.
+Checks the semaphore value every second and notifies you if there is a change.
 
 ```console
 start semaphore server: /test size: 2
-09:49:30.469668 semaphore: 1
-09:49:31.470277 semaphore: 1
-...
+08:00:22.925505 semaphore: 2
 ```
 
 Run the client:
@@ -154,9 +154,8 @@ The semaphore value on the server console will be decreased by 1.
 
 ```console
 ...
-09:54:12.219855 semaphore: 1
-09:54:13.221488 semaphore: 0
-...
+08:00:22.925505 semaphore: 2
+08:01:41.174018 semaphore: 1
 ```
 
 If the semaphore is 0, the client fails.
@@ -165,21 +164,139 @@ If the semaphore is 0, the client fails.
 <class 'posix_ipc.BusyError'> Semaphore is busy
 ```
 
-Running the client with `--release` will increment the semaphore by 1.
+Running the client with `-r` or `--release` will increment the semaphore by 1.
 
 ```shell
-examples-ipc posix sem -n /test --release
+examples-ipc posix sem -n /test -r
 ```
 
 The semaphore value on the server changes.
 
 ```console
 ...
-10:01:39.183558 semaphore: 0
-10:01:40.188027 semaphore: 1
-...
+08:01:57.223437 semaphore: 0
+08:02:15.274874 semaphore: 1
 ```
+
+### SystemV IPC message queue
+
+The behavior is the same as POSIX, so please check there.
+In SystemV, they are identified by numbers rather than names.
+
+Start the server:
+
+```shell
+examples-ipc sysv msq -s -k 200
+```
+
+Start the client:
+
+```shell
+examples-ipc sysv msq -k 200 -c 15
+```
+
+To delete a SystemV message queue:
+
+```shell
+examples-ipc sysv msq --clean -k 200
+```
+
+You can check the status of the queue with the following command:
+
+```shell
+ipcs -q
+```
+
+<!-- /* spell-checker:disable */ -->
+```console
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages    
+0x000000c8 1          vscode     600        0            0 
+```
+<!-- /* spell-checker:enable */ -->
+
+### SystemV IPC shared memory
+
+The behavior is the same as POSIX, so please check there.
+
+Start the server:
+
+```shell
+examples-ipc sysv shm -s -k 200
+```
+
+Start the client:
+
+```shell
+examples-ipc sysv shm -k 200
+```
+
+To delete a SystemV shared memory:
+
+```shell
+examples-ipc sysv shm --clean -k 200
+```
+
+You can also check the shared memory with the command:
+
+```shell
+ipcs -m
+```
+
+<!-- /* spell-checker:disable */ -->
+```console
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status      
+0x000000c8 1          vscode     600        20         0         
+```
+<!-- /* spell-checker:enable */ -->
+
+### SystemV IPC semaphore
+
+If a POSIX semaphore exists, it will be acquired as is,
+but be aware that if you add an initialization parameter in SystemV, it will be overwritten.
+
+This example requires that you start the server first.
+
+Start the server:
+
+```shell
+examples-ipc sysv sem -s -k 200
+```
+
+Run the client:
+
+```shell
+examples-ipc sysv sem -k 200
+
+# or 
+
+examples-ipc sysv sem -k 200 -r
+```
+
+The semaphore values ​​displayed on the server seem to be different from the POSIX semaphore values, so there may be significant differences in functionality between semaphores.
+
+To delete a SystemV shared memory:
+
+```shell
+examples-ipc sysv shm --clean -k 200
+```
+
+You can also check the shared memory with the command:
+
+```shell
+ipcs -s
+```
+
+<!-- /* spell-checker:disable */ -->
+```console
+------ Semaphore Arrays --------
+key        semid      owner      perms      nsems     
+0x000000c8 2          vscode     600        1   
+```
+<!-- /* spell-checker:enable */ -->
 
 ## References
 
 - <https://pypi.org/project/posix-ipc/>
+- <https://pypi.org/project/sysv-ipc/>
