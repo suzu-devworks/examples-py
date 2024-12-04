@@ -1,0 +1,34 @@
+[project]
+authors = [
+  { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
+]
+dependencies = [
+    "posix-ipc>=1.1.1",
+    "sysv-ipc>=1.1.0",
+]
+description = "Add your description here"
+name = "examples-ipc"
+readme = "README.md"
+requires-python = ">= 3.12"
+version = "0.1.0"
+
+[project.scripts]
+"examples-ipc" = "examples_ipc:main"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.rye]
+dev-dependencies = []
+managed = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/examples_ipc"]
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = "posix_ipc.*"
