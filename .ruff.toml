@@ -10,7 +10,7 @@ line-length = 119
 target-version = "py312"
 
 [lint]
-ignore = ["ANN101", "ANN401"]
+ignore = ["ANN401"]
 select = [
   "W", # pycodestyle Warning
   # "E",   # pycodestyle Error

@@ -1,6 +1,6 @@
 # examples-py
 
-[![Rye](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/rye/main/artwork/badge.json)](https://rye.astral.sh)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 [![CodeQL](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql)
@@ -16,8 +16,9 @@ However, please note that the code described here is based on my personal opinio
 
 ## Example Projects
 
-- [examples-lib](./libs/examples-lib/README.md)
-- [examples-cli](./apps/examples-cli/README.md)
+- [examples-lib](./packages/examples-lib/README.md)
+- [examples-cli](./packages/examples-cli/README.md)
+- [examples-ipc](./packages/examples-ipc/README.md)
 
 ## More documents
 
