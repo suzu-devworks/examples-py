@@ -1,12 +1,17 @@
-curl -sSf https://rye.astral.sh/get | RYE_TOOLCHAIN=`which python` RYE_INSTALL_OPTION="--yes" bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-mkdir -p ~/.local/bin
-ln -s $HOME/.rye/shims/rye $HOME/.local/bin/rye
+# Shell autocompletion
 
-rye config --set-bool behavior.global-python=true
-rye config --set-bool behavior.use-uv=true
+# Determine your shell (e.g., with `echo $SHELL`), then run one of:
+echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
+# echo 'uv generate-shell-completion fish | source' >> ~/.config/fish/config.fish
+# echo 'eval (uv generate-shell-completion elvish | slurp)' >> ~/.elvish/rc.elv
 
-mkdir -p ~/.local/share/bash-completion/completions
-rye self completion > ~/.local/share/bash-completion/completions/rye.bash
+# Determine your shell (e.g., with `echo $SHELL`), then run one of:
+echo 'eval "$(uvx --generate-shell-completion bash)"' >> ~/.bashrc
+echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
+# echo 'uvx --generate-shell-completion fish | source' >> ~/.config/fish/config.fish
+# echo 'eval (uvx --generate-shell-completion elvish | slurp)' >> ~/.elvish/rc.elv
 
-rye self update
+uv self update

@@ -3,7 +3,7 @@ authors = [
   { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
 ]
 dependencies = [
-  "examples-lib @ file:///workspaces/examples-py/apps/examples-cli/../../libs/examples-lib",
+  "examples-lib",
   "pillow>=10.4.0",
   "pyyaml>=6.0.2",
 ]
@@ -20,18 +20,14 @@ requires-python = ">= 3.12"
 build-backend = "hatchling.build"
 requires = ["hatchling"]
 
-[tool.rye]
-dev-dependencies = [
+[dependency-groups]
+dev = [
   "types-pillow>=10.2.0.20240822",
   "types-pyyaml>=6.0.12.20240917",
 ]
-managed = true
-
-[tool.hatch.metadata]
-allow-direct-references = true
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/examples_cli"]
 
 [tool.hatch.version]
 path = "src/examples_cli/__version__.py"
+
+[tool.uv.sources]
+examples-lib = { workspace = true }

@@ -30,3 +30,4 @@ Environment required for python development.
   - [Poetry](./managements/poetry.md)
   - [PDM](./managements/pdm.md)
   - [Rye](./managements/rye.md)
+  - [uv](./managements/uv.md)
