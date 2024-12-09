@@ -6,23 +6,22 @@ dependencies = []
 description = "Add your description here"
 name = "examples-py"
 readme = "README.md"
-requires-python = ">= 3.12"
+requires-python = ">=3.12"
 version = "0.1.0"
 
-[tool.rye]
-dev-dependencies = [
-  "mypy>=1.11.2",
+[dependency-groups]
+dev = [
+  "mypy>=1.13.0",
   "pyclean>=3.0.0",
-  "ruff>=0.6.8",
+  "ruff>=0.8.2",
 ]
-managed = true
-virtual = true
 
-[tool.rye.workspace]
-members = ["apps/*", "libs/*"]
+[tool.uv.workspace]
+members = ["packages/*"]
 
-[tool.rye.scripts]
-clean = { chain = ["clean:pyclean"] }
-# cannot use pipe.
-# "clean:dirs" = { cmd = "find . | grep -E \"(/__pycache__$|\\.pyc$|\\.pyo$|/build$|/dist$|\\.mypy_cache$)\" | xargs rm -rf" }
-"clean:pyclean" = "pyclean ."
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["packages/*"]
