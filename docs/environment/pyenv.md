@@ -249,9 +249,11 @@ Required-by:
 
 As I wrote on the official site, it seems that header files and various tools are required because C is being built.
 
+<!-- /* spell-checker: disable */ -->
 ```shell
 dnf install make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel
 ```
+<!-- /* spell-checker: enable */ -->
 
 ### Ignoring ensure pip failure: pip 7.1.2 requires SSL/TLS on macOS
 

@@ -3,25 +3,21 @@
   "ignorePaths": [
     ".devcontainer",
     ".vscode",
+    ".gitignore",
     "**/.git/**",
-    "**/*.lock"
+    "**/*.lock",
+    "**/*.ini",
+    "**/*.toml"
   ],
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
     "argparse",
     "asyncio",
-    "devel",
-    "isort",
     "mypy",
     "pycache",
-    "pyclean",
     "pyproject",
-    "pytest",
-    "pytz",
-    "sysv",
-    "venv",
-    "virtualenv"
+    "venv"
   ],
   "ignoreWords": [],
   "import": [],
