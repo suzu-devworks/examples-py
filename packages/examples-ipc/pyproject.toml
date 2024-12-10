@@ -19,6 +19,12 @@ version = "0.1.0"
 build-backend = "hatchling.build"
 requires = ["hatchling"]
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/examples_ipc"]
+
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
 module = "posix_ipc.*"

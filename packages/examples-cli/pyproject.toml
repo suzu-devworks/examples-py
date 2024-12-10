@@ -29,5 +29,11 @@ dev = [
 [tool.hatch.version]
 path = "src/examples_cli/__version__.py"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/examples_cli"]
+
 [tool.uv.sources]
 examples-lib = { workspace = true }
