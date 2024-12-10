@@ -13,6 +13,8 @@
     "ndarray",
     "ndarrays",
     "numpy",
+    "pytest",
+    "pytz",
     "realsorted"
   ],
   "ignoreWords": [],

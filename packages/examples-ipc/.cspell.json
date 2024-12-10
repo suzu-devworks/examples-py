@@ -9,7 +9,8 @@
     "ipcs",
     "mqueue",
     "RDONLY",
-    "RDWR"
+    "RDWR",
+    "sysv"
   ],
   "ignoreWords": [],
   "import": [

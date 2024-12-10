@@ -162,6 +162,7 @@ cython_debug/
 ##> Add
 .DS_Store
 .cov/
+.ruff_cache/
 .pdm-python
 .python-version
 .venv.*/

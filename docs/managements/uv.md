@@ -20,7 +20,16 @@ An extremely fast Python package and project manager, written in Rust.
     - [`init --no-package`](#init---no-package)
     - [`init --lib`](#init---lib)
     - [`init --script`](#init---script)
-    - [Workspace](#workspace)
+  - [Create Workspace](#create-workspace)
+    - [Create root project](#create-root-project)
+    - [Create sub project](#create-sub-project)
+    - [Sync](#sync)
+    - [Build](#build)
+    - [Run](#run)
+  - [Package management](#package-management)
+    - [`uv add`](#uv-add)
+    - [`uv remove`](#uv-remove)
+    - [`uv sync`](#uv-sync)
 
 ## References
 
@@ -126,7 +135,9 @@ if __name__ == "__main__":
     main()
 ```
 
-### Workspace
+## Create Workspace
+
+### Create root project
 
 Create root pyproject.toml:
 
@@ -138,7 +149,6 @@ rm hello.py
 Append to pyproject.toml
 
 ```toml
-
 [tool.uv.workspace]
 members = ["packages/*"]
 
@@ -149,3 +159,88 @@ requires = ["hatchling"]
 [tool.hatch.build.targets.wheel]
 packages = ["packages/*"]
 ```
+
+Optionally add packages for global use:
+
+```shell
+uv add --dev ruff mypy pyclean
+uv add --dev pytest pytest-asyncio pytest-cov
+```
+
+### Create sub project
+
+```shell
+uv init --lib packages/examples-lib
+```
+
+### Sync
+
+root only:
+
+```shell
+uv sync
+```
+
+or specified package:
+
+```shell
+uv sync --project packages/examples-lib
+```
+
+or all packages:
+
+```shell
+uv sync --all-packages
+```
+
+### Build
+
+root only:
+
+```shell
+uv build
+```
+
+or specified package:
+
+```shell
+uv build --project packages/examples-lib
+```
+
+or all packages:
+
+```shell
+uv build --all-packages
+```
+
+### Run
+
+Run the command within the given project directory:
+
+```shell
+uv run --project packages/examples-lib {command} {command-options}
+```
+
+Change to the given directory prior to running the command:
+
+```shell
+uv run --directory packages/examples-lib {command} {command-options}
+```
+
+## Package management
+
+### `uv add`
+
+```shell
+uv add requests
+```
+
+or also specify version constraints
+
+```shell
+uv add 'requests==2.31.0'
+```
+
+### `uv remove`
+
+### `uv sync`
