@@ -24,3 +24,14 @@ dev = [
   "pytest>=8.3.4",
   "types-pytz>=2024.2.0.20240913",
 ]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/examples_lib"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=xml --cov-branch"
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"

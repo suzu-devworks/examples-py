@@ -27,4 +27,4 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["packages/*"]
+packages = ["src/examples_py"]

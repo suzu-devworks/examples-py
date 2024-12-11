@@ -157,8 +157,11 @@ build-backend = "hatchling.build"
 requires = ["hatchling"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["packages/*"]
+packages = ["src/examples_xxx"]
 ```
+
+Specify `tool.hatch.build.targets.wheel.packages` to not collect unnecessary files during build.
+No error occurs.
 
 Optionally add packages for global use:
 
