@@ -30,3 +30,8 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/examples_lib"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=xml --cov-branch"
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"
