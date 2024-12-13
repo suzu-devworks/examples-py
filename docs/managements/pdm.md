@@ -15,17 +15,19 @@ PDM, as described, is a modern Python package and dependency manager supporting 
 
 - [PDM](#pdm)
   - [References](#references)
-  - [Install](#install)
-    - [Update the PDM version](#update-the-pdm-version)
+  - [Installation](#installation)
+    - [Using the Standalone Installer](#using-the-standalone-installer)
+    - [Self update](#self-update)
   - [Configurations](#configurations)
     - [Shell Completion](#shell-completion)
+  - [Creating and Configuring a project](#creating-and-configuring-a-project)
     - [How the project was initialized](#how-the-project-was-initialized)
     - [Install dependency packages](#install-dependency-packages)
     - [The src layout](#the-src-layout)
     - [Use a task runner like npm](#use-a-task-runner-like-npm)
     - [Dynamic versioning](#dynamic-versioning)
     - [Provide Console Scripts](#provide-console-scripts)
-  - [Commands](#commands)
+  - [Package management](#package-management)
     - [`init` Project setup](#init-project-setup)
     - [`venv` Use virtualenv](#venv-use-virtualenv)
     - [`sync/update/install` Restore packages](#syncupdateinstall-restore-packages)
@@ -41,7 +43,9 @@ PDM, as described, is a modern Python package and dependency manager supporting 
 - <https://pdm.fming.dev/latest/>
 - <https://github.com/pdm-project/pdm>
 
-## Install
+## Installation
+
+### Using the Standalone Installer
 
 Recommended installation method:
 
@@ -57,7 +61,7 @@ pip install pdm
 
 > Doesn't it remove itself when you run `pdm remove`?
 
-### Update the PDM version
+### Self update
 
 ```shell
 pdm self update
@@ -77,6 +81,8 @@ sudo mv pdm.bash-completion /etc/bash_completion.d/
 ```
 
 - [Shell Completion](https://pdm.fming.dev/latest/#shell-completion)
+
+## Creating and Configuring a project
 
 ### How the project was initialized
 
@@ -199,7 +205,7 @@ $ examples-pdm-cli
 Hello pdm.
 ```
 
-## Commands
+## Package management
 
 ### `init` Project setup
 

@@ -8,16 +8,16 @@ Setuptools is a collection of enhancements to the Python distutils that allow de
 
 - [Setuptools](#setuptools)
   - [References](#references)
-  - [Install](#install)
+  - [Installation](#installation)
   - [Configurations](#configurations)
-  - [Configuring setuptools using pyproject.toml file](#configuring-setuptools-using-pyprojecttoml-file)
+  - [Creating and Configuring a project using a pyproject.toml file](#creating-and-configuring-a-project-using-a-pyprojecttoml-file)
     - [pyproject.toml](#pyprojecttoml)
     - [How the project was initialized](#how-the-project-was-initialized)
     - [Build package](#build-package)
     - [Managing package version](#managing-package-version)
     - [Managing dependency packages](#managing-dependency-packages)
     - [Provide console scripts](#provide-console-scripts)
-  - [Configuring setuptools using setup.cfg files](#configuring-setuptools-using-setupcfg-files)
+  - [Creating and Configuring a Project Using the setup.cfg File](#creating-and-configuring-a-project-using-the-setupcfg-file)
     - [Controlling files in the distribution](#controlling-files-in-the-distribution)
     - [How the project was initialized](#how-the-project-was-initialized-1)
     - [Build package](#build-package-1)
@@ -27,7 +27,7 @@ Setuptools is a collection of enhancements to the Python distutils that allow de
     - [Provide console scripts](#provide-console-scripts-1)
   - [`setup.py` commands](#setuppy-commands)
     - [Usage](#usage)
-    - [\[clean\] Clean](#clean-clean)
+    - [`clean` Clean](#clean-clean)
 
 ## References
 
@@ -35,7 +35,7 @@ Setuptools is a collection of enhancements to the Python distutils that allow de
 - <https://packaging.python.org/ja/latest/guides/distributing-packages-using-setuptools/>
 - <https://github.com/pypa/setuptools>
 
-## Install
+## Installation
 
 Ensure pip, setuptools, and wheel are up to date.
 
@@ -54,7 +54,7 @@ When I looked previously, there were three examples with different patterns, but
 2. `pyproject.toml` + `setup.cfg`(main) compatibility pattern
 3. Future-oriented patterns in `pyproject.toml`
 
-## Configuring setuptools using pyproject.toml file
+## Creating and Configuring a project using a pyproject.toml file
 
 > Starting with PEP 621, the Python community selected pyproject.toml as a standard way of specifying project metadata.
 
@@ -234,7 +234,7 @@ $ examples-setup2-cli
 Hello setuptools with pyproject.toml.
 ```
 
-## Configuring setuptools using setup.cfg files
+## Creating and Configuring a Project Using the setup.cfg File
 
 This is a legacy pattern.
 
