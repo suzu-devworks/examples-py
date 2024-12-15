@@ -35,7 +35,7 @@ def test_other_operations() -> None:
 
     z = y.view()
     with pytest.raises(AttributeError) as e:
-        z.shape = 6
+        z.shape = 6  # type: ignore
     assert "Incompatible shape for in-place modification." in str(e.value)
 
 
