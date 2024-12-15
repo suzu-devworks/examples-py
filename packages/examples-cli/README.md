@@ -16,7 +16,7 @@ This is a project to learn the basic functions and usage of Python.
 Install dependency packages and install myself locally:
 
 ```shell
-rye sync
+uv sync --project packages/examples-cli
 ```
 
 Executes command defined in `project.scripts`:
@@ -44,10 +44,8 @@ examples-cli --version
 This project was initialized with the following command:
 
 ```shell
-rye init --script apps/examples-cli
-cd apps/examples-cli
-rye add pyyaml pillow
-rye add --dev types-PyYAML types-Pillow
-
-rye add examples-lib --path ../../libs/examples-lib
+uv init --package packages/examples-cli
+uv add --project packages/examples-cli pyyaml pillow
+uv add --project packages/examples-cli --dev types-PyYAML types-Pillow
+uv add --project packages/examples-cli examples-lib
 ```

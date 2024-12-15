@@ -5,6 +5,7 @@ This project is about learning about the capabilities and usage of messaging usi
 ## Table of Contents <!-- omit in toc -->
 
 - [examples-ipc](#examples-ipc)
+  - [References](#references)
   - [Getting Started](#getting-started)
     - [POSIX IPC message queue](#posix-ipc-message-queue)
     - [POSIX IPC shared memory](#posix-ipc-shared-memory)
@@ -12,14 +13,20 @@ This project is about learning about the capabilities and usage of messaging usi
     - [SystemV IPC message queue](#systemv-ipc-message-queue)
     - [SystemV IPC shared memory](#systemv-ipc-shared-memory)
     - [SystemV IPC semaphore](#systemv-ipc-semaphore)
-  - [References](#references)
+  - [Development](#development)
+    - [How the project was initialized](#how-the-project-was-initialized)
+
+## References
+
+- <https://pypi.org/project/posix-ipc/>
+- <https://pypi.org/project/sysv-ipc/>
 
 ## Getting Started  
 
 Install dependency packages and install myself locally:
 
 ```shell
-rye sync
+uv sync --project packages/examples-ipc
 ```
 
 ### POSIX IPC message queue
@@ -296,7 +303,13 @@ key        semid      owner      perms      nsems
 ```
 <!-- /* spell-checker:enable */ -->
 
-## References
+## Development
 
-- <https://pypi.org/project/posix-ipc/>
-- <https://pypi.org/project/sysv-ipc/>
+### How the project was initialized
+
+This project was initialized with the following command:
+
+```shell
+uv init --package packages/examples-ipc
+uv add --project packages/examples-ipc posix-ipc sysv-ipc
+```
