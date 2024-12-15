@@ -21,7 +21,7 @@ def test_single_element_indexing() -> None:
     assert x[2] == 2
     assert x[-2] == 8
 
-    x.shape = (2, 5)
+    x = x.reshape(2, 5)
 
     # It is not necessary to separate each dimension’s index into its own set of square brackets.
     assert x[1, 3] == 8
@@ -395,7 +395,7 @@ def test_field_access() -> None:
 
     assert x["a"].shape == (2, 2)
     assert x["a"].dtype == np.int32
-    assert x["b"].shape == (2, 2, 3, 3)
+    assert x["b"].shape == (2, 2, 3, 3)  # type: ignore
     assert x["b"].dtype == np.float64
 
 
