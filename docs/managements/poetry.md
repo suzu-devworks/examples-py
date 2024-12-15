@@ -8,14 +8,15 @@ Poetry is a tool for dependency management and packaging in Python. It allows yo
 
 - [Poetry](#poetry)
   - [References](#references)
-  - [Install](#install)
-  - [Configurations](#configurations)
+  - [Installation](#installation)
+    - [Using pip](#using-pip)
+    - [Self update](#self-update)
+  - [Creating and Configuring a project](#creating-and-configuring-a-project)
     - [How the project was initialized](#how-the-project-was-initialized)
     - [Install packages](#install-packages)
     - [src-layout](#src-layout)
     - [Provide Console Scripts](#provide-console-scripts)
   - [Commands](#commands)
-    - [`self update` Update poetry](#self-update-update-poetry)
     - [`new/init` Project setup](#newinit-project-setup)
     - [Create virtualenv](#create-virtualenv)
     - [Remove the virtualenv](#remove-the-virtualenv)
@@ -36,7 +37,9 @@ Poetry is a tool for dependency management and packaging in Python. It allows yo
 - <https://python-poetry.org/>
 - <https://github.com/python-poetry/poetry>
 
-## Install
+## Installation
+
+### Using pip
 
 I installed it with pip and it seems fine.
 
@@ -44,7 +47,15 @@ I installed it with pip and it seems fine.
 pip install poetry
 ```
 
-## Configurations
+### Self update
+
+Poetry itself can be updated:
+
+```shell
+poetry self update
+```
+
+## Creating and Configuring a project
 
 ### How the project was initialized
 
@@ -140,14 +151,6 @@ Hello poetry.
 ```
 
 ## Commands
-
-### `self update` Update poetry
-
-Poetry itself can be updated:
-
-```shell
-poetry self update
-```
 
 ### `new/init` Project setup
 

@@ -9,8 +9,8 @@ Can't you make a wheel package?
 
 - [Pipenv](#pipenv)
   - [References](#references)
-  - [Install](#install)
-  - [Configurations](#configurations)
+  - [Installation](#installation)
+  - [Creating and Configuring a project](#creating-and-configuring-a-project)
     - [How the project was initialized](#how-the-project-was-initialized)
     - [Install packages](#install-packages)
     - [Custom Script Shortcuts](#custom-script-shortcuts)
@@ -37,7 +37,7 @@ Can't you make a wheel package?
 - <https://pipenv.pypa.io/en/latest/>
 - <https://github.com/pypa/pipenv>
 
-## Install
+## Installation
 
 Install using pip on venv:
 
@@ -45,7 +45,7 @@ Install using pip on venv:
 pip install --user pipenv
 ```
 
-## Configurations
+## Creating and Configuring a project
 
 ### How the project was initialized
 

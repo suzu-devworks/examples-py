@@ -8,36 +8,38 @@ An extremely fast Python package and project manager, written in Rust.
 
 - [uv](#uv)
   - [References](#references)
-  - [Install uv](#install-uv)
-    - [Standalone installer](#standalone-installer)
-    - [Docker](#docker)
-    - [Upgrade uv](#upgrade-uv)
+  - [Installation](#installation)
+    - [Using the Standalone Installer](#using-the-standalone-installer)
+    - [Use with Docker](#use-with-docker)
+    - [Self update](#self-update)
   - [Configurations](#configurations)
     - [Whether to allow Python downloads](#whether-to-allow-python-downloads)
-  - [Create projects](#create-projects)
+  - [Creating and Configuring a workspaces](#creating-and-configuring-a-workspaces)
+    - [Workspaces layout](#workspaces-layout)
+    - [Create workspace root](#create-workspace-root)
+    - [Add packages projects](#add-packages-projects)
+  - [Project templates](#project-templates)
     - [`init --app`(default)](#init---appdefault)
     - [`init --package`](#init---package)
     - [`init --no-package`](#init---no-package)
     - [`init --lib`](#init---lib)
     - [`init --script`](#init---script)
-  - [Create Workspace](#create-workspace)
-    - [Create root project](#create-root-project)
-    - [Create sub project](#create-sub-project)
-    - [Sync](#sync)
-    - [Build](#build)
-    - [Run](#run)
   - [Package management](#package-management)
-    - [`uv add`](#uv-add)
-    - [`uv remove`](#uv-remove)
-    - [`uv sync`](#uv-sync)
+    - [`add` Add dependencies](#add-add-dependencies)
+    - [`remove` Remove dependencies](#remove-remove-dependencies)
+    - [`lock` Update the project's lockfile](#lock-update-the-projects-lockfile)
+    - [`tree` Display the project's dependency tree](#tree-display-the-projects-dependency-tree)
+    - [`sync` Update the project’s environment](#sync-update-the-projects-environment)
+    - [`build` Build Python packages](#build-build-python-packages)
+    - [`run` Run a command](#run-run-a-command)
 
 ## References
 
 - <https://docs.astral.sh/uv/>
 
-## Install uv
+## Installation
 
-### Standalone installer
+### Using the Standalone Installer
 
 To install you can run a curl command:
 
@@ -45,13 +47,16 @@ To install you can run a curl command:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### Docker
+### Use with Docker
 
-There are two ways to use uv with Docker: copy the binaries from the official image or install it using the installer.
+There are two ways to use uv with Docker:
 
-This repository uses the DevContainers Python image, so we install it using the postCreateCommand.
+- Copy the binaries from the official image
+- Install using the installer
 
-### Upgrade uv
+Since this repository uses the DevContainers base image, we'll install it with the installer using postCreateCommand.
+
+### Self update
 
 ```shell
 uv self update
@@ -61,7 +66,117 @@ uv self update
 
 ### Whether to allow Python downloads
 
-## Create projects
+[See here...](https://docs.astral.sh/uv/reference/settings/#python-downloads)
+
+For `pyproject.toml`:
+
+```toml
+[tool.uv]
+python-downloads = "manual"
+```
+
+## Creating and Configuring a workspaces
+
+### Workspaces layout
+
+```console
+examples-py
+├── .gitignore
+├── packages
+│   ├── examples-cli
+│   │   ├── pyproject.toml
+│   │   ├── README.md
+│   │   └── src
+│   │       └── examples_cli
+│   │           └── __init__.py
+│   └── examples-lib
+│       ├── pyproject.toml
+│       ├── README.md
+│       └── src
+│           └── examples_lib
+│               ├── __init__.py
+│               └── py.typed
+├── pyproject.toml
+├── .python-version
+├── README.md
+└── uv.lock
+```
+
+### Create workspace root
+
+Create the root project:
+
+```shell
+uv init --author-from auto
+```
+
+We don't need the accompanying `hello.py`, so delete it.
+
+```shell
+rm hello.py
+```
+
+Add the following to your pyproject.toml:
+
+```toml
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/examples_py"]
+```
+
+Specify `tool.hatch.build.targets.wheel.packages` to not collect unnecessary files during build.
+No error occurs.
+
+Optionally add packages for global use:
+
+```shell
+uv add --dev ruff mypy pyclean
+uv add --dev pytest pytest-asyncio pytest-cov
+```
+
+Maybe uv tool is better, but I haven't studied it enough.
+
+### Add packages projects
+
+Create each project:
+
+```shell
+uv init --lib packages/examples-lib
+uv init --package packages/examples-cli
+```
+
+Add a reference project:
+
+```shell
+uv add --project packages/examples-cli examples-lib
+```
+
+Should I add everything to the root?
+
+```shell
+uv add examples-cli examples-lib
+```
+
+It will be automatically filled in `pyproject.toml`
+
+```toml
+dependencies = [
+  "examples-cli",
+  "examples-lib",
+]
+
+[tool.uv.sources]
+examples-cli = { workspace = true }
+examples-lib = { workspace = true }
+```
+
+## Project templates
 
 ### `init --app`(default)
 
@@ -135,48 +250,70 @@ if __name__ == "__main__":
     main()
 ```
 
-## Create Workspace
+## Package management
 
-### Create root project
-
-Create root pyproject.toml:
+### `add` Add dependencies
 
 ```shell
-uv init --author-from auto
-rm hello.py
+uv add requests
+
+# Specify a version constraint
+uv add 'requests==2.31.0'
+
+# Add a git dependency
+uv add git+https://github.com/psf/requests
 ```
 
-Append to pyproject.toml
-
-```toml
-[tool.uv.workspace]
-members = ["packages/*"]
-
-[build-system]
-build-backend = "hatchling.build"
-requires = ["hatchling"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/examples_xxx"]
-```
-
-Specify `tool.hatch.build.targets.wheel.packages` to not collect unnecessary files during build.
-No error occurs.
-
-Optionally add packages for global use:
+### `remove` Remove dependencies
 
 ```shell
-uv add --dev ruff mypy pyclean
-uv add --dev pytest pytest-asyncio pytest-cov
+uv remove requests
 ```
 
-### Create sub project
+### `lock` Update the project's lockfile
 
 ```shell
-uv init --lib packages/examples-lib
+uv lock --upgrade-package requests
+
+# All 
+uv lock --upgrade
 ```
 
-### Sync
+### `tree` Display the project's dependency tree
+
+```shell
+uc tree
+
+# Show the latest available version of each package in the tree
+uv tree --outdated
+```
+
+<!-- /* spell-checker:disable */ -->
+```console
+Resolved 16 packages in 2ms
+examples-py v0.1.0
+├── examples-cli v0.1.0
+│   └── examples-lib v0.1.0
+├── examples-lib v0.1.0
+├── mypy v1.13.0 (group: dev)
+│   ├── mypy-extensions v1.0.0
+│   └── typing-extensions v4.12.2
+├── pyclean v3.0.0 (group: dev)
+├── pytest v8.3.4 (group: dev)
+│   ├── iniconfig v2.0.0
+│   ├── packaging v24.2
+│   └── pluggy v1.5.0
+├── pytest-asyncio v0.24.0 (group: dev)
+│   └── pytest v8.3.4 (*)
+├── pytest-cov v6.0.0 (group: dev)
+│   ├── coverage v7.6.9
+│   └── pytest v8.3.4 (*)
+└── ruff v0.8.2 (group: dev)
+(*) Package tree already displayed
+```
+<!-- /* spell-checker:enable */ -->
+
+### `sync` Update the project’s environment
 
 root only:
 
@@ -196,7 +333,7 @@ or all packages:
 uv sync --all-packages
 ```
 
-### Build
+### `build` Build Python packages
 
 root only:
 
@@ -216,34 +353,16 @@ or all packages:
 uv build --all-packages
 ```
 
-### Run
+### `run` Run a command
 
 Run the command within the given project directory:
 
 ```shell
-uv run --project packages/examples-lib {command} {command-options}
+uv run --project packages/examples-cli {command} {command-options}
 ```
 
 Change to the given directory prior to running the command:
 
 ```shell
-uv run --directory packages/examples-lib {command} {command-options}
+uv run --directory packages/examples-cli {command} {command-options}
 ```
-
-## Package management
-
-### `uv add`
-
-```shell
-uv add requests
-```
-
-or also specify version constraints
-
-```shell
-uv add 'requests==2.31.0'
-```
-
-### `uv remove`
-
-### `uv sync`
