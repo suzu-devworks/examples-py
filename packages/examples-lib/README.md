@@ -5,11 +5,26 @@ This is a project to learn the basic functions and usage of Python.
 ## Table of Contents <!-- omit in toc -->
 
 - [examples-lib](#examples-lib)
+  - [Getting Started](#getting-started)
   - [Language reference](#language-reference)
   - [Standard library study](#standard-library-study)
   - [Third party library study](#third-party-library-study)
   - [Development](#development)
     - [How the project was initialized](#how-the-project-was-initialized)
+
+## Getting Started  
+
+Install dependency packages and install myself locally:
+
+```shell
+uv sync --project packages/examples-lib 
+```
+
+Run test:
+
+```shell
+uv run --directory packages/examples-lib pytest 
+```
 
 ## Language reference
 
@@ -41,9 +56,8 @@ This is a project to learn the basic functions and usage of Python.
 This project was initialized with the following command:
 
 ```shell
-rye init libs/examples-lib
-cd libs/examples-lib
-rye add --dev pytest-cov pytest-asyncio 
-rye add pytz natsort numpy
-rye add --dev types-pytz
+uv init --lib packages/examples-lib
+uv add --project packages/examples-lib --dev pytest pytest-cov pytest-asyncio 
+uv add --project packages/examples-lib pytz natsort numpy
+uv add --project packages/examples-lib --dev types-pytz
 ```
