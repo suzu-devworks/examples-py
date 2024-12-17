@@ -5,6 +5,7 @@
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 [![CodeQL](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql)
 [![CI](https://github.com/suzu-devworks/examples-py/actions/workflows/ci.yaml/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/ci.yaml)
+![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fsuzu-devworks%2Fexamples-py%2Frefs%2Fheads%2Fmain%2Fpyproject.toml)
 
 Workspace for studying Python programming.
 
