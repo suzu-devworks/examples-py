@@ -1,6 +1,8 @@
 services:
   dev:
     image: mcr.microsoft.com/devcontainers/base:bookworm
+    environment:
+      - UV_LINK_MODE=copy
     tty: true
     volumes:
       # Forwards the local Docker socket to the container.
