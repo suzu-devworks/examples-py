@@ -14,10 +14,10 @@ This is a project to learn the basic functions and usage of Python.
 
 ## Getting Started  
 
-Install dependency packages and install myself locally:
+Install dependency packages:
 
 ```shell
-uv sync --project packages/examples-lib 
+uv sync
 ```
 
 Run test:

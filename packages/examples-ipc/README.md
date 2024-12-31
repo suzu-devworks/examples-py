@@ -23,10 +23,10 @@ This project is about learning about the capabilities and usage of messaging usi
 
 ## Getting Started  
 
-Install dependency packages and install myself locally:
+Install dependency packages:
 
 ```shell
-uv sync --project packages/examples-ipc
+uv sync
 ```
 
 ### POSIX IPC message queue
