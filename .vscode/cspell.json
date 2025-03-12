@@ -1,10 +1,14 @@
 {
   "version": "0.2",
   "ignorePaths": [
+    ".git/",
     ".devcontainer/",
+    ".config/",
+    ".github/",
     ".vscode/",
+    ".editorconfig",
+    ".gitignore",
     ".*",
-    "**/.git/",
     "**/*.lock",
     "**/*.ini",
     "**/*.toml"

@@ -29,4 +29,4 @@ However, please note that the code described here is based on my personal opinio
 
 ## More documents
 
-- [doc](https://github.com/suzu-devworks/examples-py/wiki)
+- [doc](./docs/README.md)
