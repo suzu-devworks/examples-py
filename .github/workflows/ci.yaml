@@ -13,13 +13,14 @@ on:
       - "packages/**"
   workflow_dispatch:
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
 
     steps:
     - uses: actions/checkout@v4
