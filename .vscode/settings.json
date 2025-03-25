@@ -3,6 +3,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.markdownlint": "explicit"
     },
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true
   },
@@ -12,13 +13,14 @@
       "source.organizeImports": "explicit"
     },
     "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnPaste": true,
     "editor.formatOnSave": true
   },
   "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
   },
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
   "evenBetterToml.formatter.arrayAutoCollapse": false,
   "evenBetterToml.formatter.columnWidth": 90,
   "evenBetterToml.formatter.inlineTableExpand": true,
@@ -39,11 +41,6 @@
   "python.terminal.activateEnvironment": true,
   "python.testing.autoTestDiscoverOnSaveEnabled": false,
   "python.testing.pytestEnabled": true,
-  "ruff.format.args": [
-    "--config=.ruff.toml"
-  ],
-  "ruff.lint.args": [
-    "--config=.ruff.toml"
-  ],
-  "terminal.integrated.environmentChangesRelaunch": true
+  "terminal.integrated.environmentChangesRelaunch": true,
+  "ruff.configuration": "${workspaceFolder}/.ruff.toml"
 }
