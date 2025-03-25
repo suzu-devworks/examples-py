@@ -7,25 +7,22 @@
 [![CI](https://github.com/suzu-devworks/examples-py/actions/workflows/ci.yaml/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/ci.yaml)
 [![CodeQL](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/suzu-devworks/examples-py/actions/workflows/github-code-scanning/codeql)
 
-A workspace for studying Python programming.
+## What is the purpose of this repository?
 
-## What is this
+This repository is the author's personal playground for learning Python and experimenting with its features.
 
-This repository is the author's personal playground to learn Python and experiment with its features.
-This might be helpful for developers having the same problem.
+The content here may be useful to other developers who have the same problem.
 
 However, please note that the code described here is based on my personal opinion and may contain many inaccuracies.
 
-## Example Projects
+## Project Index
 
-### Library and Test
+- Library and Test
+  - [examples-lib](./packages/examples-lib/README.md)
 
-- [examples-lib](./packages/examples-lib/README.md)
-
-### Applications
-
-- [examples-cli](./packages/examples-cli/README.md)
-- [examples-ipc](./packages/examples-ipc/README.md)
+- Applications
+  - [examples-cli](./packages/examples-cli/README.md)
+  - [examples-ipc](./packages/examples-ipc/README.md)
 
 ## More documents
 
