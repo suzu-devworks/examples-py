@@ -26,4 +26,4 @@ However, please note that the code described here is based on my personal opinio
 
 ## More documents
 
-- [doc](./docs/README.md)
+- [See here ...](./docs/README.md)
