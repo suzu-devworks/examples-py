@@ -23,7 +23,3 @@ However, please note that the code described here is based on my personal opinio
 - Applications
   - [examples-cli](./packages/examples-cli/README.md)
   - [examples-ipc](./packages/examples-ipc/README.md)
-
-## More documents
-
-- [See here ...](./docs/README.md)
