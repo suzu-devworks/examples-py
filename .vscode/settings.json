@@ -28,13 +28,15 @@
   "evenBetterToml.formatter.inlineTableExpand": true,
   "evenBetterToml.formatter.reorderArrays": true,
   "evenBetterToml.formatter.reorderKeys": true,
+  "markdown.extension.toc.levels": "2..6",
   "markdownlint.config": {},
   "markdownlint.lintWorkspaceGlobs": [
     "**/*.{md,mkd,mdwn,mdown,markdown,markdn,mdtxt,mdtext,workbook}",
+    "!**/*.code-search",
     "!**/bower_components",
     "!**/node_modules",
-    "!**/vendor",
     "!**/.git",
+    "!**/vendor",
     "!**/.venv"
   ],
   "mypy-type-checker.args": [],
