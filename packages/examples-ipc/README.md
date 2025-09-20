@@ -4,22 +4,16 @@ This project is about learning about the capabilities and usage of messaging usi
 
 ## Table of Contents <!-- omit in toc -->
 
-- [examples-ipc](#examples-ipc)
-  - [References](#references)
-  - [Getting Started](#getting-started)
-    - [POSIX IPC message queue](#posix-ipc-message-queue)
-    - [POSIX IPC shared memory](#posix-ipc-shared-memory)
-    - [POSIX IPC semaphore](#posix-ipc-semaphore)
-    - [SystemV IPC message queue](#systemv-ipc-message-queue)
-    - [SystemV IPC shared memory](#systemv-ipc-shared-memory)
-    - [SystemV IPC semaphore](#systemv-ipc-semaphore)
-  - [Development](#development)
-    - [How the project was initialized](#how-the-project-was-initialized)
-
-## References
-
-- <https://pypi.org/project/posix-ipc/>
-- <https://pypi.org/project/sysv-ipc/>
+- [Getting Started](#getting-started)
+  - [POSIX IPC message queue](#posix-ipc-message-queue)
+  - [POSIX IPC shared memory](#posix-ipc-shared-memory)
+  - [POSIX IPC semaphore](#posix-ipc-semaphore)
+  - [SystemV IPC message queue](#systemv-ipc-message-queue)
+  - [SystemV IPC shared memory](#systemv-ipc-shared-memory)
+  - [SystemV IPC semaphore](#systemv-ipc-semaphore)
+- [Development](#development)
+  - [How the project was initialized](#how-the-project-was-initialized)
+- [References](#references)
 
 ## Getting Started  
 
@@ -313,3 +307,8 @@ This project was initialized with the following command:
 uv init --package packages/examples-ipc
 uv add --project packages/examples-ipc posix-ipc sysv-ipc
 ```
+
+## References
+
+- [posix-ipc · PyPI](https://pypi.org/project/posix-ipc/)
+- [sysv-ipc · PyPI](https://pypi.org/project/sysv-ipc/)

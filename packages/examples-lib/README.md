@@ -4,13 +4,12 @@ This is a project to learn the basic functions and usage of Python.
 
 ## Table of Contents <!-- omit in toc -->
 
-- [examples-lib](#examples-lib)
-  - [Getting Started](#getting-started)
-  - [Language reference](#language-reference)
-  - [Standard library study](#standard-library-study)
-  - [Third party library study](#third-party-library-study)
-  - [Development](#development)
-    - [How the project was initialized](#how-the-project-was-initialized)
+- [Getting Started](#getting-started)
+- [Language reference](#language-reference)
+- [Standard library study](#standard-library-study)
+- [Third party library study](#third-party-library-study)
+- [Development](#development)
+  - [How the project was initialized](#how-the-project-was-initialized)
 
 ## Getting Started  
 
