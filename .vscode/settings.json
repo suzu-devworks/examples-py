@@ -1,8 +1,5 @@
 {
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[jsonc]": {
+  "[json][jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[markdown]": {
@@ -28,7 +25,6 @@
   "evenBetterToml.formatter.inlineTableExpand": true,
   "evenBetterToml.formatter.reorderArrays": true,
   "evenBetterToml.formatter.reorderKeys": true,
-  "markdown.extension.toc.levels": "2..6",
   "markdownlint.config": {},
   "markdownlint.lintWorkspaceGlobs": [
     "**/*.{md,mkd,mdwn,mdown,markdown,markdn,mdtxt,mdtext,workbook}",
