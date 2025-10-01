@@ -9,13 +9,13 @@
 
 ## What is the purpose of this repository?
 
-This repository is the author's personal playground for learning Python and experimenting with its features.
+This repository is a personal practice space for the author to learn Python and test its functionalities.
 
 The content here may be useful to other developers who have the same problem.
 
 However, please note that the code described here is based on my personal opinion and may contain many inaccuracies.
 
-## Project Index
+## Examples
 
 - Library and Test
   - [examples-lib](./packages/examples-lib/README.md)
