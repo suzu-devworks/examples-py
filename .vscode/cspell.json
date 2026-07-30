@@ -16,12 +16,18 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [
+    "addopts",
     "argparse",
     "asyncio",
+    "isort",
     "mypy",
+    "numprocesses",
     "pycache",
+    "pyclean",
     "pyproject",
-    "venv"
+    "pytest",
+    "venv",
+    "xdist"
   ],
   "ignoreWords": [],
   "import": [],
