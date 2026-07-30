@@ -395,7 +395,7 @@ def test_field_access() -> None:
 
     assert x["a"].shape == (2, 2)
     assert x["a"].dtype == np.int32
-    assert x["b"].shape == (2, 2, 3, 3)  # type: ignore
+    assert x["b"].shape == (2, 2, 3, 3)
     assert x["b"].dtype == np.float64
 
 

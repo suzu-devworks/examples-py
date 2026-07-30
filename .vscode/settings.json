@@ -36,11 +36,12 @@
     "!**/.venv"
   ],
   "mypy-type-checker.args": [],
+  "mypy-type-checker.importStrategy": "fromEnvironment",
   "python.analysis.autoFormatStrings": false,
   "python.terminal.activateEnvInCurrentTerminal": true,
   "python.terminal.activateEnvironment": true,
   "python.testing.autoTestDiscoverOnSaveEnabled": false,
   "python.testing.pytestEnabled": true,
   "ruff.configuration": "${workspaceFolder}/.ruff.toml",
-  "terminal.integrated.environmentChangesRelaunch": true
+  "terminal.integrated.environmentChangesRelaunch": true,
 }
