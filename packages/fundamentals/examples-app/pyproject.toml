@@ -1,0 +1,30 @@
+[project]
+authors = [
+  { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
+]
+dependencies = [
+  "examples-lib",
+  "pillow>=12.3.0",
+  "pyyaml>=6.0.3",
+]
+description = "Add your description here"
+name = "examples-app"
+readme = "README.md"
+requires-python = ">=3.13"
+version = "0.1.0"
+
+[project.scripts]
+examples-app = "examples_app:main"
+
+[build-system]
+build-backend = "uv_build"
+requires = ["uv_build>=0.12.0,<0.13.0"]
+
+[dependency-groups]
+dev = [
+  "types-pillow>=10.2.0.20240822",
+  "types-pyyaml>=6.0.12.20240917",
+]
+
+[tool.uv.sources]
+examples-lib = { workspace = true }

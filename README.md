@@ -17,9 +17,9 @@ However, please keep in mind that this code is based solely on my own perspectiv
 
 ## Examples
 
-- Library and Test
-  - [examples-lib](./packages/examples-lib/README.md)
+- Fundamentals
+  - [examples-lib](./packages/fundamentals/examples-lib/README.md)
+  - [examples-app](./packages/fundamentals/examples-app/README.md)
 
-- Applications
-  - [examples-cli](./packages/examples-cli/README.md)
-  - [examples-ipc](./packages/examples-ipc/README.md)
+- Networking
+  - [examples-ipc-app](./packagesnetworking/examples-ipc-app/README.md)

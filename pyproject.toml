@@ -10,7 +10,7 @@ version = "0.1.0"
 
 [tool.uv.workspace]
 exclude = []
-members = ["packages/*"]
+members = ["packages/*/*"]
 
 [dependency-groups]
 dev = [
