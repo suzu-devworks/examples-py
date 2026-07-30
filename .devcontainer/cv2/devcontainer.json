@@ -1,11 +1,11 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-  "name": "Python (uv)",
+  "name": "Python (uv with OpenCV)",
   "dockerComposeFile": [
-    "compose.dev.yaml"
+    "../compose.dev-cv2.yaml"
   ],
-  "service": "dev",
+  "service": "dev-cv2",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "mounts": [
     "source=uv-venv,target=${containerWorkspaceFolder}/.venv,type=volume"

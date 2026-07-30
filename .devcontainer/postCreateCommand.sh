@@ -6,6 +6,8 @@ echo "USER:" ${script_user}
 echo "DIR:" ${script_dir}
 echo
 
+sudo chown vscode .venv
+
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Shell autocompletion
