@@ -1,0 +1,34 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [],
+  "dictionaries": [],
+  "words": [
+    "arange",
+    "asctime",
+    "autouse",
+    "dtype",
+    "exif",
+    "EXIFTAGS",
+    "getexif",
+    "GPSTAGS",
+    "infile",
+    "infiles",
+    "levelname",
+    "levelno",
+    "linalg",
+    "natsort",
+    "natsorted",
+    "ndarray",
+    "ndarrays",
+    "numpy",
+    "pytest",
+    "pytz",
+    "pyyaml",
+    "realsorted"
+  ],
+  "ignoreWords": [],
+  "import": [
+    "../../.vscode/cspell.json"
+  ]
+}

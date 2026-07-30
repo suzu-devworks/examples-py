@@ -1,8 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-  "name": "Python 3 with Dev Containers",
-  "dockerComposeFile": "compose.yaml",
+  "name": "Python (uv)",
+  "dockerComposeFile": [
+    "compose.dev.yaml"
+  ],
   "service": "dev",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "remoteEnv": {
@@ -11,6 +13,11 @@
   },
   "postCreateCommand": "/bin/sh ./.devcontainer/postCreateCommand.sh",
   "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/copilot-cli": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
+    "ghcr.io/devcontainers/features/node": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [

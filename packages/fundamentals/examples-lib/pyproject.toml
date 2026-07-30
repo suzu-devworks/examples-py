@@ -1,0 +1,29 @@
+[project]
+authors = [
+  { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
+]
+dependencies = [
+  "natsort>=8.4.0",
+  "numpy>=2.5.1",
+  "pytz>=2026.3.post1",
+  "tzdata>=2026.3",
+]
+description = "Add your description here"
+name = "examples-lib"
+readme = "README.md"
+requires-python = ">=3.13"
+version = "0.1.0"
+
+[build-system]
+build-backend = "uv_build"
+requires = ["uv_build>=0.12.0,<0.13.0"]
+
+[dependency-groups]
+dev = [
+  "types-pytz>=2026.3.1.20260727",
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=xml --cov-report term --cov-branch"
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"
