@@ -8,10 +8,14 @@ on:
 
 permissions: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     permissions:
       contents: read
     steps:
@@ -28,15 +32,21 @@ jobs:
       with:
         python-version-file: "pyproject.toml"
 
+    - name: Install dependencies
+      run: uv sync --all-packages --all-extras
+
     - name: Ensure browsers are installed
-      run: python -m playwright install --with-deps
+      run: uv run playwright install --with-deps
 
     - name: Run your tests
-      run: pytest --tracing=retain-on-failure "./packages"
-      continue-on-error: true
+      run: |
+        uv run pytest \
+          --junitxml=./test-results/playwright-report.xml \
+          --tracing=retain-on-failure \
+          ./packages/web/examples-playwright/
 
     - uses: actions/upload-artifact@v7
       if: ${{ !cancelled() }}
       with:
         name: playwright-traces
-        path: test-results/
+        path: ./test-results/

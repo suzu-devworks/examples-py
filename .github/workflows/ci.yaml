@@ -6,6 +6,7 @@ on:
       - develop
     paths:
       - ".github/workflows/ci.yaml"
+      - "packages/**"
   pull_request:
     branches:
       - main
@@ -14,6 +15,10 @@ on:
   workflow_dispatch:
 
 permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -42,18 +47,21 @@ jobs:
     - name: Lint with ruff
       uses: astral-sh/ruff-action@v4.1.0
       with:
-        src: "./packages"
+        src: ./packages
 
     - name: Lint with Mypy
-      run: uv run mypy --config-file=./.mypy.ini "./packages"
+      run: uv run mypy --config-file=./.mypy.ini ./packages
 
     - name: Test with pytest
-      run: uv run pytest --junitxml=test-results/pytest-report.xml "./packages"
-      continue-on-error: true
+      run: |
+        uv run pytest \
+          --junitxml=./test-results/pytest-report.xml \
+          --ignore=./packages/web/examples-playwright/ \
+          ./packages
 
     - uses: actions/upload-artifact@v7
       if: ${{ !cancelled() }}
       with:
         name: pytest-results
-        path: test-results/
+        path: ./test-results/
 
