@@ -1,0 +1,4 @@
+THIS TEXT ENCODING IS UTF-8
+
+日本語のファイルです。エンコードはUTF-8です。
+改行はLFです。🍺

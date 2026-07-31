@@ -1,0 +1,16 @@
+<!doctype html>
+<title>About Responses</title>
+
+<h1>About Responses</h1>
+<ul>
+  <li><a href="{{ url_for('use_str') }}">Home</a></li>
+  <li><a href="{{ url_for('use_generator') }}">An iterator or generator returning strings or bytes</a></li>
+  <li><a href="{{ url_for('me_api') }}">
+      <code>dict</code> a response object - APIs with JSON
+    </a></li>
+  <li><a href="{{ url_for('users_api') }}">
+      <code>list</code> a response object - APIs with JSON
+    </a></li>
+  <li><a href="{{ url_for('use_tuple') }}">A tuple (response, status)</a></li>
+
+</ul>

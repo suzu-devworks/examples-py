@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My First Blueprint - Modular Applications with Blueprints</title>
+</head>
+
+<body>
+  <header>
+    <h1>My First Blueprint</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Home</h2>
+      <ul>
+        <li><a href="{{ url_for('simple_page.show', page='hello')}}">hello</a></li>
+        <li><a href="{{ url_for('simple_page.show', page='not-found')}}">Not Found</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><code>@/my_first_blueprint/templates/pages/index.html</code></p>
+  </footer>
+</body>
+
+</html>

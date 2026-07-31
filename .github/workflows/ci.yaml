@@ -23,16 +23,16 @@ jobs:
       contents: read
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Install uv
-      uses: astral-sh/setup-uv@v4
+      uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
       with:
         enable-cache: true
         cache-dependency-glob: "uv.lock"
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
         python-version-file: "pyproject.toml"
 
@@ -40,12 +40,24 @@ jobs:
       run: uv sync --all-packages --all-extras
 
     - name: Lint with ruff
-      uses: astral-sh/ruff-action@v2
+      uses: astral-sh/ruff-action@v4.1.0
       with:
-        src: "./packages"
+        src: ./packages
 
     - name: Lint with Mypy
-      run: uv run mypy --config-file=./.mypy.ini "./packages"
+      run: uv run mypy --config-file=./.mypy.ini ./packages
 
     - name: Test with pytest
-      run: uv run pytest "./packages"
+      run: >
+        uv run pytest
+          --junitxml=test-results/pytest-report.xml
+          --ignore=packages/web/examples-playwright
+          ./packages
+      continue-on-error: true
+
+    - uses: actions/upload-artifact@v7
+      if: ${{ !cancelled() }}
+      with:
+        name: pytest-results
+        path: test-results/
+

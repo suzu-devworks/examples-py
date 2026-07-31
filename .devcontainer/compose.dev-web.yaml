@@ -1,0 +1,17 @@
+services:
+  nginx:
+    depends_on:
+      - dev-web
+
+  dev-web:
+    extends:
+      file: compose.dev.yaml
+      service: dev
+    networks:
+      interconnect:
+        aliases:
+          - dev
+
+networks:
+  interconnect:
+    driver: bridge

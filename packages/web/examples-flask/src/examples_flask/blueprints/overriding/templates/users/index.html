@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>User page - examples of flask web application</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css' )}}" />
+  <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}" />
+</head>
+
+<body>
+  <header>
+    <h1>examples of flask web application</h1>
+  </header>
+
+  <main>
+    <h2>User page (overridden)</h2>
+    <nav>
+      <ul>
+        <li><a href="javascript:history.back();">go back</a></li>
+      </ul>
+    </nav>
+
+    <section>
+      <h3>Layout templates</h3>
+      <div>
+        <pre>
+.
+└ overriding/
+   ├ users/
+   │ ├ static/
+   │ │ └ style.css
+   │ └ templates/
+   │    └ users/
+   │       └ <del>index.html</del>
+   └ templates/
+      └ users/
+         └ <strong>index.html</strong>
+</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3>Static folders</h3>
+      <ul>
+        <li>
+          <code>url_for('static',filename='style.css')</code> to
+          <code>{{url_for('static',filename='style.css' )}}</code>
+        </li>
+        <li>
+          <code>url_for('.static',filename='style.css')</code> to
+          <code>{{url_for('.static',filename='style.css' )}}</code>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span><code class="overwritten">template:@/overriding/templates/users/index.html</code></span>
+  </footer>
+</body>
+
+</html>

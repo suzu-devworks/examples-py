@@ -1,0 +1,23 @@
+<html>
+
+<head>
+  <title>Example of webcam streaming using MJPEG</title>
+  <link href="{{ url_for('webcam_mjpeg.static', filename='webcam/mjpeg/style.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+  <h1>Example of webcam streaming using MJPEG</h1>
+  <div class="clock"></div>
+
+  <div class="container">
+    <img src="{{ url_for('webcam_mjpeg.video_feed') }}">
+    <img src="{{ url_for('webcam_mjpeg.video_gray_feed') }}">
+  </div>
+
+  <script type="text/javascript">
+    setInterval(() => document.querySelector('div.clock').innerText = new Date().toTimeString(),
+      500)
+  </script>
+</body>
+
+</html>

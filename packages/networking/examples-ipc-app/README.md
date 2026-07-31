@@ -273,7 +273,8 @@ examples-ipc-app sysv sem -k 200
 examples-ipc-app sysv sem -k 200 -r
 ```
 
-The semaphore values ​​displayed on the server seem to be different from the POSIX semaphore values, so there may be significant differences in functionality between semaphores.
+The semaphore values ​​displayed on the server seem to be different from the POSIX semaphore values,
+so there may be significant differences in functionality between semaphores.
 
 To delete a SystemV shared memory:
 

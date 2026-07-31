@@ -1,0 +1,40 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [],
+  "dictionaries": [],
+  "words": [
+    "adev",
+    "aiohttp",
+    "appcontext",
+    "autouse",
+    "DECLTYPES",
+    "DGRAM",
+    "enctype",
+    "executescript",
+    "fastapi",
+    "fernet",
+    "flaskr",
+    "fourcc",
+    "httpserver",
+    "imencode",
+    "imshow",
+    "Kaku",
+    "KHTML",
+    "Mili",
+    "mjpeg",
+    "mpegurl",
+    "opencv",
+    "passlib",
+    "pyfile",
+    "runserver",
+    "subapp",
+    "tobytes",
+    "trustme",
+    "uvicorn"
+  ],
+  "ignoreWords": [],
+  "import": [
+    "../../.vscode/cspell.json"
+  ]
+}

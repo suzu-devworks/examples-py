@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Blueprint Resources - Modular Applications with Blueprints</title>
+  <link rel="stylesheet" href="{{url_for('admin.static', filename='style.css')}}" />
+</head>
+
+<body>
+  <header>
+    <h1>Blueprint Resources</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Admin page</h2>
+
+      <ul>
+        <li>static folder(static): {{url_for('static', filename='style.css')}}</li>
+        <li>static folder(admin.static): {{url_for('admin.static', filename='style.css')}}</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span><code>@/_03_resources/admin/templates/admin/index.html</code></span>
+  </footer>
+</body>
+
+</html>

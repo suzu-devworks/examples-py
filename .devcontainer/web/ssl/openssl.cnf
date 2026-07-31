@@ -1,4 +1,4 @@
-# ssl.conf - Development use only.
+# openssl.cnf - Development use only.
 
 [ req ]
 distinguished_name  = req

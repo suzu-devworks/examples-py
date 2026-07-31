@@ -7,6 +7,9 @@
   ],
   "service": "dev",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "mounts": [
+    "source=uv-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
+  ],
   "remoteEnv": {
     "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
     "UV_LINK_MODE": "copy"

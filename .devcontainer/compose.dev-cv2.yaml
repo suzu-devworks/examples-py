@@ -1,0 +1,22 @@
+services:
+  dev-cv2:
+    build:
+      context: ./cv2/
+      target: "develop-stage"
+    networks:
+      - interconnect
+    ports:
+      - "5501:5501"
+      - "5501:5501/udp"
+    tty: true
+    volumes:
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      # Use SSL server certificate
+      - ~/.vscode/web/ssl:/etc/ssl/local:ro
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ../../:/workspaces:cached
+
+networks:
+  interconnect:
+    driver: bridge

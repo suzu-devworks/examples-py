@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>examples of flask web application</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+</head>
+
+<body>
+  <header>
+    <h1>examples of flask web application</h1>
+  </header>
+
+  <main>
+    <h2>examples</h2>
+
+    <section>
+      <h3>Overriding Blueprint Resources</h3>
+      <p>Understand template folder search priority and see how template overrides work.</p>
+      <ul>
+        <li><a href="{{url_for('.overriding.index')}}">overriding</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span><code>template:@/templates/idex.html</code></span>
+  </footer>
+</body>
+
+</html>

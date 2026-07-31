@@ -44,4 +44,5 @@ uv run --directory packages/examples-lib pytest
 ## Third party library study
 
 - [`NumPy`](./tests/libraries/numpy/)
-  >　NumPy is a library that adds support for large multidimensional arrays and matrices, and a large collection of advanced mathematical functions for manipulating these arrays.
+  >　NumPy is a library that adds support for large multidimensional arrays and matrices, and a large collection
+    of advanced mathematical functions for manipulating these arrays.
