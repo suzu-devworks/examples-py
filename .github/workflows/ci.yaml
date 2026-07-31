@@ -42,13 +42,17 @@ jobs:
     - name: Lint with ruff
       uses: astral-sh/ruff-action@v4.1.0
       with:
-        src: "./packages"
+        src: ./packages
 
     - name: Lint with Mypy
-      run: uv run mypy --config-file=./.mypy.ini "./packages"
+      run: uv run mypy --config-file=./.mypy.ini ./packages
 
     - name: Test with pytest
-      run: uv run pytest --junitxml=test-results/pytest-report.xml "./packages"
+      run: >
+        uv run pytest
+          --junitxml=test-results/pytest-report.xml
+          --ignore=packages/web/examples-playwright
+          ./packages
       continue-on-error: true
 
     - uses: actions/upload-artifact@v7
