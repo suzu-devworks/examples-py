@@ -3,6 +3,7 @@ import sqlite3
 import pytest
 from flask import Flask
 from flask.testing import FlaskCliRunner
+
 from flaskr.db import get_db
 
 

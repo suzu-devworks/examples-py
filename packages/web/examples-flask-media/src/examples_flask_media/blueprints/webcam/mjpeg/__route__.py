@@ -1,6 +1,6 @@
 import os
 import time
-from typing import Callable, Generator
+from collections.abc import Callable, Generator
 
 from flask import Blueprint, Response, current_app, render_template
 

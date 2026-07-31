@@ -1,5 +1,6 @@
+from collections.abc import Mapping
 from logging import DEBUG, basicConfig
-from typing import Any, Mapping
+from typing import Any
 
 from flask import Flask, render_template
 

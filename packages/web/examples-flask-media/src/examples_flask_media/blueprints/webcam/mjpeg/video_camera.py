@@ -17,7 +17,7 @@ class VideoCamera:
     image: cv2.typing.MatLike | None = None
     timestamp: datetime | None = None
 
-    def __init__(self, url: str):
+    def __init__(self, url: str) -> None:
         self.url = url
         self.video = cv2.VideoCapture()
 

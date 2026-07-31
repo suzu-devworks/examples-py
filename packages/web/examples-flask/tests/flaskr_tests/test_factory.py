@@ -1,5 +1,6 @@
-from flaskr import create_app
 from werkzeug import Client
+
+from flaskr import create_app
 
 
 def test_config() -> None:
