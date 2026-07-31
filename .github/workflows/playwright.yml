@@ -33,7 +33,6 @@ jobs:
 
     - name: Run your tests
       run: pytest --tracing=retain-on-failure "./packages"
-      continue-on-error: true
 
     - uses: actions/upload-artifact@v7
       if: ${{ !cancelled() }}
