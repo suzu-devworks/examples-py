@@ -1,3 +1,4 @@
+
 # examples-py
 
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
@@ -19,8 +20,13 @@ or questionable parts!
 ## Examples
 
 - Fundamentals
-  - [examples-lib](./packages/fundamentals/examples-lib/README.md)
-  - [examples-app](./packages/fundamentals/examples-app/README.md)
+
+  Basic features of the Python programming language and examples using the standard library.
 
 - Networking
-  - [examples-ipc-app](./packagesnetworking/examples-ipc-app/README.md)
+
+  Programming examples related to network communication.
+
+- Web
+
+  Examples of web application implementation using various Python frameworks.

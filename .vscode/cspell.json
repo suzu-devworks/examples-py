@@ -17,15 +17,17 @@
   "dictionaries": [],
   "words": [
     "addopts",
+    "aiohttp",
     "argparse",
     "asyncio",
+    "fastapi",
     "isort",
     "mypy",
     "pycache",
     "pyclean",
     "pyproject",
     "pytest",
-    "venv",
+    "venv"
   ],
   "ignoreWords": [],
   "import": [],
