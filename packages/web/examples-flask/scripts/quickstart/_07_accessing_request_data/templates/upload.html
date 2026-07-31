@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<title>Upload new File</title>
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+
+<div class="upload">
+  <h1>Upload new File</h1>
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="the_file" />
+    <input type="submit" value="Upload" />
+  </form>
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+</div>

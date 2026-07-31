@@ -1,0 +1,18 @@
+services:
+  nginx:
+    # https://hub.docker.com/_/nginx
+    image: "nginx:alpine"
+    networks:
+      - interconnect
+    ports:
+      - "8180-8189:80"
+      - "8543-8552:443"
+    restart: no
+    volumes:
+      - ./web/nginx.conf.d:/etc/nginx/conf.d:ro
+      - ./web/public:/var/www/html:ro
+      - ./web/ssl:/etc/ssl/local:ro
+
+networks:
+  interconnect:
+    driver: bridge

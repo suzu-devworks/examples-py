@@ -1,0 +1,12 @@
+[project]
+authors = [
+  { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
+]
+dependencies = [
+    "websockets>=17.0",
+]
+description = "Add your description here"
+name = "examples-websockets"
+readme = "README.md"
+requires-python = ">=3.13"
+version = "0.1.0"

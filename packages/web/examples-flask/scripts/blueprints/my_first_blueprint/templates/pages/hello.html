@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My First Blueprint - Modular Applications with Blueprints</title>
+</head>
+
+<body>
+  <header>
+    <h1>My First Blueprint</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Hello Flask!</h2>
+
+      <ul>
+        <li>
+          <a href="{{ url_for('simple_page.show', page='index')}}">Home</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><code>@/my_first_blueprint/templates/pages/hello.html</code></p>
+  </footer>
+</body>
+
+</html>

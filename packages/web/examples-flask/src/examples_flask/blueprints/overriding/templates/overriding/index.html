@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Overriding Blueprint Resources - examples of flask web application</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+  <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}" />
+</head>
+
+<body>
+  <header>
+    <h1>examples of flask web application</h1>
+  </header>
+
+  <main>
+    <h2>Overriding Blueprint Resources</h2>
+    <nav>
+      <ul>
+        <li><a href="javascript:history.back();">go back</a></li>
+      </ul>
+    </nav>
+
+    <section>
+      <h3>examples</h3>
+      <p>Learn to nest Blueprints and the precedence of template folders and resource files.</p>
+      <p>It is composed of three levels of nested Blueprints:</p>
+      <ul>
+        <li>
+          <a href="{{url_for('.admin.index')}}">admin page</a>
+          <div>This page remains as it was when you registered it.</div>
+        </li>
+        <li>
+          <a href="{{url_for('.users.index')}}">user page</a>
+          <div>This page overwrites the template in the middle layer.</div>
+        </li>
+        <li>
+          <a href="{{url_for('.guests.index')}}">guest page</a>
+          <div>
+            This page overwrites the template once in the middle layer, and then overwrites it
+            again in the upper layer.
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span><code>template:@/overriding/templates/overriding/index.html</code></span>
+  </footer>
+</body>
+
+</html>

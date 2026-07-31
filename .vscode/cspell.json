@@ -21,13 +21,11 @@
     "asyncio",
     "isort",
     "mypy",
-    "numprocesses",
     "pycache",
     "pyclean",
     "pyproject",
     "pytest",
     "venv",
-    "xdist"
   ],
   "ignoreWords": [],
   "import": [],

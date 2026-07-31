@@ -1,0 +1,19 @@
+[project]
+authors = [
+  { name = "A.suzuki", email = "suzu.devworks@gmail.com" },
+]
+dependencies = [
+  "aiohttp-jinja2>=1.6",
+  "aiohttp-session>=2.12.1",
+  "aiohttp[speedups]>=3.14.3",
+]
+description = "Add your description here"
+name = "examples-aiohttp"
+readme = "README.md"
+requires-python = ">=3.12"
+version = "0.1.0"
+
+[dependency-groups]
+dev = [
+  "aiohttp-devtools>=1.1.2",
+]

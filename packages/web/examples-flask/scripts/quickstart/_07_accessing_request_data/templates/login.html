@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<title>login on Flask</title>
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+]
+<div class="login">
+  <h1>login</h1>
+  <form method="post">
+    <input type="text" name="username" placeholder="username" required />
+    <input type="password" name="password" placeholder="password" required />
+    <button type="submit">login</button>
+  </form>
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+</div>

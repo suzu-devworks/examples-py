@@ -1,0 +1,6 @@
+/*  @/_03_resources/admin/static/style.css */
+footer span > code::after {
+  content: "@/_03_resources/admin/static/style.css";
+  color: rgb(200 0 0);
+  margin-left: 1rem;
+}
