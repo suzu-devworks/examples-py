@@ -12,15 +12,17 @@
     "nginx"
   ],
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  "mounts": [
-    "source=uv-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
-  ],
+  "postCreateCommand": "/bin/sh ./.devcontainer/postCreateCommand.sh",
+  "remoteUser": "vscode",
   "remoteEnv": {
     "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
     "UV_LINK_MODE": "copy"
   },
-  "postCreateCommand": "/bin/sh ./.devcontainer/postCreateCommand.sh",
-  "remoteUser": "vscode",
+  "mounts": [
+    "source=uv-venv,target=${containerWorkspaceFolder}/.venv,type=volume",
+    "source=${localEnv:HOME}/.copilot/instructions,target=/home/vscode/.copilot/instructions,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.copilot/skills,target=/home/vscode/.copilot/skills,type=bind,consistency=cached"
+  ],
   "features": {
     "ghcr.io/devcontainers/features/copilot-cli": {},
     "ghcr.io/devcontainers/features/github-cli": {},
@@ -36,7 +38,11 @@
         "ms-python.mypy-type-checker",
         "charliermarsh.ruff",
         "tamasfe.even-better-toml"
-      ]
+      ],
+      "settings": {
+        // Enable Copilot Chat code generation to use instruction files
+        "github.copilot.chat.codeGeneration.useInstructionFiles": true
+      }
     }
   }
 }
