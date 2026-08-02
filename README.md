@@ -17,16 +17,25 @@ The content here might actually be helpful to other developers facing similar is
 However, please keep in mind that this code is based solely on my own perspective and probably has lots of inaccurate
 or questionable parts!
 
-## Examples
+## What topics are covered?
 
-- Fundamentals
+This includes a wide variety of projects.
 
+- [Fundamentals](./packages/fundamentals/)\
   Basic features of the Python programming language and examples using the standard library.
 
-- Networking
-
+- [Networking](./packages/networking/)\
   Programming examples related to network communication.
 
-- Web
-
+- [Web Development](./packages/web/)\
   Examples of web application implementation using various Python frameworks.
+
+## What should I prepare before development?
+
+This repository provides multiple development container environments. Please select the libraries,
+services, and databases you wish to use.
+
+- [Python (uv)](./.devcontainer/): It is used in standard Python development
+- [Python (uv with OpenCV)](./.devcontainer/cv2/): Adding OpenCV library for image processing and computer vision tasks
+- [Python (uv with Web)](./.devcontainer/web/): The NGINX reverse proxy is started. Configurations
+  for SSL certificates are also already set up.
